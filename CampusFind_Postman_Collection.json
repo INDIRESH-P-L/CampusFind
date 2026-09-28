@@ -1,0 +1,455 @@
+{
+  "info": {
+    "_postman_id": "b3e0c034-7a32-4720-94cb-d45dfca99b21",
+    "name": "CampusFind — Lost and Found API",
+    "description": "Complete Postman collection for CampusFind Spring Boot backend, covering all core features, business rule edge cases, and advanced JPA dynamic search & filtering.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. Authentication & Users",
+      "item": [
+        {
+          "name": "Get All Users (Pre-seeded)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "users"]
+            }
+          }
+        },
+        {
+          "name": "Register New Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bob Smith\",\n  \"email\": \"bob@campus.edu\",\n  \"password\": \"pass1234\",\n  \"role\": \"STUDENT\",\n  \"phoneNumber\": \"555-0199\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@campus.edu\",\n  \"password\": \"student123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create New Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sports Equipment\",\n  \"description\": \"Baseballs, rackets, gym gear, sports apparel\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Lost Reports",
+      "item": [
+        {
+          "name": "Create Lost Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Lost Casio Scientific Calculator\",\n  \"description\": \"Black Casio fx-991EX calculator left on a wooden table\",\n  \"location\": \"Central Library 2nd Floor\",\n  \"lostDate\": \"2026-09-28\",\n  \"categoryId\": 3,\n  \"userId\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports"]
+            }
+          }
+        },
+        {
+          "name": "Get All Lost Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports"]
+            }
+          }
+        },
+        {
+          "name": "Filter Lost Reports (Category + Keyword)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports?categoryId=3&keyword=casio",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports"],
+              "query": [
+                {
+                  "key": "categoryId",
+                  "value": "3"
+                },
+                {
+                  "key": "keyword",
+                  "value": "casio"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Lost Reports (Date Range)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports?startDate=2026-09-01&endDate=2026-09-30",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-09-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-09-30"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Lost Reports by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports/user/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports", "user", "3"]
+            }
+          }
+        },
+        {
+          "name": "Resolve Lost Report",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lost-reports/1/resolve",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lost-reports", "1", "resolve"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Found Items",
+      "item": [
+        {
+          "name": "Create Found Item (Staff)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Found Casio Calculator\",\n  \"description\": \"Casio scientific calculator with name initial on back\",\n  \"location\": \"Library 2nd Floor Study Area\",\n  \"foundDate\": \"2026-09-28\",\n  \"categoryId\": 3,\n  \"finderId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items"]
+            }
+          }
+        },
+        {
+          "name": "Get All Found Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items"]
+            }
+          }
+        },
+        {
+          "name": "Filter Found Items (Status + Location Keyword)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items?status=AVAILABLE&keyword=Library",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "AVAILABLE"
+                },
+                {
+                  "key": "keyword",
+                  "value": "Library"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Found Items (Category + Date Range)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items?categoryId=3&startDate=2026-09-01&endDate=2026-09-30",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items"],
+              "query": [
+                {
+                  "key": "categoryId",
+                  "value": "3"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-09-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-09-30"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Matching Engine",
+      "item": [
+        {
+          "name": "Get Possible Matches (Category + Keywords)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/matches",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "matches"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. Admin Dashboard",
+      "item": [
+        {
+          "name": "Get Admin Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "dashboard"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07. Business Rules & Edge Cases (Error Tests)",
+      "item": [
+        {
+          "name": "[Rule 1 Violation] Mark RETURNED directly from AVAILABLE (Expect 400)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"RETURNED\",\n  \"currentUserId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items/1/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items", "1", "status"]
+            },
+            "description": "Tests Rule: A found item cannot be marked 'returned' unless it is first marked 'claimed'. Expected: 400 Bad Request."
+          }
+        },
+        {
+          "name": "[Rule 2 Violation] Student tries to update status (Expect 403)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CLAIMED\",\n  \"currentUserId\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items/1/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items", "1", "status"]
+            },
+            "description": "Tests Rule: Only an admin or the reporting staff member can change a found item's status. Student Alice (id 3) is forbidden. Expected: 403 Forbidden."
+          }
+        },
+        {
+          "name": "[Input Validation Error] Blank fields & short password (Expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"invalid-email-address\",\n  \"password\": \"12\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Tests Bean Validation: triggers FieldErrors handled by @RestControllerAdvice."
+          }
+        },
+        {
+          "name": "[Normal Flow Step 1] Mark CLAIMED by Student Alice (Expect 200)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CLAIMED\",\n  \"currentUserId\": 2,\n  \"claimedByUserId\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items/1/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items", "1", "status"]
+            },
+            "description": "Staff John (id 2) marks item as CLAIMED by Alice (id 3). Expected: 200 OK."
+          }
+        },
+        {
+          "name": "[Normal Flow Step 2] Mark RETURNED after CLAIMED (Expect 200)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"RETURNED\",\n  \"currentUserId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/found-items/1/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "found-items", "1", "status"]
+            },
+            "description": "Staff John (id 2) marks already-claimed item as RETURNED. Expected: 200 OK."
+          }
+        }
+      ]
+    }
+  ]
+}
