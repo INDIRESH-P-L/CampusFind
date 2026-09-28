@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusFind — Lost and Found Tracker</title>
+  <title>CampusFind — Lost & Found Management System</title>
   <style>
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --surface-active: #e2e8f0;
       --border: #e2e8f0;
+      --border-focus: #3b82f6;
       --text: #0f172a;
       --text-muted: #64748b;
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      --primary-subtle: #eff6ff;
       --success-bg: #ecfdf5;
       --success-text: #047857;
       --warning-bg: #fffbeb;
       --warning-text: #b45309;
       --danger-bg: #fef2f2;
       --danger-text: #b91c1c;
-      --radius: 8px;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-hover: #1e293b;
+      --surface-active: #334155;
+      --border: #1f293d;
+      --border-focus: #60a5fa;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --primary-subtle: rgba(59, 130, 246, 0.15);
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --success-text: #34d399;
+      --warning-bg: rgba(245, 158, 11, 0.15);
+      --warning-text: #fbbf24;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --danger-text: #f87171;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +57,8 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
-      padding: 0;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
     }
 
     /* Minimal Top Navigation */
@@ -40,6 +68,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      backdrop-filter: blur(8px);
     }
     .header-inner {
       max-width: 1100px;
@@ -48,60 +77,128 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
     }
-    .brand {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 1.15rem;
+      gap: 0.6rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .brand-title {
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
-    .brand span {
-      background: #eff6ff;
-      color: var(--primary);
-      font-size: 0.75rem;
-      padding: 2px 8px;
+    .status-badge {
+      background: var(--success-bg);
+      color: var(--success-text);
+      font-size: 0.72rem;
+      padding: 2px 7px;
       border-radius: 999px;
       font-weight: 600;
-    }
-    .user-select-box {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      gap: 4px;
     }
-    .user-select-box select {
-      padding: 4px 8px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      background: #fff;
+    .status-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
     }
 
-    /* Sub Navigation Tabs */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .actor-box {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+    .actor-box select {
+      border: none;
+      background: transparent;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .theme-toggle-btn:hover { background: var(--surface-hover); }
+
+    /* Navigation Tabs */
     .nav-tabs {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 1.25rem;
       display: flex;
       gap: 1.5rem;
+      border-top: 1px solid transparent;
     }
     .nav-tab {
       background: none;
       border: none;
       padding: 0.75rem 0;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
     }
+    .nav-tab:hover { color: var(--text); }
     .nav-tab.active {
       color: var(--primary);
       border-bottom-color: var(--primary);
+      font-weight: 600;
+    }
+    .tab-badge {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 999px;
       font-weight: 600;
     }
 
@@ -112,11 +209,15 @@
       padding: 0 1.25rem 3rem 1.25rem;
     }
 
-    /* Tab Content panels */
-    .tab-content { display: none; }
+    .tab-content { display: none; animation: fadeIn 0.15s ease; }
     .tab-content.active { display: block; }
 
-    /* Dashboard Stats Grid */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Interactive Stat Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -129,21 +230,48 @@
       border-radius: var(--radius);
       padding: 1.25rem;
       box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
     }
-    .stat-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--border-focus);
+    }
+    .stat-card::after {
+      content: "Click to filter →";
+      position: absolute;
+      right: 1.25rem;
+      bottom: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .stat-card:hover::after { opacity: 1; }
+    .stat-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
     .stat-value {
-      font-size: 1.85rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-hint {
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    /* Filter & Search Bar */
+    /* Toolbar & Search Filtering Bar */
     .toolbar {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -154,7 +282,7 @@
       gap: 0.75rem;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       box-shadow: var(--shadow-sm);
     }
     .filter-group {
@@ -163,17 +291,78 @@
       gap: 0.5rem;
       align-items: center;
     }
+
+    /* Search input with live clear button */
+    .search-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .search-wrap input {
+      padding-left: 2rem;
+      padding-right: 1.75rem;
+      min-width: 220px;
+    }
+    .search-icon {
+      position: absolute;
+      left: 0.65rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+    .clear-search-btn {
+      position: absolute;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: none;
+      font-size: 0.85rem;
+      padding: 2px;
+    }
+
     input[type="text"], input[type="date"], select, textarea {
       font-family: inherit;
       padding: 6px 10px;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      background: #ffffff;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--text);
       outline: none;
+      transition: var(--transition);
     }
     input[type="text"]:focus, select:focus, textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 2px var(--primary-subtle);
+    }
+
+    /* Filter Chips */
+    .filter-chips {
+      display: flex;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+    .chip:hover { border-color: var(--border-focus); color: var(--text); }
+    .chip.active {
+      background: var(--primary);
       border-color: var(--primary);
+      color: #fff;
+      font-weight: 600;
     }
 
     /* Buttons */
@@ -181,28 +370,36 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 6px 12px;
-      font-size: 0.875rem;
+      padding: 6px 14px;
+      font-size: 0.85rem;
       font-weight: 500;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       border: 1px solid transparent;
-      transition: all 0.15s ease;
+      transition: var(--transition);
+      user-select: none;
     }
+    .btn:active { transform: scale(0.98); }
     .btn-primary {
       background: var(--primary);
       color: #fff;
     }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-secondary {
-      background: #fff;
+      background: var(--surface);
       border-color: var(--border);
       color: var(--text);
     }
-    .btn-secondary:hover { background: #f1f5f9; }
+    .btn-secondary:hover { background: var(--surface-hover); }
+    .btn-outline-danger {
+      background: transparent;
+      border-color: rgba(239, 68, 68, 0.4);
+      color: var(--danger-text);
+    }
+    .btn-outline-danger:hover { background: var(--danger-bg); }
     .btn-sm {
-      padding: 3px 8px;
-      font-size: 0.75rem;
+      padding: 4px 9px;
+      font-size: 0.78rem;
     }
 
     /* Item Card Listing */
@@ -215,31 +412,45 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1rem 1.25rem;
+      padding: 1.15rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
       box-shadow: var(--shadow-sm);
+      transition: var(--transition);
     }
-    .item-main h3 {
-      font-size: 1rem;
+    .item-card:hover {
+      border-color: var(--border-focus);
+      box-shadow: var(--shadow);
+    }
+    .item-main { flex: 1; }
+    .item-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .item-title-row h3 {
+      font-size: 0.98rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
     }
-    .item-main p {
-      font-size: 0.875rem;
-      color: #475569;
-      margin-bottom: 0.5rem;
+    .item-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+      line-height: 1.45;
     }
     .item-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.8rem;
+      gap: 0.85rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
-    .item-meta span { display: inline-flex; align-items: center; gap: 0.25rem; }
+    .item-meta span { display: inline-flex; align-items: center; gap: 0.3rem; }
 
     /* Badges */
     .badge {
@@ -251,10 +462,10 @@
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
-    .badge-category { background: #f1f5f9; color: #334155; }
+    .badge-category { background: var(--surface-hover); color: var(--text); border: 1px solid var(--border); }
     .badge-AVAILABLE, .badge-OPEN { background: var(--success-bg); color: var(--success-text); }
     .badge-CLAIMED { background: var(--warning-bg); color: var(--warning-text); }
-    .badge-RETURNED, .badge-RESOLVED { background: #eff6ff; color: var(--primary); }
+    .badge-RETURNED, .badge-RESOLVED { background: var(--primary-subtle); color: var(--primary); }
 
     /* Match Card Special */
     .match-card {
@@ -264,42 +475,77 @@
       padding: 1.25rem;
       margin-bottom: 1rem;
       box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .match-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
     }
     .match-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.6rem;
       border-bottom: 1px solid var(--border);
+    }
+    .match-meter-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .match-meter {
+      width: 100px;
+      height: 6px;
+      background: var(--surface-hover);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .match-meter-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.6s ease;
     }
     .match-score {
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--primary);
     }
     .match-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 1rem;
       margin-bottom: 0.75rem;
     }
+    @media (max-width: 640px) {
+      .match-cols { grid-template-columns: 1fr; }
+    }
     .match-col {
-      background: #f8fafc;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: 1px solid #edf2f7;
+      background: var(--bg);
+      padding: 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
     }
     .match-col h4 {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
+      display: flex;
+      justify-content: space-between;
     }
+    .match-col strong { font-size: 0.9rem; }
     .match-reason {
       font-size: 0.8rem;
       color: var(--text-muted);
-      font-style: italic;
+      background: var(--surface-hover);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     /* Modal Form Styles */
@@ -307,24 +553,57 @@
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.4);
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(2px);
       z-index: 100;
       align-items: center;
       justify-content: center;
+      animation: fadeIn 0.15s ease;
     }
     .modal-backdrop.active { display: flex; }
     .modal {
       background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      max-width: 500px;
-      width: 90%;
+      max-width: 520px;
+      width: 92%;
       padding: 1.5rem;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
     }
-    .modal h2 { font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600; }
-    .form-group { margin-bottom: 0.85rem; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem; }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .modal-header h2 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .modal-close-btn:hover { color: var(--text); }
+    .form-group { margin-bottom: 0.9rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; }
     .form-group input, .form-group select, .form-group textarea { width: 100%; }
+
+    /* Interactive Callout Banner (For Rule Explanations) */
+    .rule-callout {
+      background: var(--surface-hover);
+      border-left: 3px solid var(--primary);
+      padding: 0.75rem 1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
 
     /* Toast Notification */
     .toast {
@@ -333,18 +612,35 @@
       right: 1.5rem;
       background: #0f172a;
       color: #fff;
-      padding: 0.75rem 1.25rem;
-      border-radius: 6px;
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-sm);
       font-size: 0.85rem;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 200;
-      max-width: 380px;
+      max-width: 400px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
-    .toast.show { opacity: 1; }
+    .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .toast.error { background: #b91c1c; }
     .toast.success { background: #047857; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .empty-state h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text); }
+    .empty-state p { font-size: 0.85rem; margin-bottom: 1rem; }
   </style>
 </head>
 <body>
@@ -352,21 +648,41 @@
   <!-- Top Minimal Header -->
   <header>
     <div class="header-inner">
-      <div class="brand">
-        CampusFind <span>Live System</span>
+      <div class="brand-wrap" onclick="switchTab('dashboard')">
+        <div class="brand-logo">CF</div>
+        <div>
+          <div class="brand-title">CampusFind</div>
+        </div>
+        <div class="status-badge">Port 8080 Active</div>
       </div>
-      <div class="user-select-box">
-        <label for="currentUserSelect">Acting as:</label>
-        <select id="currentUserSelect" onchange="onUserChanged()">
-          <!-- Populated dynamically -->
-        </select>
+
+      <div class="header-controls">
+        <div class="actor-box">
+          <span>Acting User:</span>
+          <select id="currentUserSelect" onchange="onUserChanged()" title="Switch active actor to test role-based rules">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          🌓
+        </button>
       </div>
     </div>
+
+    <!-- Navigation Tabs with badges -->
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('dashboard')">Dashboard</button>
-      <button class="nav-tab" onclick="switchTab('lost')">Lost Reports</button>
-      <button class="nav-tab" onclick="switchTab('found')">Found Items</button>
-      <button class="nav-tab" onclick="switchTab('matches')">Matches</button>
+      <button class="nav-tab active" id="tabbtn-dashboard" onclick="switchTab('dashboard')">
+        Dashboard
+      </button>
+      <button class="nav-tab" id="tabbtn-lost" onclick="switchTab('lost')">
+        Lost Reports <span class="tab-badge" id="badge-lost-count">0</span>
+      </button>
+      <button class="nav-tab" id="tabbtn-found" onclick="switchTab('found')">
+        Found Items <span class="tab-badge" id="badge-found-count">0</span>
+      </button>
+      <button class="nav-tab" id="tabbtn-matches" onclick="switchTab('matches')">
+        Smart Matches <span class="tab-badge" id="badge-matches-count">0</span>
+      </button>
     </div>
   </header>
 
@@ -374,29 +690,36 @@
     <!-- TAB 1: DASHBOARD -->
     <section id="tab-dashboard" class="tab-content active">
       <div class="stats-grid">
-        <div class="stat-card">
+        <div class="stat-card" onclick="filterByStat('AVAILABLE')">
           <div class="stat-title">Pending Items (Available)</div>
           <div class="stat-value" id="stat-pending">0</div>
+          <div class="stat-hint">Found items waiting for claim</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="filterByStat('CLAIMED')">
           <div class="stat-title">Claimed Items</div>
           <div class="stat-value" id="stat-claimed">0</div>
+          <div class="stat-hint">Identified by claimant student</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="filterByStat('RETURNED')">
           <div class="stat-title">Returned Items</div>
           <div class="stat-value" id="stat-returned">0</div>
+          <div class="stat-hint">Successfully handed over</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" onclick="filterByStat('OPEN_LOST')">
           <div class="stat-title">Open Lost Reports</div>
           <div class="stat-value" id="stat-open-lost">0</div>
+          <div class="stat-hint">Actively scanning for matches</div>
         </div>
       </div>
 
-      <div class="toolbar" style="margin-top: 1rem;">
-        <span style="font-size: 0.9rem; color: var(--text-muted);">
-          Total Users: <strong id="stat-users">0</strong> (Students: <span id="stat-students">0</span>, Staff: <span id="stat-staff">0</span>)
-        </span>
-        <button class="btn btn-secondary btn-sm" onclick="loadDashboard()">↻ Refresh Stats</button>
+      <div class="toolbar">
+        <div style="font-size: 0.86rem; color: var(--text-muted);">
+          System Overview: <strong id="stat-users">0</strong> Registered Users (<span id="stat-students">0</span> Students, <span id="stat-staff">0</span> Staff Members).
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn btn-secondary btn-sm" onclick="loadDashboard()">↻ Refresh Live Stats</button>
+          <button class="btn btn-primary btn-sm" onclick="switchTab('matches')">View Matching Pairs →</button>
+        </div>
       </div>
     </section>
 
@@ -404,94 +727,124 @@
     <section id="tab-lost" class="tab-content">
       <div class="toolbar">
         <div class="filter-group">
-          <input type="text" id="lost-search-kw" placeholder="Search keywords..." oninput="loadLostReports()">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="lost-search-kw" placeholder="Filter title, description, location..." oninput="handleSearchInput('lost')">
+            <button class="clear-search-btn" id="lost-search-clear" onclick="clearSearch('lost')">✕</button>
+          </div>
           <select id="lost-search-cat" onchange="loadLostReports()">
             <option value="">All Categories</option>
-          </select>
-          <select id="lost-search-status" onchange="loadLostReports()">
-            <option value="">All Statuses</option>
-            <option value="OPEN">Open</option>
-            <option value="RESOLVED">Resolved</option>
           </select>
         </div>
         <button class="btn btn-primary" onclick="openModal('modal-lost')">+ Report Lost Item</button>
       </div>
+
+      <!-- Quick interactive filter chips -->
+      <div class="filter-chips">
+        <span class="chip active" id="chip-lost-ALL" onclick="setLostStatusChip('ALL')">All Reports</span>
+        <span class="chip" id="chip-lost-OPEN" onclick="setLostStatusChip('OPEN')">Open Reports</span>
+        <span class="chip" id="chip-lost-RESOLVED" onclick="setLostStatusChip('RESOLVED')">Resolved</span>
+      </div>
+
       <div id="lost-list" class="card-list"></div>
     </section>
 
     <!-- TAB 3: FOUND ITEMS -->
     <section id="tab-found" class="tab-content">
+      <!-- Interactive Rule Reminder Callout -->
+      <div class="rule-callout">
+        <div>
+          <strong>Enforced Workflow:</strong> Items follow <code>AVAILABLE</code> &rarr; <code>CLAIMED</code> &rarr; <code>RETURNED</code>. Only Admin or reporting Staff can alter statuses.
+        </div>
+        <button class="btn btn-outline-danger btn-sm" onclick="triggerRule1ViolationTest()" title="Deliberately triggers Rule 1 violation (returns 400 Bad Request)">
+          ⚡ Simulate Rule 1 Rejection
+        </button>
+      </div>
+
       <div class="toolbar">
         <div class="filter-group">
-          <input type="text" id="found-search-kw" placeholder="Search location/title..." oninput="loadFoundItems()">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="found-search-kw" placeholder="Filter items or location..." oninput="handleSearchInput('found')">
+            <button class="clear-search-btn" id="found-search-clear" onclick="clearSearch('found')">✕</button>
+          </div>
           <select id="found-search-cat" onchange="loadFoundItems()">
             <option value="">All Categories</option>
-          </select>
-          <select id="found-search-status" onchange="loadFoundItems()">
-            <option value="">All Statuses</option>
-            <option value="AVAILABLE">Available</option>
-            <option value="CLAIMED">Claimed</option>
-            <option value="RETURNED">Returned</option>
           </select>
         </div>
         <button class="btn btn-primary" onclick="openModal('modal-found')">+ Log Found Item (Staff)</button>
       </div>
+
+      <!-- Quick interactive filter chips -->
+      <div class="filter-chips">
+        <span class="chip active" id="chip-found-ALL" onclick="setFoundStatusChip('ALL')">All Found Items</span>
+        <span class="chip" id="chip-found-AVAILABLE" onclick="setFoundStatusChip('AVAILABLE')">Available</span>
+        <span class="chip" id="chip-found-CLAIMED" onclick="setFoundStatusChip('CLAIMED')">Claimed</span>
+        <span class="chip" id="chip-found-RETURNED" onclick="setFoundStatusChip('RETURNED')">Returned</span>
+      </div>
+
       <div id="found-list" class="card-list"></div>
     </section>
 
-    <!-- TAB 4: MATCHES -->
+    <!-- TAB 4: SMART MATCHES -->
     <section id="tab-matches" class="tab-content">
       <div class="toolbar">
-        <span style="font-size: 0.9rem; color: var(--text-muted);">
-          Matches computed dynamically between open lost reports and active found items.
+        <span style="font-size: 0.86rem; color: var(--text-muted);">
+          Matching engine automatically scans open lost reports against available items by Category, Keywords, and Location.
         </span>
-        <button class="btn btn-secondary btn-sm" onclick="loadMatches()">↻ Re-scan Matches</button>
+        <button class="btn btn-secondary btn-sm" onclick="loadMatches()">↻ Re-run Match Scan</button>
       </div>
       <div id="matches-list"></div>
     </section>
   </main>
 
   <!-- MODAL: REPORT LOST ITEM -->
-  <div id="modal-lost" class="modal-backdrop">
+  <div id="modal-lost" class="modal-backdrop" onclick="onBackdropClick(event, 'modal-lost')">
     <div class="modal">
-      <h2>Report Lost Item</h2>
+      <div class="modal-header">
+        <h2>Report Lost Item</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-lost')">×</button>
+      </div>
       <form id="form-lost" onsubmit="submitLostReport(event)">
         <div class="form-group">
-          <label>Title *</label>
-          <input type="text" id="lost-title" required placeholder="e.g. Lost Casio fx-991EX">
+          <label>Item Title *</label>
+          <input type="text" id="lost-title" required placeholder="e.g. Casio fx-991EX Calculator">
         </div>
         <div class="form-group">
           <label>Category *</label>
           <select id="lost-category" required></select>
         </div>
         <div class="form-group">
-          <label>Location *</label>
-          <input type="text" id="lost-location" required placeholder="e.g. Science Block Room 302">
+          <label>Location Where Lost *</label>
+          <input type="text" id="lost-location" required placeholder="e.g. Central Library 2nd Floor">
         </div>
         <div class="form-group">
-          <label>Lost Date *</label>
+          <label>Date Lost *</label>
           <input type="date" id="lost-date" required>
         </div>
         <div class="form-group">
-          <label>Description *</label>
-          <textarea id="lost-desc" rows="3" required placeholder="Details, identifying marks..."></textarea>
+          <label>Description & Identifying Marks *</label>
+          <textarea id="lost-desc" rows="3" required placeholder="Color, stickers, scratches, lanyard details..."></textarea>
         </div>
-        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;">
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1.25rem;">
           <button type="button" class="btn btn-secondary" onclick="closeModal('modal-lost')">Cancel</button>
-          <button type="submit" class="btn btn-primary">Submit Report</button>
+          <button type="submit" class="btn btn-primary">File Lost Report</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- MODAL: LOG FOUND ITEM -->
-  <div id="modal-found" class="modal-backdrop">
+  <div id="modal-found" class="modal-backdrop" onclick="onBackdropClick(event, 'modal-found')">
     <div class="modal">
-      <h2>Log Found Item (Staff)</h2>
+      <div class="modal-header">
+        <h2>Log Found Item (Security / Staff)</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-found')">×</button>
+      </div>
       <form id="form-found" onsubmit="submitFoundItem(event)">
         <div class="form-group">
-          <label>Title *</label>
-          <input type="text" id="found-title" required placeholder="e.g. Found Casio Scientific Calculator">
+          <label>Item Title *</label>
+          <input type="text" id="found-title" required placeholder="e.g. Found Casio Calculator">
         </div>
         <div class="form-group">
           <label>Category *</label>
@@ -499,21 +852,40 @@
         </div>
         <div class="form-group">
           <label>Location Found *</label>
-          <input type="text" id="found-location" required placeholder="e.g. Library Study Desk">
+          <input type="text" id="found-location" required placeholder="e.g. Library Study Desk #4">
         </div>
         <div class="form-group">
-          <label>Found Date *</label>
+          <label>Date Found *</label>
           <input type="date" id="found-date" required>
         </div>
         <div class="form-group">
-          <label>Description *</label>
-          <textarea id="found-desc" rows="3" required placeholder="Item description, stickers, color..."></textarea>
+          <label>Item Description *</label>
+          <textarea id="found-desc" rows="3" required placeholder="Description of item condition, markings..."></textarea>
         </div>
-        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;">
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1.25rem;">
           <button type="button" class="btn btn-secondary" onclick="closeModal('modal-found')">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Found Item</button>
+          <button type="submit" class="btn btn-primary">Log Found Item</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- MODAL: INTERACTIVE CLAIM DIALOG -->
+  <div id="modal-claim" class="modal-backdrop" onclick="onBackdropClick(event, 'modal-claim')">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Mark Item as Claimed</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-claim')">×</button>
+      </div>
+      <p id="claim-item-title" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;"></p>
+      <div class="form-group">
+        <label>Select Claimant (Student) *</label>
+        <select id="claim-student-select"></select>
+      </div>
+      <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1.25rem;">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-claim')">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="confirmClaimAction()">Confirm Claim</button>
+      </div>
     </div>
   </div>
 
@@ -524,33 +896,71 @@
     let users = [];
     let categories = [];
     let currentUserId = 1;
+    let selectedLostStatus = 'ALL';
+    let selectedFoundStatus = 'ALL';
+    let activeClaimItemId = null;
+    let searchDebounceTimer = null;
 
-    // Initialize application data
     window.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('lost-date').valueAsDate = new Date();
       document.getElementById('found-date').valueAsDate = new Date();
+
+      // Keyboard shortcut: Esc closes modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal('modal-lost');
+          closeModal('modal-found');
+          closeModal('modal-claim');
+        }
+      });
+
       await loadUsers();
       await loadCategories();
       await loadDashboard();
+      await loadLostReports();
+      await loadFoundItems();
+      await loadMatches();
     });
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('themeToggleBtn').innerText = next === 'dark' ? '☀️' : '🌓';
+      showToast('Theme switched to ' + next + ' mode');
+    }
 
     function showToast(msg, isError = false) {
       const toast = document.getElementById('toast');
-      toast.innerText = msg;
+      toast.innerText = (isError ? '⚠️ ' : '✓ ') + msg;
       toast.className = 'toast show ' + (isError ? 'error' : 'success');
-      setTimeout(() => { toast.className = 'toast'; }, 3500);
+      setTimeout(() => { toast.className = 'toast'; }, 3800);
     }
 
     function switchTab(tabName) {
       document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('tab-' + tabName).classList.add('active');
+
+      const btn = document.getElementById('tabbtn-' + tabName);
+      if (btn) btn.classList.add('active');
+      const panel = document.getElementById('tab-' + tabName);
+      if (panel) panel.classList.add('active');
 
       if (tabName === 'dashboard') loadDashboard();
       if (tabName === 'lost') loadLostReports();
       if (tabName === 'found') loadFoundItems();
       if (tabName === 'matches') loadMatches();
+    }
+
+    function filterByStat(type) {
+      if (type === 'OPEN_LOST') {
+        switchTab('lost');
+        setLostStatusChip('OPEN');
+      } else {
+        switchTab('found');
+        setFoundStatusChip(type);
+      }
     }
 
     async function loadUsers() {
@@ -562,6 +972,13 @@
           `<option value="${u.id}">${u.name} (${u.role})</option>`
         ).join('');
         if (users.length > 0) currentUserId = users[0].id;
+
+        // Populate claimant student dropdown
+        const students = users.filter(u => u.role === 'STUDENT');
+        const claimSelect = document.getElementById('claim-student-select');
+        claimSelect.innerHTML = (students.length > 0 ? students : users).map(s =>
+          `<option value="${s.id}">${s.name} (${s.email})</option>`
+        ).join('');
       } catch (err) {
         console.error('Failed to load users:', err);
       }
@@ -569,15 +986,15 @@
 
     function onUserChanged() {
       currentUserId = Number(document.getElementById('currentUserSelect').value);
-      showToast('Switched user to ' + document.getElementById('currentUserSelect').selectedOptions[0].text);
+      const text = document.getElementById('currentUserSelect').selectedOptions[0].text;
+      showToast('Acting user changed to ' + text);
     }
 
     async function loadCategories() {
       try {
         const res = await fetch('/api/categories');
         categories = await res.json();
-        
-        const catOptions = categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        const catOptions = categories.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
         document.getElementById('lost-category').innerHTML = catOptions;
         document.getElementById('found-category').innerHTML = catOptions;
 
@@ -600,39 +1017,83 @@
         document.getElementById('stat-users').innerText = d.totalUsers;
         document.getElementById('stat-students').innerText = d.studentCount;
         document.getElementById('stat-staff').innerText = d.staffCount;
+
+        document.getElementById('badge-lost-count').innerText = d.openLostReports;
+        document.getElementById('badge-found-count').innerText = d.pendingFoundItems;
       } catch (err) {
         console.error('Dashboard error:', err);
       }
     }
 
+    // Lost Reports filter chips
+    function setLostStatusChip(status) {
+      selectedLostStatus = status;
+      document.querySelectorAll('#tab-lost .chip').forEach(c => c.classList.remove('active'));
+      document.getElementById('chip-lost-' + status).classList.add('active');
+      loadLostReports();
+    }
+
+    // Found items filter chips
+    function setFoundStatusChip(status) {
+      selectedFoundStatus = status;
+      document.querySelectorAll('#tab-found .chip').forEach(c => c.classList.remove('active'));
+      document.getElementById('chip-found-' + status).classList.add('active');
+      loadFoundItems();
+    }
+
+    function handleSearchInput(type) {
+      const kw = document.getElementById(type + '-search-kw').value;
+      const clearBtn = document.getElementById(type + '-search-clear');
+      clearBtn.style.display = kw ? 'inline-block' : 'none';
+
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        if (type === 'lost') loadLostReports();
+        if (type === 'found') loadFoundItems();
+      }, 200);
+    }
+
+    function clearSearch(type) {
+      document.getElementById(type + '-search-kw').value = '';
+      document.getElementById(type + '-search-clear').style.display = 'none';
+      if (type === 'lost') loadLostReports();
+      if (type === 'found') loadFoundItems();
+    }
+
     async function loadLostReports() {
       const kw = document.getElementById('lost-search-kw').value;
       const cat = document.getElementById('lost-search-cat').value;
-      const status = document.getElementById('lost-search-status').value;
 
       const params = new URLSearchParams();
       if (kw) params.append('keyword', kw);
       if (cat) params.append('categoryId', cat);
-      if (status) params.append('status', status);
+      if (selectedLostStatus !== 'ALL') params.append('status', selectedLostStatus);
 
       try {
         const res = await fetch('/api/lost-reports?' + params.toString());
         const data = await res.json();
         const container = document.getElementById('lost-list');
+        document.getElementById('badge-lost-count').innerText = data.filter(d => d.status === 'OPEN').length;
+
         if (data.length === 0) {
-          container.innerHTML = '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">No lost reports found.</div>';
+          container.innerHTML = `
+            <div class="empty-state">
+              <h4>No matching lost reports found</h4>
+              <p>Try clearing filters or submit a new report.</p>
+              <button class="btn btn-secondary btn-sm" onclick="openModal('modal-lost')">+ Report Lost Item</button>
+            </div>`;
           return;
         }
 
         container.innerHTML = data.map(item => `
           <div class="item-card">
             <div class="item-main">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <div class="item-title-row">
                 <h3>${escapeHtml(item.title)}</h3>
                 <span class="badge badge-${item.status}">${item.status}</span>
                 <span class="badge badge-category">${escapeHtml(item.category?.name || '')}</span>
               </div>
-              <p>${escapeHtml(item.description)}</p>
+              <p class="item-desc">${escapeHtml(item.description)}</p>
               <div class="item-meta">
                 <span>📍 ${escapeHtml(item.location)}</span>
                 <span>📅 ${item.lostDate}</span>
@@ -653,7 +1114,7 @@
       try {
         const res = await fetch(`/api/lost-reports/${id}/resolve`, { method: 'PUT' });
         if (res.ok) {
-          showToast('Report marked as Resolved');
+          showToast('Lost report marked as Resolved');
           loadLostReports();
           loadDashboard();
         }
@@ -665,31 +1126,36 @@
     async function loadFoundItems() {
       const kw = document.getElementById('found-search-kw').value;
       const cat = document.getElementById('found-search-cat').value;
-      const status = document.getElementById('found-search-status').value;
 
       const params = new URLSearchParams();
       if (kw) params.append('keyword', kw);
       if (cat) params.append('categoryId', cat);
-      if (status) params.append('status', status);
+      if (selectedFoundStatus !== 'ALL') params.append('status', selectedFoundStatus);
 
       try {
         const res = await fetch('/api/found-items?' + params.toString());
         const data = await res.json();
         const container = document.getElementById('found-list');
+        document.getElementById('badge-found-count').innerText = data.filter(d => d.status === 'AVAILABLE').length;
+
         if (data.length === 0) {
-          container.innerHTML = '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">No found items.</div>';
+          container.innerHTML = `
+            <div class="empty-state">
+              <h4>No found items match the filter</h4>
+              <p>Log a found item using the button above.</p>
+            </div>`;
           return;
         }
 
         container.innerHTML = data.map(item => `
           <div class="item-card">
             <div class="item-main">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <div class="item-title-row">
                 <h3>${escapeHtml(item.title)}</h3>
                 <span class="badge badge-${item.status}">${item.status}</span>
                 <span class="badge badge-category">${escapeHtml(item.category?.name || '')}</span>
               </div>
-              <p>${escapeHtml(item.description)}</p>
+              <p class="item-desc">${escapeHtml(item.description)}</p>
               <div class="item-meta">
                 <span>📍 ${escapeHtml(item.location)}</span>
                 <span>📅 ${item.foundDate}</span>
@@ -699,13 +1165,17 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-end;">
               ${item.status === 'AVAILABLE' ? `
-                <button class="btn btn-secondary btn-sm" onclick="updateFoundStatus(${item.id}, 'CLAIMED')">Mark Claimed</button>
+                <button class="btn btn-secondary btn-sm" onclick="openClaimDialog(${item.id}, '${escapeHtml(item.title)}')">
+                  Mark Claimed...
+                </button>
               ` : ''}
               ${item.status === 'CLAIMED' ? `
-                <button class="btn btn-primary btn-sm" onclick="updateFoundStatus(${item.id}, 'RETURNED')">Mark Returned</button>
+                <button class="btn btn-primary btn-sm" onclick="markItemReturned(${item.id})">
+                  Mark Returned
+                </button>
               ` : ''}
-              ${item.status === 'AVAILABLE' ? `
-                <button class="btn btn-secondary btn-sm" style="color: #94a3b8;" title="Will test Rule 1 violation" onclick="updateFoundStatus(${item.id}, 'RETURNED')">Test Return Rule</button>
+              ${item.status === 'RETURNED' ? `
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Completed</span>
               ` : ''}
             </div>
           </div>
@@ -715,12 +1185,46 @@
       }
     }
 
-    async function updateFoundStatus(id, newStatus) {
+    function openClaimDialog(id, title) {
+      activeClaimItemId = id;
+      document.getElementById('claim-item-title').innerText = `Item: "${title}"`;
+      openModal('modal-claim');
+    }
+
+    async function confirmClaimAction() {
+      if (!activeClaimItemId) return;
+      const claimantId = Number(document.getElementById('claim-student-select').value);
+      closeModal('modal-claim');
+
       try {
         const body = {
-          status: newStatus,
+          status: 'CLAIMED',
           currentUserId: currentUserId,
-          claimedByUserId: newStatus === 'CLAIMED' ? currentUserId : null
+          claimedByUserId: claimantId
+        };
+        const res = await fetch(`/api/found-items/${activeClaimItemId}/status`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(data.message || 'Error updating status', true);
+        } else {
+          showToast('Item successfully marked as CLAIMED!');
+          loadFoundItems();
+          loadDashboard();
+        }
+      } catch (err) {
+        showToast('Network error', true);
+      }
+    }
+
+    async function markItemReturned(id) {
+      try {
+        const body = {
+          status: 'RETURNED',
+          currentUserId: currentUserId
         };
         const res = await fetch(`/api/found-items/${id}/status`, {
           method: 'PUT',
@@ -731,7 +1235,7 @@
         if (!res.ok) {
           showToast(data.message || 'Error updating status', true);
         } else {
-          showToast(`Item status changed to ${newStatus}`);
+          showToast('Item successfully marked as RETURNED!');
           loadFoundItems();
           loadDashboard();
         }
@@ -740,41 +1244,121 @@
       }
     }
 
+    // Deliberately triggers Rule 1 violation on the first available item to demonstrate backend enforcement
+    async function triggerRule1ViolationTest() {
+      try {
+        const res = await fetch('/api/found-items?status=AVAILABLE');
+        const items = await res.json();
+        if (items.length === 0) {
+          showToast('No available found items to test. Create one first!', true);
+          return;
+        }
+
+        const targetItem = items[0];
+        const body = {
+          status: 'RETURNED',
+          currentUserId: currentUserId
+        };
+        const updateRes = await fetch(`/api/found-items/${targetItem.id}/status`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const err = await updateRes.json();
+        if (!updateRes.ok) {
+          showToast(`Rule 1 Verified (${updateRes.status}): ${err.message}`, true);
+        } else {
+          showToast('Unexpected success', false);
+        }
+      } catch (err) {
+        showToast('Network error during test', true);
+      }
+    }
+
     async function loadMatches() {
       try {
         const res = await fetch('/api/matches');
         const matches = await res.json();
         const container = document.getElementById('matches-list');
+        document.getElementById('badge-matches-count').innerText = matches.length;
+
         if (matches.length === 0) {
-          container.innerHTML = '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">No matching lost and found items at this time.</div>';
+          container.innerHTML = `
+            <div class="empty-state">
+              <h4>No potential matches at this time</h4>
+              <p>When open lost reports and found items share categories or keywords, they will appear here automatically.</p>
+            </div>`;
           return;
         }
 
         container.innerHTML = matches.map(m => `
           <div class="match-card">
             <div class="match-header">
-              <span class="match-score">★ ${m.matchScore}% Match Confidence</span>
+              <div class="match-meter-wrap">
+                <span class="match-score">★ ${m.matchScore}% Confidence</span>
+                <div class="match-meter">
+                  <div class="match-meter-fill" style="width: ${m.matchScore}%;"></div>
+                </div>
+              </div>
               <span class="badge badge-category">${escapeHtml(m.lostReport.category?.name || '')}</span>
             </div>
             <div class="match-cols">
               <div class="match-col">
-                <h4>Lost Item</h4>
+                <h4><span>Lost Report</span> <span>📅 ${m.lostReport.lostDate}</span></h4>
                 <strong>${escapeHtml(m.lostReport.title)}</strong>
-                <p style="font-size: 0.8rem; color: #475569; margin: 4px 0;">${escapeHtml(m.lostReport.description)}</p>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">📍 ${escapeHtml(m.lostReport.location)}</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0;">${escapeHtml(m.lostReport.description)}</p>
+                <div style="font-size: 0.76rem; color: var(--text-muted);">
+                  📍 ${escapeHtml(m.lostReport.location)} • 👤 ${escapeHtml(m.lostReport.user?.name || '')}
+                </div>
               </div>
               <div class="match-col">
-                <h4>Found Item</h4>
+                <h4><span>Found Item</span> <span>📅 ${m.foundItem.foundDate}</span></h4>
                 <strong>${escapeHtml(m.foundItem.title)}</strong>
-                <p style="font-size: 0.8rem; color: #475569; margin: 4px 0;">${escapeHtml(m.foundItem.description)}</p>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">📍 ${escapeHtml(m.foundItem.location)}</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0;">${escapeHtml(m.foundItem.description)}</p>
+                <div style="font-size: 0.76rem; color: var(--text-muted);">
+                  📍 ${escapeHtml(m.foundItem.location)} • 👤 Staff: ${escapeHtml(m.foundItem.finder?.name || '')}
+                </div>
               </div>
             </div>
-            <div class="match-reason">Reason: ${escapeHtml(m.matchReason)}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <div class="match-reason">💡 ${escapeHtml(m.matchReason)}</div>
+              ${m.foundItem.status === 'AVAILABLE' ? `
+                <button class="btn btn-primary btn-sm" onclick="pairMatch(${m.foundItem.id}, ${m.lostReport.user?.id}, ${m.lostReport.id})">
+                  Link & Claim Match
+                </button>
+              ` : ''}
+            </div>
           </div>
         `).join('');
       } catch (err) {
         console.error(err);
+      }
+    }
+
+    async function pairMatch(foundItemId, studentId, lostReportId) {
+      try {
+        const body = {
+          status: 'CLAIMED',
+          currentUserId: currentUserId,
+          claimedByUserId: studentId
+        };
+        const res = await fetch(`/api/found-items/${foundItemId}/status`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (res.ok) {
+          showToast('Found item claimed for student!');
+          // Optionally resolve the lost report
+          await fetch(`/api/lost-reports/${lostReportId}/resolve`, { method: 'PUT' });
+          loadMatches();
+          loadDashboard();
+        } else {
+          const err = await res.json();
+          showToast(err.message, true);
+        }
+      } catch (err) {
+        showToast('Error pairing match', true);
       }
     }
 
@@ -801,9 +1385,10 @@
           document.getElementById('lost-date').valueAsDate = new Date();
           loadLostReports();
           loadDashboard();
+          loadMatches();
         } else {
           const err = await res.json();
-          showToast(err.message || 'Validation failed', true);
+          showToast(err.message || 'Validation error', true);
         }
       } catch (err) {
         showToast('Network error', true);
@@ -833,9 +1418,10 @@
           document.getElementById('found-date').valueAsDate = new Date();
           loadFoundItems();
           loadDashboard();
+          loadMatches();
         } else {
           const err = await res.json();
-          showToast(err.message || 'Validation failed', true);
+          showToast(err.message || 'Validation error', true);
         }
       } catch (err) {
         showToast('Network error', true);
@@ -844,6 +1430,10 @@
 
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function onBackdropClick(e, id) {
+      if (e.target.id === id) closeModal(id);
+    }
+
     function escapeHtml(s) {
       if (!s) return '';
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
