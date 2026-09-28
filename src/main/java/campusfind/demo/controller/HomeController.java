@@ -10,7 +10,7 @@ import java.util.Map;
 @RestController
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/api")
     public ResponseEntity<Map<String, Object>> home() {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("application", "CampusFind — Lost and Found Item Tracker for Campus");
