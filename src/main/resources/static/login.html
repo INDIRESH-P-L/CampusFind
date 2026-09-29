@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECE CampusFind — Sign In | Sri Eshwar College of Engineering</title>
+  <meta name="description" content="Official Institutional Lost & Found Portal for Sri Eshwar College of Engineering (SECE), Coimbatore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-glow: rgba(79, 70, 229, 0.4);
+      --secondary: #06b6d4;
+      --accent-violet: #8b5cf6;
+      --accent-gold: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --sece-maroon: #800020;
+      --sece-gold: #d4af37;
+
+      --bg-base: #070913;
+      --surface-1: rgba(15, 23, 42, 0.85);
+      --surface-2: rgba(30, 41, 59, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(99, 102, 241, 0.35);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f1f5f9;
+      --surface-1: rgba(255, 255, 255, 0.94);
+      --surface-2: rgba(248, 250, 252, 0.9);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-highlight: rgba(79, 70, 229, 0.3);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 1.5rem;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.28;
+    }
+    .glow-1 {
+      top: -100px;
+      left: 15%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #4f46e5, transparent 70%);
+    }
+    .glow-2 {
+      bottom: -100px;
+      right: 15%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, #06b6d4, transparent 70%);
+    }
+
+    /* Top Utility Bar */
+    .top-utility-bar {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-icon {
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-icon:hover {
+      background: var(--border-highlight);
+      transform: scale(1.06);
+    }
+
+    /* Main Container */
+    .auth-page-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 520px;
+      animation: fadeInScale 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.96) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* College Branding Header */
+    .college-header-cluster {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .college-crest-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px var(--primary-glow);
+      margin-bottom: 1rem;
+      position: relative;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .college-crest-container span {
+      font-size: 2.2rem;
+    }
+
+    .college-name-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 0.6rem;
+    }
+
+    .college-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .college-subtitle {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Card Box */
+    .auth-card {
+      background: var(--surface-1);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--border-highlight);
+      border-radius: 24px;
+      padding: 2.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .auth-tabs-nav {
+      display: flex;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 1.75rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .auth-tab-link {
+      flex: 1;
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .auth-tab-link.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .auth-tab-link:not(.active):hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 14px 13px 44px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    [data-theme="light"] .form-control {
+      background: #ffffff;
+      border-color: #cbd5e1;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .password-toggle-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Alert Banner */
+    .auth-alert {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      margin-bottom: 1.25rem;
+      animation: fadeIn 0.3s ease;
+    }
+    .auth-alert-error {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+    }
+    .auth-alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-violet));
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 0 10px 25px var(--primary-glow);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(99, 102, 241, 0.5);
+    }
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* 1-Click Demo Profiles */
+    .demo-profiles-section {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .demo-profiles-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .demo-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+    }
+
+    .demo-chip {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .demo-chip:hover {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.12);
+      transform: translateY(-2px);
+    }
+    .demo-chip .chip-role {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .demo-chip .chip-name {
+      font-size: 0.68rem;
+      color: var(--secondary);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Footer Links */
+    .auth-footer {
+      margin-top: 1.75rem;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .auth-footer a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .auth-footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .guest-link-row {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .guest-link {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .guest-link:hover {
+      color: var(--text-muted);
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-highlight);
+      backdrop-filter: blur(16px);
+      padding: 12px 20px;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+      animation: slideInUp 0.3s ease;
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas background -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Top Utilities -->
+  <div class="top-utility-bar">
+    <button class="btn-icon" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
+  </div>
+
+  <!-- Main Auth Window -->
+  <div class="auth-page-container">
+    <div class="college-header-cluster">
+      <div class="college-crest-container">
+        <span>🛡️</span>
+      </div>
+      <div>
+        <span class="college-name-badge">SECE Institutional Network</span>
+        <h1 class="college-title">Sri Eshwar College of Engineering</h1>
+        <p class="college-subtitle">Autonomous Institution • Coimbatore, Tamil Nadu<br><strong>SECE CampusFind</strong> — Smart Lost & Found Ecosystem</p>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <!-- Navigation Tabs -->
+      <div class="auth-tabs-nav">
+        <a href="login.html" class="auth-tab-link active">
+          <span>🔑</span> Sign In
+        </a>
+        <a href="register.html" class="auth-tab-link">
+          <span>📝</span> Register Account
+        </a>
+      </div>
+
+      <!-- Alert Box -->
+      <div id="authAlert" class="auth-alert"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">
+            <span>College Email / Roll ID</span>
+            <span style="font-size: 0.72rem; color: var(--secondary);">@sece.ac.in</span>
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input type="text" id="loginEmail" class="form-control" placeholder="e.g. student@sece.ac.in or 718121104052" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">
+            <span>Password</span>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)">👁️ Show</button>
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="loginPassword" class="form-control" placeholder="Enter institutional password" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit">
+          <span>Sign In to SECE Portal</span>
+          <span>→</span>
+        </button>
+      </form>
+
+      <!-- 1-Click Evaluation Profiles -->
+      <div class="demo-profiles-section">
+        <div class="demo-profiles-title">
+          <span>⚡</span> 1-Click Evaluation Profiles (SECE):
+        </div>
+        <div class="demo-chips-grid">
+          <div class="demo-chip" onclick="autofillLogin('student@sece.ac.in', 'student123')">
+            <span class="chip-role">🎓 Student</span>
+            <span class="chip-name">Indiresh (CSE)</span>
+          </div>
+          <div class="demo-chip" onclick="autofillLogin('staff@sece.ac.in', 'staff123')">
+            <span class="chip-role">🛡️ Security</span>
+            <span class="chip-name">Main Gate Desk</span>
+          </div>
+          <div class="demo-chip" onclick="autofillLogin('admin@sece.ac.in', 'admin123')">
+            <span class="chip-role">👑 Admin</span>
+            <span class="chip-name">SECE Office</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="auth-footer">
+        New student or faculty member? <a href="register.html">Register SECE Account &rarr;</a>
+      </div>
+
+      <div class="guest-link-row">
+        <a href="index.html" class="guest-link" onclick="enterAsGuest()">Browse Public Campus Directory as Guest &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastPopup" class="toast-popup"></div>
+
+  <script>
+    // Particle Canvas Animation
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      const count = Math.floor((canvas.width * canvas.height) / 18000);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 1.5 + 0.8,
+          color: Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.4)' : 'rgba(6, 182, 212, 0.4)'
+        });
+      }
+    }
+
+    function animateCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 90) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.12 * (1 - dist / 90)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateCanvas);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    animateCanvas();
+
+    // Theme Switcher
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('campusfind_theme', next);
+    }
+    const savedTheme = localStorage.getItem('campusfind_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Password visibility toggle
+    function togglePasswordVisibility(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = '🙈 Hide';
+      } else {
+        input.type = 'password';
+        btn.innerText = '👁️ Show';
+      }
+    }
+
+    function showAlert(msg, type = 'error') {
+      const alert = document.getElementById('authAlert');
+      alert.className = `auth-alert ${type === 'error' ? 'auth-alert-error' : 'auth-alert-success'}`;
+      alert.innerHTML = `<span>${type === 'error' ? '⚠️' : '✅'}</span> <div>${escapeHtml(msg)}</div>`;
+      alert.style.display = 'flex';
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastPopup');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+
+    function autofillLogin(email, pass) {
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPassword').value = pass;
+      showToast(`Selected demo credentials: ${email}`);
+    }
+
+    function enterAsGuest() {
+      localStorage.removeItem('campusfind_auth_user');
+      window.location.href = 'index.html';
+    }
+
+    // Login Submission Handler
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const submitBtn = document.getElementById('submitBtn');
+
+      let email = emailInput;
+      // If user typed just a roll number or name without @, append @sece.ac.in
+      if (!email.includes('@')) {
+        email = email + '@sece.ac.in';
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Verifying credentials...</span>';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          showAlert(data.message || 'Invalid institutional credentials. Please verify your email and password.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>Sign In to SECE Portal</span> <span>→</span>';
+        } else {
+          showAlert(`Welcome, ${data.name}! Redirecting to SECE Dashboard...`, 'success');
+          localStorage.setItem('campusfind_auth_user', JSON.stringify(data));
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 600);
+        }
+      } catch (err) {
+        showAlert('Network or server connection error. Please ensure Spring Boot is running.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Sign In to SECE Portal</span> <span>→</span>';
+      }
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>

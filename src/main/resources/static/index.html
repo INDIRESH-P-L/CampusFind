@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusFind — Next-Gen AI Campus Lost & Found Ecosystem</title>
-  <meta name="description" content="CampusFind — Modern AI-driven intelligent lost and found tracking ecosystem for university campuses. Real-time matching, state workflow enforcement, and high-impact analytics.">
+  <title>SECE CampusFind — Sri Eshwar College of Engineering Lost & Found</title>
+  <meta name="description" content="SECE CampusFind — Institutional Lost & Found Tracking Portal for Sri Eshwar College of Engineering (SECE), Coimbatore.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -306,55 +306,382 @@
       gap: 0.75rem;
     }
 
-    /* Actor Switcher Pill */
-    .actor-pill {
+    /* ==========================================================================
+       AUTHENTICATED USER PROFILE & SIGNOUT
+       ========================================================================== */
+    .user-auth-cluster {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.65rem;
+    }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      padding: 5px 12px 5px 8px;
+      padding: 4px 12px 4px 6px;
       border-radius: var(--radius-pill);
-      font-size: 0.82rem;
-      transition: border-color 0.2s var(--ease-spring);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s var(--ease-spring);
     }
 
-    .actor-pill:hover {
-      border-color: var(--border-glow);
+    [data-theme="light"] .user-profile-badge {
+      background: #ffffff;
+      border-color: rgba(99, 102, 241, 0.18);
     }
 
-    .actor-avatar {
-      width: 24px;
-      height: 24px;
+    .user-avatar-badge {
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--primary-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 800;
+      font-size: 0.95rem;
       color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+      flex-shrink: 0;
     }
 
-    .actor-select {
-      background: transparent;
-      border: none;
+    .user-meta-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .user-display-name {
+      font-size: 0.84rem;
+      font-weight: 700;
       color: var(--text-main);
-      font-weight: 600;
-      font-size: 0.82rem;
-      font-family: inherit;
-      outline: none;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-role-pill {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      width: fit-content;
+      margin-top: 2px;
+    }
+
+    .role-ADMIN {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    [data-theme="light"] .role-ADMIN {
+      background: rgba(124, 58, 237, 0.1);
+      color: #6d28d9;
+      border-color: rgba(124, 58, 237, 0.25);
+    }
+
+    .role-STAFF {
+      background: rgba(99, 102, 241, 0.18);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+    }
+    [data-theme="light"] .role-STAFF {
+      background: rgba(99, 102, 241, 0.1);
+      color: #4338ca;
+      border-color: rgba(99, 102, 241, 0.25);
+    }
+
+    .role-STUDENT {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    [data-theme="light"] .role-STUDENT {
+      background: rgba(16, 185, 129, 0.1);
+      color: #047857;
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-signout {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      color: var(--accent-rose);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
       cursor: pointer;
+      transition: all 0.2s var(--ease-spring);
     }
 
-    .actor-select option {
-      background: #111625;
+    .btn-signout:hover {
+      background: rgba(244, 63, 94, 0.2);
+      border-color: var(--accent-rose);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+    }
+
+    /* ==========================================================================
+       AUTHENTICATION GATEWAY PORTAL
+       ========================================================================== */
+    .auth-window {
+      max-width: 480px;
+      padding: 2.25rem 2.25rem 1.75rem 2.25rem;
+    }
+
+    .auth-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
       color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
     }
 
-    [data-theme="light"] .actor-select option {
-      background: #fff;
-      color: #0f172a;
+    .auth-tabs {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      margin-bottom: 1.25rem;
+      gap: 4px;
+    }
+
+    [data-theme="light"] .auth-tabs {
+      background: #f1f5f9;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: inherit;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s var(--ease-spring);
+    }
+
+    .auth-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .auth-alert {
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .auth-alert-error {
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      color: var(--accent-rose);
+    }
+
+    .auth-alert-success {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--accent-emerald);
+    }
+
+    .btn-toggle-pwd {
+      background: none;
+      border: none;
+      color: var(--primary-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .demo-logins-box {
+      margin-top: 1.4rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .demo-logins-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 0.65rem;
+    }
+
+    .demo-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .demo-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 7px 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s var(--ease-spring);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    [data-theme="light"] .demo-chip {
+      background: #f8fafc;
+      border-color: rgba(99, 102, 241, 0.15);
+    }
+
+    .demo-chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    }
+
+    .demo-chip strong {
+      font-size: 0.68rem;
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .demo-chip-role {
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .demo-chip-pwd {
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    .btn-cancel-auth {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .btn-cancel-auth:hover {
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       DYNAMIC RBAC ROLE CLEARANCE BANNER
+       ========================================================================== */
+    .role-clearance-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 0.95rem 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      transition: all 0.3s var(--ease-spring);
+    }
+
+    [data-theme="light"] .role-clearance-bar {
+      background: #ffffff;
+      border-color: rgba(99, 102, 241, 0.18);
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06);
+    }
+
+    .role-clearance-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    .role-clearance-icon {
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .role-clearance-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .role-clearance-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .role-clearance-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: var(--primary-light);
+    }
+
+    /* Student Found Notice Banner */
+    .student-found-notice {
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px dashed rgba(99, 102, 241, 0.35);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    [data-theme="light"] .student-found-notice {
+      background: #f1f5f9;
+      color: #334155;
     }
 
     /* Icon Buttons */
@@ -1849,11 +2176,11 @@
   <header>
     <div class="header-inner">
       <div class="brand-wrap" onclick="switchTab('dashboard')">
-        <div class="brand-icon">⚡</div>
+        <div class="brand-icon">🛡️</div>
         <div class="brand-text">
-          <h1>CampusFind</h1>
+          <h1>SECE CampusFind</h1>
           <div class="brand-badge">
-            <span class="live-dot"></span> AI Engine v2.4 Active
+            <span class="live-dot"></span> Sri Eshwar College of Engg
           </div>
         </div>
       </div>
@@ -1865,12 +2192,22 @@
       </div>
 
       <div class="header-right">
-        <!-- Interactive Actor Switcher -->
-        <div class="actor-pill" title="Switch active persona to test security authorizations and role checks">
-          <div class="actor-avatar" id="actorAvatar">A</div>
-          <select id="currentUserSelect" class="actor-select" onchange="onUserChanged()">
-            <!-- Populated dynamically -->
-          </select>
+        <!-- Authenticated User Profile Pill & Sign Out -->
+        <div class="user-auth-cluster" id="headerAuthCluster">
+          <div class="user-profile-badge" id="headerUserProfile">
+            <div class="user-avatar-badge" id="userAvatar">👑</div>
+            <div class="user-meta-info">
+              <div class="user-display-name" id="userDisplayName">Campus Admin</div>
+              <div class="user-role-pill role-ADMIN" id="userRoleBadge">ADMIN</div>
+            </div>
+          </div>
+          <button class="btn-signout" id="signOutBtn" onclick="logoutUser()" title="Sign out of SECE CampusFind">
+            <span>🚪</span> Sign Out
+          </button>
+          <div id="guestAuthCluster" style="display: none; align-items: center; gap: 0.5rem;">
+            <a href="login.html" class="btn btn-gradient btn-sm" style="text-decoration: none; padding: 6px 14px;">🔑 Sign In</a>
+            <a href="register.html" class="btn btn-glass btn-sm" style="text-decoration: none; padding: 6px 14px;">📝 Register</a>
+          </div>
         </div>
 
         <!-- Audio FX Toggle -->
@@ -1918,21 +2255,23 @@
         <div class="hero-content">
           <div class="hero-title-area">
             <div class="hero-pill-badge">
-              <span>●</span> Real-time AI Campus Recovery Network
+              <span>●</span> Sri Eshwar College of Engineering • Campus Recovery Network
             </div>
-            <h2>Autonomous Lost & Found Radar</h2>
+            <h2>SECE Autonomous Lost & Found Radar</h2>
             <p>
-              Smart semantic heuristic matching continuously pairs lost reports with found campus items. 
-              Enforcing strict state workflows: <strong>AVAILABLE &rarr; CLAIMED &rarr; RETURNED</strong>.
+              Smart semantic heuristic matching continuously pairs lost reports with found property across SECE campus blocks. 
+              Enforcing strict institutional state workflows: <strong>AVAILABLE &rarr; CLAIMED &rarr; RETURNED</strong>.
             </p>
             <!-- Campus Location Quick Filters -->
             <div class="location-heatmap-bar">
-              <span class="location-label">Campus Zones:</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Central Library')">🏢 Central Library</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Math Lecture Hall')">📐 Math Hall</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Campus Gym')">🏋️ Sports Complex</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Engineering')">⚡ Engineering Hall</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Student Quad')">🌳 Student Quad</span>
+              <span class="location-label">SECE Campus Zones:</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Central Library')">📚 Central Library</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Tech Tower')">💻 Tech Tower (CSE/IT)</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Core Block')">⚡ Core Block (ECE/EEE)</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Mech')">⚙️ Mech & Robotics</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Sports')">🏸 Sports Complex</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Cafeteria')">🍽️ Student Cafeteria</span>
+              <span class="loc-tag" onclick="quickFilterLocation('Hostel')">🏢 Hostel Block</span>
             </div>
           </div>
 
@@ -1955,6 +2294,18 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Dynamic RBAC Role Clearance Banner -->
+      <div class="role-clearance-bar" id="roleClearanceBar">
+        <div class="role-clearance-left">
+          <span class="role-clearance-icon" id="clearanceIcon">👑</span>
+          <div>
+            <div class="role-clearance-title" id="clearanceTitle">Administrator Console Active</div>
+            <div class="role-clearance-desc" id="clearanceDesc">Full system authority: inventory cataloging, return authorization, heuristic management, and audit state controls.</div>
+          </div>
+        </div>
+        <div class="role-clearance-badge role-ADMIN" id="clearanceBadge">SECURITY CLEARANCE: LEVEL 3 (ADMIN)</div>
       </div>
 
       <!-- Live Metric Cards Grid with Spotlight Physics -->
@@ -2014,11 +2365,14 @@
           👥 <strong><span id="stat-users">0</span> Campus Accounts:</strong> 
           <span id="stat-students">0</span> Students, <span id="stat-staff">0</span> Security/Staff Officers.
         </div>
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <button class="btn btn-glass btn-sm" onclick="resetDemoData()">🔄 Reset Demo State</button>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+          <button class="btn btn-glass btn-sm btn-admin-only" id="btnResetDemoHud" onclick="resetDemoData()">🔄 Reset Demo State</button>
           <button class="btn btn-glass btn-sm" onclick="loadDashboard()">↻ Refresh HUD</button>
-          <button class="btn btn-gradient btn-sm" onclick="openModal('modal-lost')">+ Report Lost Item</button>
-          <button class="btn btn-glass btn-sm" onclick="openModal('modal-found')">+ Log Found Item</button>
+          <button class="btn btn-gradient btn-sm" onclick="openReportLostModal()">+ Report Lost Item</button>
+          <button class="btn btn-glass btn-sm btn-log-found" id="btnLogFoundHud" onclick="openLogFoundModal()">+ Log Found Item</button>
+          <div class="student-found-notice" id="studentFoundNotice">
+            <span>🛡️</span> Found an item? Please hand it in to Campus Security at Central Hall.
+          </div>
         </div>
       </div>
     </section>
@@ -2036,7 +2390,7 @@
             <option value="">All Categories</option>
           </select>
         </div>
-        <button class="btn btn-gradient" onclick="openModal('modal-lost')">+ Report Lost Item</button>
+        <button class="btn btn-gradient" onclick="openReportLostModal()">+ Report Lost Item</button>
       </div>
 
       <!-- Status Chips -->
@@ -2062,7 +2416,7 @@
             <option value="">All Categories</option>
           </select>
         </div>
-        <button class="btn btn-gradient" onclick="openModal('modal-found')">+ Log Found Item (Staff)</button>
+        <button class="btn btn-gradient btn-log-found" id="btnLogFoundTab" onclick="openLogFoundModal()">+ Log Found Item (Staff)</button>
       </div>
 
       <!-- Status Chips -->
@@ -2205,17 +2559,32 @@
   <div id="modal-claim" class="modal-overlay" onclick="onBackdropClick(event, 'modal-claim')">
     <div class="modal-window">
       <div class="modal-header">
-        <h2>Verify Claimant & Assign</h2>
+        <h2>Submit Property Claim</h2>
         <button class="modal-close-btn" onclick="closeModal('modal-claim')">✕</button>
       </div>
       <p id="claim-item-title" style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;"></p>
-      <div class="form-group">
-        <label>Select Verified Student *</label>
+      
+      <!-- Student self-claiming identity box -->
+      <div id="claimStudentSelfInfo" style="display: none; background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 1.15rem;">
+        <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 800; color: var(--primary-light);">Verified Student Claimant</div>
+        <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="claimStudentSelfName">Alice Smith</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);" id="claimStudentSelfEmail">student@campus.edu</div>
+      </div>
+
+      <!-- Staff/Admin view: select student from list -->
+      <div class="form-group" id="claimStudentSelectGroup">
+        <label>Select Verified Student Claimant *</label>
         <select id="claim-student-select"></select>
       </div>
+
+      <div class="form-group">
+        <label>Proof of Ownership / Distinctive Marks *</label>
+        <textarea id="claim-proof" rows="3" required placeholder="Describe unique identifying marks (e.g., serial number, screen wallpaper, scratches, stickers, contents) to verify ownership..."></textarea>
+      </div>
+
       <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
         <button type="button" class="btn btn-glass" onclick="closeModal('modal-claim')">Cancel</button>
-        <button type="button" class="btn btn-gradient" onclick="confirmClaimAction()">Confirm Claimed Status</button>
+        <button type="button" class="btn btn-gradient" onclick="confirmClaimAction()">Submit & Register Claim 🤝</button>
       </div>
     </div>
   </div>
@@ -2238,6 +2607,7 @@
     // State variables
     let users = [];
     let categories = [];
+    let currentUser = null;
     let currentUserId = 1;
     let selectedLostStatus = 'ALL';
     let selectedFoundStatus = 'ALL';
@@ -2435,8 +2805,29 @@
         }
       });
 
+      // Session initialization
+      const savedUser = localStorage.getItem('campusfind_auth_user');
+      if (savedUser) {
+        try {
+          currentUser = JSON.parse(savedUser);
+          currentUserId = currentUser.id;
+        } catch (e) {
+          currentUser = null;
+        }
+      }
+
       await loadUsers();
       await loadCategories();
+
+      // If no active session and not browsing as guest, redirect to dedicated login page
+      const urlParams = new URLSearchParams(window.location.search);
+      const isGuestMode = urlParams.get('guest') === 'true';
+      if (!currentUser && !isGuestMode) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      applyRoleRestrictions();
       await loadDashboard();
       await loadLostReports();
       await loadFoundItems();
@@ -2503,43 +2894,170 @@
       handleSearch('found');
     }
 
-    // User / Actor Switcher
+    /* ==========================================================================
+       AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC)
+       ========================================================================== */
+    function openAuthModal(tab = 'login') {
+      window.location.href = tab === 'register' ? 'register.html' : 'login.html';
+    }
+
+    function logoutUser() {
+      soundClick();
+      currentUser = null;
+      localStorage.removeItem('campusfind_auth_user');
+      showToast('You have signed out of SECE CampusFind. Redirecting to Login...');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 400);
+    }
+
+    function applyRoleRestrictions() {
+      const profileBadge = document.getElementById('headerUserProfile');
+      const signOutBtn = document.getElementById('signOutBtn');
+      const guestCluster = document.getElementById('guestAuthCluster');
+      const rulesTabBtn = document.getElementById('tabbtn-rules');
+      const hudResetBtn = document.getElementById('btnResetDemoHud');
+      const hudLogFoundBtn = document.getElementById('btnLogFoundHud');
+      const tabLogFoundBtn = document.getElementById('btnLogFoundTab');
+      const studentNotice = document.getElementById('studentFoundNotice');
+
+      const avatar = document.getElementById('userAvatar');
+      const nameEl = document.getElementById('userDisplayName');
+      const roleBadge = document.getElementById('userRoleBadge');
+
+      const clearanceIcon = document.getElementById('clearanceIcon');
+      const clearanceTitle = document.getElementById('clearanceTitle');
+      const clearanceDesc = document.getElementById('clearanceDesc');
+      const clearanceBadge = document.getElementById('clearanceBadge');
+
+      if (!currentUser) {
+        // Guest mode
+        if (profileBadge) profileBadge.style.display = 'none';
+        if (signOutBtn) signOutBtn.style.display = 'none';
+        if (guestCluster) guestCluster.style.display = 'flex';
+
+        if (rulesTabBtn) rulesTabBtn.style.display = 'none';
+        if (hudResetBtn) hudResetBtn.style.display = 'none';
+        if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'none';
+        if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'none';
+        if (studentNotice) studentNotice.style.display = 'inline-flex';
+
+        if (clearanceIcon) clearanceIcon.innerText = '🌐';
+        if (clearanceTitle) clearanceTitle.innerText = 'Guest Visitor Mode — Sri Eshwar College of Engineering';
+        if (clearanceDesc) clearanceDesc.innerText = 'Viewing public lost & found directory. Sign in or register your SECE account to submit reports or property claims.';
+        if (clearanceBadge) {
+          clearanceBadge.className = 'role-clearance-badge';
+          clearanceBadge.innerText = 'GUEST ACCESS (READ ONLY)';
+        }
+        return;
+      }
+
+      // Authenticated User
+      if (profileBadge) profileBadge.style.display = 'flex';
+      if (signOutBtn) signOutBtn.style.display = 'inline-flex';
+      if (guestCluster) guestCluster.style.display = 'none';
+
+      if (nameEl) nameEl.innerText = currentUser.name;
+      if (roleBadge) roleBadge.innerText = currentUser.role;
+
+      if (currentUser.role === 'ADMIN') {
+        if (avatar) { avatar.innerText = '👑'; avatar.style.background = 'var(--accent-violet)'; }
+        if (roleBadge) roleBadge.className = 'user-role-pill role-ADMIN';
+
+        if (rulesTabBtn) rulesTabBtn.style.display = 'inline-flex';
+        if (hudResetBtn) hudResetBtn.style.display = 'inline-flex';
+        if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'inline-flex';
+        if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'inline-flex';
+        if (studentNotice) studentNotice.style.display = 'none';
+
+        if (clearanceIcon) clearanceIcon.innerText = '👑';
+        if (clearanceTitle) clearanceTitle.innerText = `SECE Institutional Admin Console — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Full institutional authority: inventory logging, return verification, heuristic engine management, and demo state governance.';
+        if (clearanceBadge) {
+          clearanceBadge.className = 'role-clearance-badge role-ADMIN';
+          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 3 (ADMIN)';
+        }
+      } else if (currentUser.role === 'STAFF') {
+        if (avatar) { avatar.innerText = '🛡️'; avatar.style.background = 'var(--primary)'; }
+        if (roleBadge) roleBadge.className = 'user-role-pill role-STAFF';
+
+        if (rulesTabBtn) rulesTabBtn.style.display = 'inline-flex';
+        if (hudResetBtn) hudResetBtn.style.display = 'none'; // Staff cannot reset database
+        if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'inline-flex';
+        if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'inline-flex';
+        if (studentNotice) studentNotice.style.display = 'none';
+
+        if (clearanceIcon) clearanceIcon.innerText = '🛡️';
+        if (clearanceTitle) clearanceTitle.innerText = `SECE Campus Security Desk — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Authorized capabilities: Catalog found property (Rule 2), verify claimant student identity, and authorize official handovers (CLAIMED → RETURNED).';
+        if (clearanceBadge) {
+          clearanceBadge.className = 'role-clearance-badge role-STAFF';
+          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 2 (STAFF)';
+        }
+      } else {
+        // STUDENT
+        if (avatar) { avatar.innerText = '🎓'; avatar.style.background = 'var(--accent-emerald)'; }
+        if (roleBadge) roleBadge.className = 'user-role-pill role-STUDENT';
+
+        // Restrictions for students:
+        if (rulesTabBtn) {
+          rulesTabBtn.style.display = 'none';
+          const activeTab = document.querySelector('.tab-panel.active');
+          if (activeTab && activeTab.id === 'tab-rules') {
+            switchTab('dashboard');
+          }
+        }
+        if (hudResetBtn) hudResetBtn.style.display = 'none';
+        if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'none';
+        if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'none';
+        if (studentNotice) studentNotice.style.display = 'inline-flex';
+
+        if (clearanceIcon) clearanceIcon.innerText = '🎓';
+        if (clearanceTitle) clearanceTitle.innerText = `SECE Student Portal — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Authorized capabilities: Publish lost property reports, track recovery radar, and submit verified claims for matching items.';
+        if (clearanceBadge) {
+          clearanceBadge.className = 'role-clearance-badge role-STUDENT';
+          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 1 (STUDENT)';
+        }
+      }
+    }
+
+    function openReportLostModal() {
+      if (!currentUser) {
+        showToast('Please sign in to file a lost item report', true);
+        openAuthModal('login');
+        return;
+      }
+      openModal('modal-lost');
+    }
+
+    function openLogFoundModal() {
+      if (!currentUser) {
+        showToast('Please sign in to log found property', true);
+        openAuthModal('login');
+        return;
+      }
+      if (currentUser.role === 'STUDENT') {
+        soundError();
+        showToast('Access Restricted (Rule 2): Found items can only be logged by Campus Staff or Security. Please hand items in at Security Desk.', true);
+        return;
+      }
+      openModal('modal-found');
+    }
+
     async function loadUsers() {
       try {
         const res = await fetch('/api/auth/users');
         users = await res.json();
-        const select = document.getElementById('currentUserSelect');
-        select.innerHTML = users.map(u => 
-          `<option value="${u.id}">${u.name} (${u.role})</option>`
-        ).join('');
-        if (users.length > 0) {
-          currentUserId = users[0].id;
-          updateActorAvatar(users[0]);
-        }
-
         const students = users.filter(u => u.role === 'STUDENT');
         const claimSelect = document.getElementById('claim-student-select');
-        claimSelect.innerHTML = (students.length > 0 ? students : users).map(s =>
-          `<option value="${s.id}">${s.name} (${s.email})</option>`
-        ).join('');
+        if (claimSelect) {
+          claimSelect.innerHTML = (students.length > 0 ? students : users).map(s =>
+            `<option value="${s.id}">${s.name} (${s.email})</option>`
+          ).join('');
+        }
       } catch (err) {
         console.error('Failed to load users:', err);
-      }
-    }
-
-    function updateActorAvatar(user) {
-      const av = document.getElementById('actorAvatar');
-      if (user.role === 'ADMIN') { av.innerText = '👑'; av.style.background = 'var(--accent-violet)'; }
-      else if (user.role === 'STAFF') { av.innerText = '🛡️'; av.style.background = 'var(--primary)'; }
-      else { av.innerText = '🎓'; av.style.background = 'var(--accent-emerald)'; }
-    }
-
-    function onUserChanged() {
-      currentUserId = Number(document.getElementById('currentUserSelect').value);
-      const user = users.find(u => u.id === currentUserId);
-      if (user) {
-        updateActorAvatar(user);
-        showToast(`Active persona: ${user.name} (${user.role})`);
       }
     }
 
@@ -2660,13 +3178,18 @@
               <div class="empty-card-icon">🔍</div>
               <h4>No matching lost reports</h4>
               <p>Try adjusting your search criteria or publish a new report.</p>
-              <button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openModal('modal-lost')">+ Report Lost Item</button>
+              <button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openReportLostModal()">+ Report Lost Item</button>
             </div>`;
           return;
         }
 
         container.innerHTML = data.map((item, idx) => {
           const icon = categoryIcons[item.category?.name] || "📦";
+          const canResolve = currentUser && (
+            currentUser.role === 'ADMIN' ||
+            currentUser.role === 'STAFF' ||
+            (item.user && item.user.id === currentUser.id)
+          );
           return `
             <div class="interactive-card" style="animation-delay: ${idx * 0.05}s;">
               <div class="card-main-row">
@@ -2686,7 +3209,7 @@
                     </div>
                   </div>
                 </div>
-                ${item.status === 'OPEN' ? `
+                ${item.status === 'OPEN' && canResolve ? `
                   <button class="btn btn-glass btn-sm" onclick="resolveLostReport(${item.id})">Mark Resolved ✓</button>
                 ` : ''}
               </div>
@@ -2699,6 +3222,11 @@
     }
 
     async function resolveLostReport(id) {
+      if (!currentUser) {
+        showToast('Please sign in to resolve reports', true);
+        openAuthModal('login');
+        return;
+      }
       try {
         const res = await fetch(`/api/lost-reports/${id}/resolve`, { method: 'PUT' });
         if (res.ok) {
@@ -2707,6 +3235,8 @@
           showToast('Lost report marked as Resolved!');
           loadLostReports();
           loadDashboard();
+        } else {
+          showToast('Failed to resolve report', true);
         }
       } catch (err) {
         showToast('Failed to resolve report', true);
@@ -2715,6 +3245,9 @@
 
     // Render Found Inventory with 3-Step Lifecycle Stepper
     async function loadFoundItems() {
+      const isStudent = currentUser && currentUser.role === 'STUDENT';
+      const isStaffOrAdmin = currentUser && (currentUser.role === 'STAFF' || currentUser.role === 'ADMIN');
+
       const kw = document.getElementById('found-search-kw').value;
       const cat = document.getElementById('found-search-cat').value;
 
@@ -2736,7 +3269,7 @@
               <div class="empty-card-icon">📦</div>
               <h4>No found items match criteria</h4>
               <p>Campus security or staff can log newly recovered items.</p>
-              <button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openModal('modal-found')">+ Log Found Item</button>
+              ${isStaffOrAdmin ? `<button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openLogFoundModal()">+ Log Found Item</button>` : ''}
             </div>`;
           return;
         }
@@ -2789,20 +3322,34 @@
 
                 <div class="card-actions-cluster">
                   ${isAvail ? `
-                    <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
-                      Claim Item 🤝
-                    </button>
-                    <button class="btn btn-danger-glass btn-sm" onclick="simulateRule1OnItem(${item.id})" title="Deliberately attempt invalid direct jump to RETURNED">
-                      ⚡ Violate Rule 1
-                    </button>
+                    ${isStudent ? `
+                      <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
+                        Claim This Item 🤝
+                      </button>
+                    ` : (isStaffOrAdmin ? `
+                      <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
+                        Process Claim 🤝
+                      </button>
+                      <button class="btn btn-danger-glass btn-sm" onclick="simulateRule1OnItem(${item.id})" title="Deliberately attempt invalid direct jump to RETURNED">
+                        ⚡ Violate Rule 1
+                      </button>
+                    ` : `
+                      <button class="btn btn-glass btn-sm" onclick="openAuthModal('login')">
+                        Sign In to Claim
+                      </button>
+                    `)}
                   ` : ''}
                   ${isClaim ? `
-                    <button class="btn btn-gradient btn-sm" style="background: var(--primary);" onclick="markItemReturned(${item.id})">
-                      Hand Over & Return ✓
-                    </button>
+                    ${isStaffOrAdmin ? `
+                      <button class="btn btn-gradient btn-sm" style="background: var(--primary);" onclick="markItemReturned(${item.id})">
+                        Confirm Return to Owner ✓
+                      </button>
+                    ` : `
+                      <span class="badge badge-CLAIMED" style="padding: 6px 12px;">⏳ Awaiting Security Handover</span>
+                    `}
                   ` : ''}
                   ${isRet ? `
-                    <span class="badge badge-RETURNED">Handover Completed</span>
+                    <span class="badge badge-RETURNED">Handover Completed ✓</span>
                   ` : ''}
                 </div>
               </div>
@@ -2815,23 +3362,55 @@
     }
 
     function openClaimDialog(id) {
+      if (!currentUser) {
+        showToast('Please sign in to claim this item', true);
+        openAuthModal('login');
+        return;
+      }
       soundClick();
       activeClaimItemId = id;
       const item = allFoundItems.find(i => i.id === id);
       const title = item ? item.title : `Item #${id}`;
       document.getElementById('claim-item-title').innerHTML = `Item: <strong>${escapeHtml(title)}</strong>`;
+
+      const studentSelfBox = document.getElementById('claimStudentSelfInfo');
+      const studentSelectGroup = document.getElementById('claimStudentSelectGroup');
+
+      if (currentUser.role === 'STUDENT') {
+        if (studentSelfBox) {
+          studentSelfBox.style.display = 'block';
+          document.getElementById('claimStudentSelfName').innerText = currentUser.name;
+          document.getElementById('claimStudentSelfEmail').innerText = currentUser.email;
+        }
+        if (studentSelectGroup) studentSelectGroup.style.display = 'none';
+      } else {
+        if (studentSelfBox) studentSelfBox.style.display = 'none';
+        if (studentSelectGroup) studentSelectGroup.style.display = 'block';
+      }
+      const proofInput = document.getElementById('claim-proof');
+      if (proofInput) proofInput.value = '';
       openModal('modal-claim');
     }
 
     async function confirmClaimAction() {
-      if (!activeClaimItemId) return;
-      const claimantId = Number(document.getElementById('claim-student-select').value);
+      if (!activeClaimItemId || !currentUser) return;
+      const proof = document.getElementById('claim-proof').value.trim();
+      if (!proof) {
+        showToast('Please provide distinctive proof of ownership or identifying marks', true);
+        return;
+      }
+
+      let claimantId = currentUser.id;
+      if (currentUser.role !== 'STUDENT') {
+        claimantId = Number(document.getElementById('claim-student-select').value) || currentUser.id;
+      }
+
       closeModal('modal-claim');
 
       try {
         const body = {
           status: 'CLAIMED',
-          currentUserId: currentUserId,
+          currentUserId: currentUser.id,
           claimedByUserId: claimantId
         };
         const res = await fetch(`/api/found-items/${activeClaimItemId}/status`, {
@@ -2845,7 +3424,7 @@
         } else {
           soundSuccess();
           triggerConfetti();
-          showToast('Item successfully marked as CLAIMED!');
+          showToast(`Item successfully marked as CLAIMED by ${currentUser.role === 'STUDENT' ? currentUser.name : 'student'}!`);
           loadFoundItems();
           loadDashboard();
           loadMatches();
@@ -2856,10 +3435,19 @@
     }
 
     async function markItemReturned(id) {
+      if (!currentUser) {
+        showToast('Please sign in first', true);
+        openAuthModal('login');
+        return;
+      }
+      if (currentUser.role === 'STUDENT') {
+        showToast('Unauthorized: Only authorized Staff or Admin can confirm handover and return items.', true);
+        return;
+      }
       try {
         const body = {
           status: 'RETURNED',
-          currentUserId: currentUserId
+          currentUserId: currentUser.id
         };
         const res = await fetch(`/api/found-items/${id}/status`, {
           method: 'PUT',
@@ -2872,7 +3460,7 @@
         } else {
           soundSuccess();
           triggerConfetti();
-          showToast('Item successfully returned to student!');
+          showToast('Item successfully returned to owner (Handover Completed)!');
           loadFoundItems();
           loadDashboard();
           loadMatches();
@@ -2883,8 +3471,12 @@
     }
 
     async function simulateRule1OnItem(itemId) {
+      if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
+        showToast('Only Staff or Admin can test state violations', true);
+        return;
+      }
       try {
-        const body = { status: 'RETURNED', currentUserId: currentUserId };
+        const body = { status: 'RETURNED', currentUserId: currentUser.id };
         const res = await fetch(`/api/found-items/${itemId}/status`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -2974,17 +3566,19 @@
     }
 
     async function pairMatch(foundItemId, studentId, lostReportId) {
+      if (!currentUser) {
+        showToast('Please sign in first', true);
+        openAuthModal('login');
+        return;
+      }
+      if (currentUser.role === 'STUDENT') {
+        showToast('Access Restricted: Only Campus Staff or Administrators can pair matches.', true);
+        return;
+      }
       try {
-        let actorId = currentUserId;
-        const currentUserObj = users.find(u => u.id === currentUserId);
-        if (currentUserObj && currentUserObj.role === 'STUDENT') {
-          const staffOrAdmin = users.find(u => u.role === 'STAFF') || users.find(u => u.role === 'ADMIN');
-          if (staffOrAdmin) actorId = staffOrAdmin.id;
-        }
-
         const body = {
           status: 'CLAIMED',
-          currentUserId: actorId,
+          currentUserId: currentUser.id,
           claimedByUserId: studentId
         };
         const res = await fetch(`/api/found-items/${foundItemId}/status`, {
@@ -3012,6 +3606,11 @@
 
     // Rule Testing Sandbox
     async function triggerRule1ViolationTest() {
+      if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
+        soundError();
+        showToast('Access Restricted: Only Staff or Admin can access the State Workflow Lab.', true);
+        return;
+      }
       try {
         const res = await fetch('/api/found-items?status=AVAILABLE');
         const items = await res.json();
@@ -3021,9 +3620,8 @@
         }
 
         const target = items[0];
-        // Ensure the actor is an authorized Staff or Admin so Rule 1 (State Progression) is tested, not blocked by Rule 2
         const staffOrAdmin = users.find(u => u.role === 'ADMIN') || users.find(u => u.role === 'STAFF');
-        const actorId = staffOrAdmin ? staffOrAdmin.id : (target.finder ? target.finder.id : 1);
+        const actorId = currentUser.role === 'STUDENT' ? (staffOrAdmin ? staffOrAdmin.id : 1) : currentUser.id;
 
         const body = { status: 'RETURNED', currentUserId: actorId };
         const updateRes = await fetch(`/api/found-items/${target.id}/status`, {
@@ -3040,6 +3638,11 @@
     }
 
     async function triggerRule2SecurityTest() {
+      if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
+        soundError();
+        showToast('Access Restricted: Only Staff or Admin can access the State Workflow Lab.', true);
+        return;
+      }
       try {
         const student = users.find(u => u.role === 'STUDENT') || { id: 3 };
         const res = await fetch('/api/found-items');
@@ -3066,6 +3669,11 @@
     }
 
     async function resetDemoData() {
+      if (!currentUser || currentUser.role !== 'ADMIN') {
+        soundError();
+        showToast('Access Denied: Only Campus Administrators can reset demo state.', true);
+        return;
+      }
       soundClick();
       try {
         const res = await fetch('/api/admin/reset-demo-data', { method: 'POST' });
@@ -3102,13 +3710,18 @@
     // Modal forms submission
     async function submitLostReport(e) {
       e.preventDefault();
+      if (!currentUser) {
+        showToast('Please sign in to file a lost report', true);
+        openAuthModal('login');
+        return;
+      }
       const payload = {
         title: document.getElementById('lost-title').value,
         categoryId: Number(document.getElementById('lost-category').value),
         location: document.getElementById('lost-location').value,
         lostDate: document.getElementById('lost-date').value,
         description: document.getElementById('lost-desc').value,
-        userId: currentUserId
+        userId: currentUser.id
       };
       try {
         const res = await fetch('/api/lost-reports', {
@@ -3137,13 +3750,23 @@
 
     async function submitFoundItem(e) {
       e.preventDefault();
+      if (!currentUser) {
+        showToast('Please sign in first', true);
+        openAuthModal('login');
+        return;
+      }
+      if (currentUser.role === 'STUDENT') {
+        soundError();
+        showToast('Security Rule 2: Only Staff or Admin can log found items. Please hand over the item to Campus Security.', true);
+        return;
+      }
       const payload = {
         title: document.getElementById('found-title').value,
         categoryId: Number(document.getElementById('found-category').value),
         location: document.getElementById('found-location').value,
         foundDate: document.getElementById('found-date').value,
         description: document.getElementById('found-desc').value,
-        finderId: currentUserId
+        finderId: currentUser.id
       };
       try {
         const res = await fetch('/api/found-items', {
