@@ -21,24 +21,26 @@ public class UserService {
     }
 
     public User registerUser(String name, String email, String password, Role role, String phoneNumber) {
-        if (userRepository.existsByEmail(email)) {
-            throw new BadRequestException("Email is already registered: " + email);
+        String cleanEmail = email != null ? email.trim().toLowerCase() : "";
+        if (userRepository.existsByEmailIgnoreCase(cleanEmail)) {
+            throw new BadRequestException("Email is already registered: " + cleanEmail);
         }
 
         User user = new User();
-        user.setName(name);
-        user.setEmail(email);
+        user.setName(name != null ? name.trim() : "");
+        user.setEmail(cleanEmail);
         user.setPassword(password);
         user.setRole(role != null ? role : Role.STUDENT);
-        user.setPhoneNumber(phoneNumber);
+        user.setPhoneNumber(phoneNumber != null ? phoneNumber.trim() : null);
 
         return userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
     public User loginUser(String email, String password) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+        String cleanEmail = email != null ? email.trim().toLowerCase() : "";
+        User user = userRepository.findByEmailIgnoreCase(cleanEmail)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + cleanEmail));
 
         if (!user.getPassword().equals(password)) {
             throw new BadRequestException("Invalid credentials. Incorrect password.");

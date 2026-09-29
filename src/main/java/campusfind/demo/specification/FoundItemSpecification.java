@@ -47,8 +47,8 @@ public class FoundItemSpecification {
                 predicates.add(cb.lessThanOrEqualTo(root.get("foundDate"), endDate));
             }
 
-            // Default order by foundDate descending
-            if (query != null) {
+            // Default order by foundDate descending (only for entity queries, not count queries)
+            if (query != null && (query.getResultType() == null || !Number.class.isAssignableFrom(query.getResultType()))) {
                 query.orderBy(cb.desc(root.get("foundDate")), cb.desc(root.get("id")));
             }
 

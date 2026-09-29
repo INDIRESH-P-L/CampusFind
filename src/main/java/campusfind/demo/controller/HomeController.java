@@ -29,6 +29,7 @@ public class HomeController {
         endpoints.put("PUT /api/found-items/{id}/status", "Update found item status (AVAILABLE -> CLAIMED -> RETURNED)");
         endpoints.put("GET /api/matches", "List possible matches between lost and found items");
         endpoints.put("GET /api/admin/dashboard", "Get admin dashboard metrics and statistics");
+        endpoints.put("POST /api/admin/reset-demo-data", "Reset database with pristine demo records");
 
         response.put("available_endpoints", endpoints);
         return ResponseEntity.ok(response);

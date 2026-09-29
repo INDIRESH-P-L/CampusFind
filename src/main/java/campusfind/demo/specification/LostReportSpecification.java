@@ -47,8 +47,8 @@ public class LostReportSpecification {
                 predicates.add(cb.lessThanOrEqualTo(root.get("lostDate"), endDate));
             }
 
-            // Default order by lostDate descending
-            if (query != null) {
+            // Default order by lostDate descending (only for entity queries, not count queries)
+            if (query != null && (query.getResultType() == null || !Number.class.isAssignableFrom(query.getResultType()))) {
                 query.orderBy(cb.desc(root.get("lostDate")), cb.desc(root.get("id")));
             }
 

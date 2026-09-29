@@ -1887,7 +1887,8 @@
           👥 <strong><span id="stat-users">0</span> Campus Accounts:</strong> 
           <span id="stat-students">0</span> Students, <span id="stat-staff">0</span> Security/Staff Officers.
         </div>
-        <div style="display: flex; gap: 0.75rem;">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button class="btn btn-glass btn-sm" onclick="resetDemoData()">🔄 Reset Demo State</button>
           <button class="btn btn-glass btn-sm" onclick="loadDashboard()">↻ Refresh HUD</button>
           <button class="btn btn-gradient btn-sm" onclick="openModal('modal-lost')">+ Report Lost Item</button>
           <button class="btn btn-glass btn-sm" onclick="openModal('modal-found')">+ Log Found Item</button>
@@ -1969,7 +1970,10 @@
               Live architectural inspection of RFC 7807 problem details and state transition enforcement.
             </p>
           </div>
-          <div style="display: flex; gap: 0.6rem;">
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <button class="btn btn-glass btn-sm" onclick="resetDemoData()">
+              🔄 Reset Demo State
+            </button>
             <button class="btn btn-danger-glass btn-sm" onclick="triggerRule1ViolationTest()">
               ⚡ Simulate Rule 1 Rejection
             </button>
@@ -2111,6 +2115,7 @@
     let selectedLostStatus = 'ALL';
     let selectedFoundStatus = 'ALL';
     let activeClaimItemId = null;
+    let allFoundItems = [];
     let debounceTimer = null;
     let audioEnabled = true;
 
@@ -2594,10 +2599,11 @@
       try {
         const res = await fetch('/api/found-items?' + params.toString());
         const data = await res.json();
+        allFoundItems = Array.isArray(data) ? data : [];
         const container = document.getElementById('found-list');
-        document.getElementById('badge-found-count').innerText = data.filter(d => d.status === 'AVAILABLE').length;
+        document.getElementById('badge-found-count').innerText = allFoundItems.filter(d => d.status === 'AVAILABLE').length;
 
-        if (data.length === 0) {
+        if (allFoundItems.length === 0) {
           container.innerHTML = `
             <div class="empty-card">
               <div class="empty-card-icon">📦</div>
@@ -2608,7 +2614,7 @@
           return;
         }
 
-        container.innerHTML = data.map((item, idx) => {
+        container.innerHTML = allFoundItems.map((item, idx) => {
           const icon = categoryIcons[item.category?.name] || "📦";
           const isAvail = item.status === 'AVAILABLE';
           const isClaim = item.status === 'CLAIMED';
@@ -2656,7 +2662,7 @@
 
                 <div class="card-actions-cluster">
                   ${isAvail ? `
-                    <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id}, '${escapeHtml(item.title)}')">
+                    <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
                       Claim Item 🤝
                     </button>
                     <button class="btn btn-danger-glass btn-sm" onclick="simulateRule1OnItem(${item.id})" title="Deliberately attempt invalid direct jump to RETURNED">
@@ -2681,10 +2687,12 @@
       }
     }
 
-    function openClaimDialog(id, title) {
+    function openClaimDialog(id) {
       soundClick();
       activeClaimItemId = id;
-      document.getElementById('claim-item-title').innerHTML = `Item: <strong>${title}</strong>`;
+      const item = allFoundItems.find(i => i.id === id);
+      const title = item ? item.title : `Item #${id}`;
+      document.getElementById('claim-item-title').innerHTML = `Item: <strong>${escapeHtml(title)}</strong>`;
       openModal('modal-claim');
     }
 
@@ -2840,9 +2848,16 @@
 
     async function pairMatch(foundItemId, studentId, lostReportId) {
       try {
+        let actorId = currentUserId;
+        const currentUserObj = users.find(u => u.id === currentUserId);
+        if (currentUserObj && currentUserObj.role === 'STUDENT') {
+          const staffOrAdmin = users.find(u => u.role === 'STAFF') || users.find(u => u.role === 'ADMIN');
+          if (staffOrAdmin) actorId = staffOrAdmin.id;
+        }
+
         const body = {
           status: 'CLAIMED',
-          currentUserId: currentUserId,
+          currentUserId: actorId,
           claimedByUserId: studentId
         };
         const res = await fetch(`/api/found-items/${foundItemId}/status`, {
@@ -2857,9 +2872,11 @@
           await fetch(`/api/lost-reports/${lostReportId}/resolve`, { method: 'PUT' });
           loadMatches();
           loadDashboard();
+          loadLostReports();
+          loadFoundItems();
         } else {
           const err = await res.json();
-          showToast(err.message, true);
+          showToast(err.message || 'Error pairing match', true);
         }
       } catch (err) {
         showToast('Error pairing match', true);
@@ -2871,13 +2888,17 @@
       try {
         const res = await fetch('/api/found-items?status=AVAILABLE');
         const items = await res.json();
-        if (items.length === 0) {
-          showToast('No available found items to test. Create one first!', true);
+        if (!items || items.length === 0) {
+          showToast('No available found items to test. Click "Reset Demo State" first!', true);
           return;
         }
 
         const target = items[0];
-        const body = { status: 'RETURNED', currentUserId: currentUserId };
+        // Ensure the actor is an authorized Staff or Admin so Rule 1 (State Progression) is tested, not blocked by Rule 2
+        const staffOrAdmin = users.find(u => u.role === 'ADMIN') || users.find(u => u.role === 'STAFF');
+        const actorId = staffOrAdmin ? staffOrAdmin.id : (target.finder ? target.finder.id : 1);
+
+        const body = { status: 'RETURNED', currentUserId: actorId };
         const updateRes = await fetch(`/api/found-items/${target.id}/status`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -2896,12 +2917,13 @@
         const student = users.find(u => u.role === 'STUDENT') || { id: 3 };
         const res = await fetch('/api/found-items');
         const items = await res.json();
-        if (items.length === 0) {
+        if (!items || items.length === 0) {
           showToast('No items to test', true);
           return;
         }
 
-        const target = items[0];
+        // Find an item NOT logged by this student so Rule 2 authorization rejection occurs
+        const target = items.find(i => !i.finder || i.finder.id !== student.id) || items[0];
         const body = { status: 'CLAIMED', currentUserId: student.id, claimedByUserId: student.id };
         const updateRes = await fetch(`/api/found-items/${target.id}/status`, {
           method: 'PUT',
@@ -2913,6 +2935,29 @@
         showToast(`Rule 2 Verified (${updateRes.status}): ${err.message}`, true);
       } catch (e) {
         showToast('Security test error', true);
+      }
+    }
+
+    async function resetDemoData() {
+      soundClick();
+      try {
+        const res = await fetch('/api/admin/reset-demo-data', { method: 'POST' });
+        const data = await res.json();
+        if (res.ok) {
+          soundSuccess();
+          triggerConfetti();
+          showToast(data.message || 'Demo data successfully reset to clean state!');
+          await loadUsers();
+          await loadCategories();
+          await loadDashboard();
+          await loadLostReports();
+          await loadFoundItems();
+          await loadMatches();
+        } else {
+          showToast('Failed to reset demo data', true);
+        }
+      } catch (err) {
+        showToast('Error resetting demo data', true);
       }
     }
 
@@ -3019,6 +3064,7 @@
         { label: "🛡️ Open State Workflow Lab", action: () => { switchTab('rules'); closeModal('cmd-overlay'); } },
         { label: "➕ File a New Lost Report", action: () => { closeModal('cmd-overlay'); openModal('modal-lost'); } },
         { label: "➕ Log Newly Found Item", action: () => { closeModal('cmd-overlay'); openModal('modal-found'); } },
+        { label: "🔄 Reset Demo Database State", action: () => { closeModal('cmd-overlay'); resetDemoData(); } },
         { label: "☀️ Toggle Theme Mode", action: () => { toggleTheme(); closeModal('cmd-overlay'); } }
       ];
 
@@ -3050,8 +3096,13 @@
     }
 
     function escapeHtml(s) {
-      if (!s) return '';
-      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      if (s === null || s === undefined) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
   </script>
 </body>

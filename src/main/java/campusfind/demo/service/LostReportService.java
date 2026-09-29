@@ -4,6 +4,7 @@ import campusfind.demo.entity.Category;
 import campusfind.demo.entity.LostReport;
 import campusfind.demo.entity.LostStatus;
 import campusfind.demo.entity.User;
+import campusfind.demo.exception.BadRequestException;
 import campusfind.demo.exception.ResourceNotFoundException;
 import campusfind.demo.repository.CategoryRepository;
 import campusfind.demo.repository.LostReportRepository;
@@ -33,6 +34,10 @@ public class LostReportService {
 
     public LostReport createLostReport(String title, String description, String location,
                                        LocalDate lostDate, Long userId, Long categoryId) {
+        if (lostDate != null && lostDate.isAfter(LocalDate.now())) {
+            throw new BadRequestException("Lost date cannot be in the future: " + lostDate);
+        }
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
 
@@ -40,9 +45,9 @@ public class LostReportService {
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + categoryId));
 
         LostReport report = new LostReport();
-        report.setTitle(title);
-        report.setDescription(description);
-        report.setLocation(location);
+        report.setTitle(title != null ? title.trim() : "");
+        report.setDescription(description != null ? description.trim() : "");
+        report.setLocation(location != null ? location.trim() : "");
         report.setLostDate(lostDate != null ? lostDate : LocalDate.now());
         report.setUser(user);
         report.setCategory(category);
@@ -74,6 +79,9 @@ public class LostReportService {
 
     @Transactional(readOnly = true)
     public List<LostReport> searchLostReports(Long categoryId, LostStatus status, String keyword, LocalDate startDate, LocalDate endDate) {
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new BadRequestException("startDate cannot be after endDate.");
+        }
         return lostReportRepository.findAll(LostReportSpecification.filter(categoryId, status, keyword, startDate, endDate));
     }
 

@@ -20,10 +20,11 @@ public class CategoryService {
     }
 
     public Category createCategory(String name, String description) {
-        if (categoryRepository.existsByName(name)) {
-            throw new BadRequestException("Category with name '" + name + "' already exists.");
+        String cleanName = name != null ? name.trim() : "";
+        if (categoryRepository.existsByNameIgnoreCase(cleanName)) {
+            throw new BadRequestException("Category with name '" + cleanName + "' already exists.");
         }
-        Category category = new Category(name, description);
+        Category category = new Category(cleanName, description != null ? description.trim() : "");
         return categoryRepository.save(category);
     }
 

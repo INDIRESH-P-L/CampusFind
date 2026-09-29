@@ -37,6 +37,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        seedInitialData();
+    }
+
+    public synchronized void seedInitialData() {
         // Pre-seed Categories if none exist
         if (categoryRepository.count() == 0) {
             categoryRepository.save(new Category("ID Cards & Badges", "Campus student/staff IDs, driver licenses, library cards"));
@@ -47,46 +51,48 @@ public class DataInitializer implements CommandLineRunner {
             categoryRepository.save(new Category("Keys & Wallets", "Room keys, vehicle keys, purses, wallets"));
         }
 
-        // Pre-seed Demo Users if none exist
-        if (userRepository.count() <= 3) {
-            if (userRepository.findByEmail("admin@campus.edu").isEmpty()) {
-                userRepository.save(new User(null, "Campus Admin", "admin@campus.edu", "admin123", Role.ADMIN, "555-0100"));
-            }
-            if (userRepository.findByEmail("staff@campus.edu").isEmpty()) {
-                userRepository.save(new User(null, "Security Officer Dave", "staff@campus.edu", "staff123", Role.STAFF, "555-0101"));
-            }
-            if (userRepository.findByEmail("student@campus.edu").isEmpty()) {
-                userRepository.save(new User(null, "Alice Smith", "student@campus.edu", "student123", Role.STUDENT, "555-0102"));
-            }
-            if (userRepository.findByEmail("bob@campus.edu").isEmpty()) {
-                userRepository.save(new User(null, "Bob Martinez", "bob@campus.edu", "bob123", Role.STUDENT, "555-0103"));
-            }
-            if (userRepository.findByEmail("carol@campus.edu").isEmpty()) {
-                userRepository.save(new User(null, "Carol Johnson", "carol@campus.edu", "carol123", Role.STUDENT, "555-0104"));
-            }
+        // Pre-seed Demo Users idempotently
+        if (userRepository.findByEmailIgnoreCase("admin@campus.edu").isEmpty()) {
+            userRepository.save(new User(null, "Campus Admin", "admin@campus.edu", "admin123", Role.ADMIN, "555-0100"));
+        }
+        if (userRepository.findByEmailIgnoreCase("staff@campus.edu").isEmpty()) {
+            userRepository.save(new User(null, "Security Officer Dave", "staff@campus.edu", "staff123", Role.STAFF, "555-0101"));
+        }
+        if (userRepository.findByEmailIgnoreCase("student@campus.edu").isEmpty()) {
+            userRepository.save(new User(null, "Alice Smith", "student@campus.edu", "student123", Role.STUDENT, "555-0102"));
+        }
+        if (userRepository.findByEmailIgnoreCase("bob@campus.edu").isEmpty()) {
+            userRepository.save(new User(null, "Bob Martinez", "bob@campus.edu", "bob123", Role.STUDENT, "555-0103"));
+        }
+        if (userRepository.findByEmailIgnoreCase("carol@campus.edu").isEmpty()) {
+            userRepository.save(new User(null, "Carol Johnson", "carol@campus.edu", "carol123", Role.STUDENT, "555-0104"));
         }
 
         List<Category> allCats = categoryRepository.findAll();
+        if (allCats.isEmpty()) return;
+
         Category idCat = allCats.stream().filter(c -> c.getName().contains("ID Cards")).findFirst().orElse(allCats.get(0));
         Category electCat = allCats.stream().filter(c -> c.getName().contains("Electronics")).findFirst().orElse(allCats.get(0));
         Category calcCat = allCats.stream().filter(c -> c.getName().contains("Calculators")).findFirst().orElse(allCats.get(0));
         Category flaskCat = allCats.stream().filter(c -> c.getName().contains("Water Bottles")).findFirst().orElse(allCats.get(0));
         Category keyCat = allCats.stream().filter(c -> c.getName().contains("Keys")).findFirst().orElse(allCats.get(0));
 
-        User staff = userRepository.findByEmail("staff@campus.edu").orElse(null);
-        User studentAlice = userRepository.findByEmail("student@campus.edu").orElse(null);
-        User studentBob = userRepository.findByEmail("bob@campus.edu").orElse(null);
+        User staff = userRepository.findByEmailIgnoreCase("staff@campus.edu").orElse(null);
+        User studentAlice = userRepository.findByEmailIgnoreCase("student@campus.edu").orElse(null);
+        User studentBob = userRepository.findByEmailIgnoreCase("bob@campus.edu").orElse(null);
 
-        // Pre-seed Found Items if count < 2
-        if (foundItemRepository.count() < 2 && staff != null) {
+        // Pre-seed Found Items if none exist
+        if (foundItemRepository.count() == 0 && staff != null) {
             FoundItem f1 = new FoundItem("Casio fx-991EX Classwiz Scientific Calculator",
                     "Black casing with carbon-fiber pattern lid. Found under chair row 3.",
                     "Math Department Lecture Hall B", LocalDate.now().minusDays(1), staff, calcCat);
+            f1.setStatus(FoundStatus.AVAILABLE);
             foundItemRepository.save(f1);
 
             FoundItem f2 = new FoundItem("Apple AirPods Pro 2 with MagSafe Case",
                     "White charging case with a small green carabiner attached.",
                     "Campus Fitness Center Locker #42", LocalDate.now().minusDays(2), staff, electCat);
+            f2.setStatus(FoundStatus.AVAILABLE);
             foundItemRepository.save(f2);
 
             FoundItem f3 = new FoundItem("Matte Black Hydro Flask (32oz)",
@@ -106,24 +112,28 @@ public class DataInitializer implements CommandLineRunner {
             FoundItem f5 = new FoundItem("Anker 65W GaN USB-C Laptop Charger",
                     "Compact black brick with 2-meter braided cable.",
                     "Engineering Hall Room 104", LocalDate.now(), staff, electCat);
+            f5.setStatus(FoundStatus.AVAILABLE);
             foundItemRepository.save(f5);
 
             FoundItem f6 = new FoundItem("Student Campus ID Card (Alice Smith)",
                     "Blue RFID university card found by library turnstiles.",
                     "Central Library Entrance", LocalDate.now(), staff, idCat);
+            f6.setStatus(FoundStatus.AVAILABLE);
             foundItemRepository.save(f6);
         }
 
-        // Pre-seed Lost Reports if count < 2
-        if (lostReportRepository.count() < 2 && studentAlice != null) {
+        // Pre-seed Lost Reports if none exist
+        if (lostReportRepository.count() == 0 && studentAlice != null) {
             LostReport l1 = new LostReport("Casio fx-991EX Calculator",
                     "Left my calculator right after Calculus III lecture yesterday.",
                     "Math Department Hall B", LocalDate.now().minusDays(1), studentAlice, calcCat);
+            l1.setStatus(LostStatus.OPEN);
             lostReportRepository.save(l1);
 
             LostReport l2 = new LostReport("AirPods Pro in White Case",
                     "Dropped near the gym bench press or locker area.",
                     "Campus Fitness Center", LocalDate.now().minusDays(2), studentBob != null ? studentBob : studentAlice, electCat);
+            l2.setStatus(LostStatus.OPEN);
             lostReportRepository.save(l2);
 
             LostReport l3 = new LostReport("Black Insulated Water Bottle",
@@ -135,7 +145,14 @@ public class DataInitializer implements CommandLineRunner {
             LostReport l4 = new LostReport("Brown Leather Trifold Wallet",
                     "Contains driver license, transit card, and dorm key.",
                     "Student Quad Courtyard", LocalDate.now().minusDays(1), studentBob != null ? studentBob : studentAlice, keyCat);
+            l4.setStatus(LostStatus.OPEN);
             lostReportRepository.save(l4);
         }
+    }
+
+    public synchronized void resetDemoData() {
+        foundItemRepository.deleteAll();
+        lostReportRepository.deleteAll();
+        seedInitialData();
     }
 }
