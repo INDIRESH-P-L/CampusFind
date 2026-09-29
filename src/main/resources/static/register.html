@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SECE CampusFind — Register Account | Sri Eshwar College of Engineering</title>
-  <meta name="description" content="Register an institutional account for Sri Eshwar College of Engineering Lost & Found Portal.">
+  <title>SECE CampusFind — Create Account | Sri Eshwar College of Engineering</title>
+  <meta name="description" content="Official Institutional Registration Portal for Sri Eshwar College of Engineering (SECE), Coimbatore. Autonomous Institution.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       DESIGN SYSTEM: FULL-PAGE PURE LIGHT THEME LUXURY STUDIO (ZERO IMAGES)
+       ========================================================================== */
     :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --primary-glow: rgba(79, 70, 229, 0.4);
-      --secondary: #06b6d4;
-      --accent-violet: #8b5cf6;
-      --accent-gold: #f59e0b;
-      --accent-emerald: #10b981;
-      --accent-rose: #f43f5e;
+      --sece-blue: #00529b;
+      --sece-blue-dark: #003875;
+      --sece-blue-glow: rgba(0, 82, 155, 0.25);
+      --sece-cobalt: #1d4ed8;
+      --sece-cyan: #0284c7;
+      --sece-cyan-light: #0ea5e9;
+      --sece-gold: #f59e0b;
+      --sece-gold-light: #fbbf24;
+      --sece-emerald: #10b981;
 
-      --bg-base: #070913;
-      --surface-1: rgba(15, 23, 42, 0.88);
-      --surface-2: rgba(30, 41, 59, 0.7);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-highlight: rgba(99, 102, 241, 0.35);
+      --bg-ambient: #f1f5f9;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-border: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 35px 80px -15px rgba(15, 23, 42, 0.12);
 
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-    }
+      --showcase-bg: linear-gradient(155deg, #f8fafc 0%, #edf4fe 50%, #e0f2fe 100%);
+      --showcase-border: rgba(37, 99, 235, 0.18);
 
-    [data-theme="light"] {
-      --bg-base: #f1f5f9;
-      --surface-1: rgba(255, 255, 255, 0.95);
-      --surface-2: rgba(248, 250, 252, 0.9);
-      --border-subtle: rgba(0, 0, 0, 0.08);
-      --border-highlight: rgba(79, 70, 229, 0.3);
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --input-text: #0f172a;
+      --input-placeholder: #94a3b8;
+
       --text-main: #0f172a;
       --text-muted: #475569;
       --text-dim: #94a3b8;
+
+      --radius-pill: 9999px;
+      --radius-card: 28px;
+      --radius-panel: 24px;
     }
 
     * {
@@ -47,579 +51,1637 @@
       padding: 0;
     }
 
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-base);
+      background: var(--bg-ambient);
       color: var(--text-main);
-      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Ambient Background Atmosphere (100% Pure Code Canvas & Gradients) */
+    #mesh-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-aurora {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+      animation: floatAurora 14s ease-in-out infinite alternate;
+    }
+    .aurora-1 {
+      top: -140px;
+      left: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
+    }
+    .aurora-2 {
+      bottom: -140px;
+      right: 10%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.16) 0%, transparent 70%);
+      animation-delay: -7s;
+    }
+    .aurora-3 {
+      top: 40%;
+      right: 25%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+      animation-delay: -3s;
+    }
+
+    @keyframes floatAurora {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(35px) scale(1.08); }
+    }
+
+    /* ==========================================================================
+       MASTER SLAB: FITS THE ENTIRE PAGE (EDGE-TO-EDGE FULL VIEWPORT)
+       ========================================================================== */
+    .master-slab {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      background: var(--card-bg);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      padding: 1.75rem 3.5rem;
+      gap: 3.5rem;
+      align-items: center;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Left Column: Auth Engine */
+    .auth-engine-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: calc(100vh - 3.5rem);
+      max-height: 100%;
+      padding: 0.5rem 1rem 0.5rem 0;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+    .auth-engine-col::-webkit-scrollbar {
+      width: 5px;
+    }
+    .auth-engine-col::-webkit-scrollbar-thumb {
+      background: rgba(0, 82, 155, 0.15);
+      border-radius: 10px;
+    }
+
+    /* Institutional Header Badge (100% Pure Vector SVG matching official crest) */
+    .sece-luxury-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      background: #ffffff;
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px 6px 8px;
+      margin-bottom: 1.25rem;
+      width: fit-content;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+    }
+    .sece-luxury-badge:hover {
+      background: #f8fafc;
+      border-color: var(--sece-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 82, 155, 0.12);
+    }
+    .badge-vector-seal {
+      width: 36px;
+      height: 42px;
+      filter: drop-shadow(0 2px 4px rgba(0, 82, 155, 0.2));
+    }
+    .badge-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .badge-inst-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--sece-blue);
+      letter-spacing: -0.01em;
+    }
+    .badge-inst-sub {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .live-status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--sece-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+      margin-left: 4px;
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Liquid Segmented Tab Switcher */
+    .segmented-switcher-bar {
+      position: relative;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 1.35rem;
+    }
+    .switcher-pill-glider {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      height: calc(100% - 8px);
+      background: linear-gradient(135deg, var(--sece-blue), var(--sece-cobalt));
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 14px rgba(0, 82, 155, 0.35);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
+    }
+    .segmented-switcher-bar.is-register .switcher-pill-glider {
+      transform: translateX(100%);
+    }
+    .switcher-tab-btn {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: color 0.3s ease;
+    }
+    .switcher-tab-btn.active {
+      color: #ffffff !important;
+    }
+    .switcher-tab-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.2;
+    }
+
+    /* Sliding Viewport & Track */
+    .slider-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+    .slider-track {
+      display: flex;
+      width: 200%;
+      transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .slider-track.show-register {
+      transform: translateX(-50%);
+    }
+    .slide-chamber {
+      width: 50%;
+      flex-shrink: 0;
+      padding-right: 0.25rem;
+      opacity: 0.4;
+      transform: scale(0.97);
+      transition: opacity 0.35s ease, transform 0.45s ease;
+    }
+    .slide-chamber.active-chamber {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Headings */
+    .stage-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+    .stage-title .gradient-accent {
+      background: linear-gradient(135deg, var(--sece-blue) 20%, var(--sece-cobalt) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stage-sub {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+      line-height: 1.45;
+    }
+
+    /* Form Fields */
+    .field-group {
+      margin-bottom: 0.95rem;
+    }
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #334155;
+      margin-bottom: 0.45rem;
+    }
+    .input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-icon-svg {
+      position: absolute;
+      left: 18px;
+      width: 18px;
+      height: 18px;
+      color: #94a3b8;
+      pointer-events: none;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .pill-input {
+      width: 100%;
+      height: 48px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 0 20px 0 48px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: #0f172a;
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pill-input:focus {
+      border-color: var(--sece-blue);
+      box-shadow: 0 0 0 4px rgba(0, 82, 155, 0.12), 0 6px 18px rgba(0, 82, 155, 0.08);
+      transform: translateY(-1px);
+    }
+    .pill-input:focus + .input-icon-svg,
+    .input-box:focus-within .input-icon-svg {
+      color: var(--sece-blue);
+      transform: scale(1.1);
+    }
+    .pill-input::placeholder {
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    /* Password Toggle Button */
+    .pill-input.has-toggle {
+      padding-right: 90px !important;
+    }
+    .pill-toggle-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      color: #475569;
+      padding: 5px 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .pill-toggle-btn:hover {
+      background: #e2e8f0;
+      color: var(--sece-blue);
+      border-color: var(--sece-blue);
+    }
+    .pill-toggle-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Select Dropdown */
+    select.pill-input {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      background-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Form Grid for Register */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    /* Action CTA Button with Shimmer Animation */
+    .btn-action-cta {
+      width: 100%;
+      height: 50px;
+      border: none;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--sece-blue) 0%, var(--sece-cobalt) 60%, #0284c7 100%);
+      color: #ffffff;
+      font-size: 0.96rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 1.15rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -4px rgba(0, 82, 155, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-action-cta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: rotate(25deg);
+      animation: buttonShimmer 4s infinite;
+    }
+    @keyframes buttonShimmer {
+      0% { left: -60%; }
+      35%, 100% { left: 160%; }
+    }
+    .btn-action-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -4px rgba(0, 82, 155, 0.55);
+    }
+    .btn-action-cta:active {
+      transform: translateY(0);
+    }
+
+    /* Quick Credential Chips */
+    .quick-profiles-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin-top: 1.15rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .quick-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 8px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      font-family: inherit;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .quick-chip:hover {
+      background: #f0f7ff;
+      border-color: var(--sece-blue);
+      color: var(--sece-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 82, 155, 0.12);
+    }
+    .quick-chip svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Institutional Trust Strip */
+    .inst-trust-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+      padding: 9px 14px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .inst-trust-strip svg {
+      width: 15px;
+      height: 15px;
+      color: var(--sece-blue);
+      flex-shrink: 0;
+    }
+
+    /* Affiliation Pledge */
+    .pledge-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin: 0.85rem 0;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .pledge-row input[type="checkbox"] {
+      margin-top: 2px;
+      accent-color: var(--sece-blue);
+      cursor: pointer;
+    }
+
+    /* Alerts */
+    .auth-alert-pill {
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.84rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.3s ease;
+    }
+    .auth-alert-error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+    }
+    .auth-alert-success {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+    }
+
+    /* Form Footer */
+    .form-footer-nav {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1rem;
+    }
+    .guest-link {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--sece-blue);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s ease;
+    }
+    .guest-link:hover {
+      text-decoration: underline;
+      color: var(--sece-cobalt);
+    }
+
+    /* ==========================================================================
+       RIGHT COLUMN: BESPOKE HEURISTIC AI COMMAND SUITE (FULL-HEIGHT LIGHT THEME)
+       ========================================================================== */
+    .showcase-telemetry-col {
+      position: relative;
+      border-radius: var(--radius-panel);
+      overflow: hidden;
+      height: calc(100vh - 3.5rem);
+      max-height: 100%;
+      background: var(--showcase-bg);
+      border: 1px solid var(--showcase-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 20px 45px rgba(37, 99, 235, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem 1.85rem;
+      box-sizing: border-box;
+    }
+
+    /* Vector Constellation Circuit Mesh (Pure Code SVG) */
+    .vector-circuit-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    /* Live HUD Header Bar */
+    .hud-telemetry-header {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.06);
+    }
+    .hud-live-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--sece-blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hud-metrics-tag {
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--sece-cobalt);
+    }
+
+    /* Floating Card 1: Live Heuristic Radar Lock with Float Animation */
+    .float-card-radar-lock {
+      position: relative;
+      z-index: 4;
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      color: #92400e;
+      padding: 11px 16px;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(245, 158, 11, 0.16);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      animation: floatSmooth 6s ease-in-out infinite;
+    }
+    .radar-lock-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .radar-lock-sub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      opacity: 0.9;
+      margin-top: 3px;
+    }
+
+    /* Central Interactive Heuristic Neural Radar with Sonar Ripples */
+    .neural-radar-stage {
+      position: relative;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      margin: 0.4rem 0;
+    }
+    .radar-concentric-wrap {
       position: relative;
-      overflow-x: hidden;
-      padding: 2.5rem 1.5rem;
-    }
-
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .ambient-glow {
-      position: fixed;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
-      filter: blur(130px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.28;
-    }
-    .glow-1 {
-      top: -120px;
-      left: 10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #4f46e5, transparent 70%);
-    }
-    .glow-2 {
-      bottom: -120px;
-      right: 10%;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, #06b6d4, transparent 70%);
+      border: 1.5px dashed rgba(37, 99, 235, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(224, 242, 254, 0.4) 70%, transparent 100%);
     }
 
-    /* Top Utility Bar */
-    .top-utility-bar {
+    /* Sonar Ripple Waves Expanding Outward (Animation) */
+    .sonar-ripple-wave {
       position: absolute;
-      top: 1.25rem;
-      right: 1.5rem;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .btn-icon {
-      background: var(--surface-2);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
+      inset: -10px;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      border: 2px solid rgba(0, 82, 155, 0.3);
+      opacity: 0;
+      animation: sonarExpand 3.6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+    }
+    .wave-2 { animation-delay: 1.2s; }
+    .wave-3 { animation-delay: 2.4s; }
+
+    @keyframes sonarExpand {
+      0% { transform: scale(0.6); opacity: 0.8; }
+      50% { opacity: 0.4; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    .radar-crosshair-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(37, 99, 235, 0.25);
+    }
+    .radar-crosshair-v {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(37, 99, 235, 0.25);
+    }
+    .radar-concentric-inner {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid rgba(37, 99, 235, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
     }
-    .btn-icon:hover {
-      background: var(--border-highlight);
-      transform: scale(1.06);
+    .radar-rotating-beam {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(37, 99, 235, 0.25) 360deg);
+      animation: rotateRadar 4.5s linear infinite;
+    }
+    @keyframes rotateRadar {
+      100% { transform: rotate(360deg); }
     }
 
-    /* Main Container */
-    .auth-page-container {
+    /* Official Sri Eshwar Center Seal (Pure Vector SVG Matching Official Emblem) */
+    .center-vector-seal-badge {
       position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 600px;
-      animation: fadeInScale 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(0.96) translateY(12px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    /* College Branding Header */
-    .college-header-cluster {
-      text-align: center;
-      margin-bottom: 1.75rem;
-    }
-
-    .college-crest-container {
-      display: inline-flex;
+      z-index: 5;
+      width: 76px;
+      height: 76px;
+      background: #ffffff;
+      border-radius: 20px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 72px;
-      height: 72px;
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px var(--primary-glow);
-      margin-bottom: 1rem;
+      box-shadow: 0 4px 18px rgba(0, 82, 155, 0.2), inset 0 0 0 1.5px rgba(0, 82, 155, 0.15);
+      transition: transform 0.3s ease;
+    }
+    .center-vector-seal-badge:hover {
+      transform: scale(1.08);
+    }
+    .center-seal-svg {
+      width: 56px;
+      height: 66px;
+    }
+
+    /* Radar Ping Blips */
+    .radar-ping-blip {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--sece-gold);
+      box-shadow: 0 0 12px var(--sece-gold);
+      animation: blipPulse 2.4s infinite;
+      z-index: 4;
+    }
+    .blip-lib { top: 26px; left: 30px; animation-delay: 0.1s; }
+    .blip-mech { bottom: 32px; right: 28px; animation-delay: 1.2s; }
+    .blip-tech { top: 68px; right: 16px; animation-delay: 1.7s; }
+
+    @keyframes blipPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.6); opacity: 1; }
+    }
+
+    /* AI Real-time Heuristic Match Stream Card */
+    .ai-match-stream-card {
       position: relative;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .college-crest-container span {
-      font-size: 2.2rem;
-    }
-
-    .college-name-badge {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--secondary);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      padding: 4px 14px;
+      z-index: 4;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(37, 99, 235, 0.2);
       border-radius: 20px;
-      margin-bottom: 0.6rem;
+      padding: 12px 16px;
+      margin: 0.4rem 0;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08);
     }
-
-    .college-title {
-      font-size: 1.45rem;
+    .ai-match-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .ai-match-title {
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      color: var(--text-main);
-      margin-bottom: 0.35rem;
-    }
-
-    .college-subtitle {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* Card Box */
-    .auth-card {
-      background: var(--surface-1);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border: 1px solid var(--border-highlight);
-      border-radius: 24px;
-      padding: 2.25rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.15);
-    }
-
-    .auth-tabs-nav {
-      display: flex;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 4px;
-      border-radius: 14px;
-      margin-bottom: 1.75rem;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .auth-tab-link {
-      flex: 1;
-      text-align: center;
-      padding: 10px 14px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-decoration: none;
-      border-radius: 10px;
-      transition: all 0.2s ease;
+      color: var(--sece-blue);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    .auth-tab-link.active {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 14px var(--primary-glow);
-    }
-    .auth-tab-link:not(.active):hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
+      gap: 8px;
     }
 
-    /* Form Styles */
-    .form-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    /* Animated Frequency Equalizer Bars (Dynamic Animation) */
+    .ai-freq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+    }
+    .ai-freq-bar {
+      width: 3px;
+      background: var(--sece-blue);
+      border-radius: 2px;
+      animation: freqBounce 1.2s ease-in-out infinite alternate;
+    }
+    .fb-1 { height: 6px; animation-delay: 0.1s; }
+    .fb-2 { height: 14px; animation-delay: 0.3s; }
+    .fb-3 { height: 9px; animation-delay: 0.5s; }
+    .fb-4 { height: 15px; animation-delay: 0.2s; }
+    .fb-5 { height: 8px; animation-delay: 0.4s; }
+
+    @keyframes freqBounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
     }
 
-    @media (max-width: 600px) {
-      .form-grid-2 {
-        grid-template-columns: 1fr;
-      }
+    .ai-confidence-badge {
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #15803d;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+    .ai-bar-track {
+      height: 6px;
+      width: 100%;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .ai-bar-fill {
+      height: 100%;
+      width: 98.4%;
+      background: linear-gradient(90deg, var(--sece-blue), var(--sece-emerald));
+      border-radius: 3px;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+      position: relative;
+    }
+    .ai-bar-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      animation: barShimmer 2.5s infinite;
     }
 
-    .form-group {
-      margin-bottom: 1.15rem;
+    .ai-match-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .ai-chip-tag {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 2px 7px;
     }
 
-    .form-label {
+    /* 7-Day Acrylic Recovery Bar Chart Timeline */
+    .float-card-telemetry-timeline {
+      position: relative;
+      z-index: 4;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      border-radius: 20px;
+      padding: 11px 16px;
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 0.4rem;
+    }
+    .telemetry-days-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.45rem;
+      align-items: flex-end;
+      text-align: center;
+      margin-bottom: 8px;
+      height: 48px;
     }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-dim);
-      font-size: 1.05rem;
-      pointer-events: none;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 14px 12px 42px;
-      background: rgba(15, 23, 42, 0.65);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      color: var(--text-main);
-      font-size: 0.92rem;
-      font-family: inherit;
-      transition: all 0.2s ease;
-      outline: none;
-    }
-    [data-theme="light"] .form-control {
-      background: #ffffff;
-      border-color: #cbd5e1;
-    }
-    .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
-    }
-
-    select.form-control {
-      appearance: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 16px;
-    }
-
-    .password-toggle-btn {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--text-dim);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-    .password-toggle-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    /* Checkbox Pledge */
-    .pledge-row {
+    .telemetry-day-col {
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin: 1.25rem 0;
-      padding: 10px 14px;
-      background: rgba(15, 23, 42, 0.45);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-    .pledge-row input[type="checkbox"] {
-      margin-top: 3px;
-      accent-color: var(--primary);
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-
-    /* Alert Banner */
-    .auth-alert {
-      display: none;
+      flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      margin-bottom: 1.25rem;
-      animation: fadeIn 0.3s ease;
+      gap: 3px;
+      flex: 1;
     }
-    .auth-alert-error {
-      background: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.4);
-      color: #fda4af;
+    .telemetry-mini-bar {
+      width: 7px;
+      background: #cbd5e1;
+      border-radius: 4px;
+      transition: height 0.4s ease;
+      animation: barRise 1s ease-out;
     }
-    .auth-alert-success {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #6ee7b7;
+    @keyframes barRise {
+      from { height: 0 !important; }
+    }
+    .telemetry-day-col.active-day .telemetry-mini-bar {
+      background: linear-gradient(180deg, #f59e0b, #d97706);
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+    }
+    .telemetry-day-col .t-lbl {
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .telemetry-day-col .t-val {
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #334155;
+    }
+    .telemetry-day-col.active-day .t-val {
+      color: #d97706;
+      font-weight: 800;
+    }
+    .telemetry-strip-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 7px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--sece-blue);
+    }
+    .acrylic-stripes {
+      height: 7px;
+      width: 70px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 82, 155, 0.25),
+        rgba(0, 82, 155, 0.25) 3px,
+        transparent 3px,
+        transparent 6px
+      );
+      border-radius: 4px;
     }
 
-    /* Submit Button */
-    .btn-submit {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(6, 182, 212, 0.35);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Handover Verification Card */
+    .float-card-claim-log {
+      position: relative;
+      z-index: 4;
+      background: #ffffff;
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      border-radius: 18px;
+      padding: 10px 16px;
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .claim-log-text h4 {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #0f172a;
+    }
+    .claim-log-text p {
+      font-size: 0.74rem;
+      color: #475569;
+      margin-top: 2px;
+    }
+    .avatar-vector-stack {
+      display: flex;
+      align-items: center;
+    }
+    .avatar-vector-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-left: -7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      font-size: 0.72rem;
+      background: linear-gradient(135deg, var(--sece-blue), var(--sece-cobalt));
+      color: #ffffff;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(0, 82, 155, 0.2);
     }
-    .btn-submit:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(6, 182, 212, 0.45);
-    }
-    .btn-submit:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .avatar-vector-circle:first-child {
+      margin-left: 0;
     }
 
-    /* Footer Links */
-    .auth-footer {
-      margin-top: 1.75rem;
-      text-align: center;
-      font-size: 0.86rem;
-      color: var(--text-muted);
+    @keyframes floatSmooth {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
-    .auth-footer a {
-      color: var(--secondary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s ease;
-    }
-    .auth-footer a:hover {
-      color: #fff;
-      text-decoration: underline;
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      html, body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+      .master-slab {
+        height: auto;
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 2rem;
+      }
+      .showcase-telemetry-col {
+        height: auto;
+        min-height: 520px;
+        order: -1;
+      }
+      .auth-engine-col {
+        height: auto;
+      }
+      .stage-title {
+        font-size: 1.75rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Canvas background -->
-  <canvas id="bg-canvas"></canvas>
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
 
-  <!-- Top Utilities -->
-  <div class="top-utility-bar">
-    <button class="btn-icon" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
-  </div>
+  <!-- 100% Pure Code Ambient Particle Canvas with Constellation Connections -->
+  <canvas id="mesh-canvas"></canvas>
+  <div class="ambient-aurora aurora-1"></div>
+  <div class="ambient-aurora aurora-2"></div>
+  <div class="ambient-aurora aurora-3"></div>
 
-  <!-- Main Container -->
-  <div class="auth-page-container">
-    <div class="college-header-cluster">
-      <div class="college-crest-container">
-        <span>🎓</span>
-      </div>
+  <!-- ==========================================================================
+       MASTER SLAB: FITS THE ENTIRE PAGE (EDGE-TO-EDGE FULL VIEWPORT)
+       ========================================================================== -->
+  <main class="master-slab">
+
+    <!-- LEFT COLUMN: AUTH ENGINE -->
+    <section class="auth-engine-col">
+      
       <div>
-        <span class="college-name-badge">SECE Student & Staff Registration</span>
-        <h1 class="college-title">Sri Eshwar College of Engineering</h1>
-        <p class="college-subtitle">Autonomous Institution • Coimbatore, Tamil Nadu<br><strong>Create Your Institutional CampusFind Profile</strong></p>
-      </div>
-    </div>
+        <!-- Official Sri Eshwar Luxury Seal (Hand-Crafted Pure Vector SVG - Exact Match to Official Emblem) -->
+        <a href="index.html" class="sece-luxury-badge" title="Sri Eshwar College of Engineering">
+          <svg class="badge-vector-seal" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Top Banner Header -->
+            <line x1="16" y1="20" x2="184" y2="20" stroke="#00529b" stroke-width="3"/>
+            <text x="100" y="34" fill="#00529b" font-family="'Space Grotesk', sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.5" text-anchor="middle">Leadership &amp; Excellence</text>
+            <line x1="16" y1="42" x2="184" y2="42" stroke="#00529b" stroke-width="3"/>
+            
+            <!-- Shield Outline -->
+            <path d="M20 50 H180 V135 C180 188 100 228 100 228 C100 228 20 188 20 135 Z" fill="#ffffff" stroke="#00529b" stroke-width="4"/>
+            
+            <!-- Left Side: White Background with Blue Emblems -->
+            <!-- Open Book -->
+            <path d="M38 72 C48 69 56 70 60 72 C64 70 72 69 82 72 V94 C72 91 64 92 60 94 C56 92 48 91 38 94 Z" fill="none" stroke="#00529b" stroke-width="2.5"/>
+            <line x1="60" y1="72" x2="60" y2="94" stroke="#00529b" stroke-width="2.5"/>
+            <line x1="20" y1="104" x2="100" y2="104" stroke="#00529b" stroke-width="3"/>
+            
+            <!-- 5-Point Star -->
+            <polygon points="60,114 64,124 75,124 66,131 69,142 60,135 51,142 54,131 45,124 56,124" fill="none" stroke="#00529b" stroke-width="2.5"/>
+            <line x1="20" y1="152" x2="100" y2="152" stroke="#00529b" stroke-width="3"/>
+            
+            <!-- Diagonal Columns -->
+            <path d="M32 164 L46 200 H55 L41 164 Z M52 164 L66 210 H75 L61 164 Z M72 164 L86 220 H95 L81 164 Z" fill="#00529b"/>
+            
+            <!-- Center Divider -->
+            <line x1="100" y1="50" x2="100" y2="228" stroke="#00529b" stroke-width="4"/>
+            
+            <!-- Right Side: Solid Blue -->
+            <path d="M100 50 H180 V135 C180 188 100 228 100 228 Z" fill="#00529b"/>
+            
+            <!-- Golden Flame -->
+            <path d="M136 60 C150 74 158 92 136 112 C126 94 130 84 136 60 Z" fill="#fbbf24"/>
+            <path d="M146 70 C160 84 164 102 148 114 C138 102 142 92 146 70 Z" fill="#f59e0b"/>
+            <path d="M128 78 C132 88 136 102 128 112 C122 102 124 92 128 78 Z" fill="#fef08a"/>
+            
+            <!-- White Torch Stem -->
+            <path d="M124 116 H152 V122 H124 Z" fill="#ffffff"/>
+            <path d="M130 122 H146 L142 195 H134 Z" fill="#ffffff"/>
+          </svg>
 
-    <div class="auth-card">
-      <!-- Navigation Tabs -->
-      <div class="auth-tabs-nav">
-        <a href="login.html" class="auth-tab-link">
-          <span>🔑</span> Sign In
+          <div class="badge-text-group">
+            <span class="badge-inst-title">Sri Eshwar</span>
+            <span class="badge-inst-sub">Autonomous • Coimbatore</span>
+          </div>
+          <span class="live-status-dot" title="SECE Network Online"></span>
         </a>
-        <a href="register.html" class="auth-tab-link active">
-          <span>📝</span> Register Account
+
+        <!-- Liquid Segmented Switcher Glider (Initialized to Register) -->
+        <div class="segmented-switcher-bar is-register" id="switcherBar">
+          <div class="switcher-pill-glider" id="switcherGlider"></div>
+          <button type="button" class="switcher-tab-btn" id="tabBtnLogin" onclick="switchToTab('login')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 2l-2 2m-2-2l2 2"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Sign In
+          </button>
+          <button type="button" class="switcher-tab-btn active" id="tabBtnRegister" onclick="switchToTab('register')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            Create Account
+          </button>
+        </div>
+
+        <!-- Sliding Dual-Chamber Viewport (Initialized to Register) -->
+        <div class="slider-viewport">
+          <div class="slider-track show-register" id="sliderTrack">
+
+            <!-- CHAMBER 1: SIGN IN -->
+            <div class="slide-chamber" id="chamberLogin">
+              
+              <h1 class="stage-title">Welcome Back <span class="gradient-accent">to SECE</span></h1>
+              <p class="stage-sub">Autonomous Institution • Smart Campus Lost &amp; Found Grid</p>
+
+              <!-- Alert Banner -->
+              <div id="loginAlert" class="auth-alert-pill"></div>
+
+              <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+                
+                <div class="field-group">
+                  <label class="field-label" for="loginEmail">
+                    <span>College Email / Roll ID</span>
+                    <span style="color: var(--sece-blue); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; font-weight: 700;">@sece.ac.in</span>
+                  </label>
+                  <div class="input-box">
+                    <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input type="text" id="loginEmail" class="pill-input" placeholder="student@sece.ac.in or 718121104052" required autocomplete="username">
+                  </div>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label" for="loginPassword">
+                    <span>Password</span>
+                  </label>
+                  <div class="input-box">
+                    <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input type="password" id="loginPassword" class="pill-input has-toggle" placeholder="Enter institutional password" required autocomplete="current-password">
+                    <button type="button" class="pill-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <span>Show</span>
+                    </button>
+                  </div>
+                </div>
+
+                <button type="submit" id="loginSubmitBtn" class="btn-action-cta">
+                  <span>Sign In to SECE Portal</span>
+                  <span>→</span>
+                </button>
+              </form>
+
+              <!-- 1-Click Evaluation Profiles -->
+              <div class="quick-profiles-row">
+                <button type="button" class="quick-chip" onclick="autofillLogin('student@sece.ac.in', 'student123')" title="Student Indiresh P L (CSE)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  <span>Student</span>
+                </button>
+                <button type="button" class="quick-chip" onclick="autofillLogin('staff@sece.ac.in', 'staff123')" title="Campus Security Desk">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Security</span>
+                </button>
+                <button type="button" class="quick-chip" onclick="autofillLogin('admin@sece.ac.in', 'admin123')" title="Campus Administrator">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span>Admin</span>
+                </button>
+              </div>
+
+              <!-- Institutional Trust Banner -->
+              <div class="inst-trust-strip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                <span>SECE Institutional Identity Grid • Role-Based Encrypted Access</span>
+              </div>
+
+            </div>
+
+            <!-- CHAMBER 2: REGISTER -->
+            <div class="slide-chamber active-chamber" id="chamberRegister">
+              
+              <h1 class="stage-title">Create Account <span class="gradient-accent">SECE</span></h1>
+              <p class="stage-sub">Institutional Identity Registration • Automated AI Match Tracking</p>
+
+              <!-- Alert Banner -->
+              <div id="registerAlert" class="auth-alert-pill"></div>
+
+              <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
+                
+                <div class="form-grid-2">
+                  <div class="field-group">
+                    <label class="field-label" for="regName">Full Name *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                      <input type="text" id="regName" class="pill-input" placeholder="Indiresh P L" required>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="regRoll">Roll Number</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                        <line x1="7" y1="8" x2="17" y2="8"></line>
+                        <line x1="7" y1="12" x2="13" y2="12"></line>
+                      </svg>
+                      <input type="text" id="regRoll" class="pill-input" placeholder="718121104052">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="field-group">
+                    <label class="field-label" for="regDept">Department *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3l9 7H3l9-7z"></path>
+                      </svg>
+                      <select id="regDept" class="pill-input" required>
+                        <option value="CSE">Computer Science (CSE)</option>
+                        <option value="AI & DS">Artificial Intelligence (AI &amp; DS)</option>
+                        <option value="IT">Information Tech (IT)</option>
+                        <option value="CCE">Computer &amp; Comm (CCE)</option>
+                        <option value="ECE">Electronics (ECE)</option>
+                        <option value="EEE">Electrical &amp; Electronics (EEE)</option>
+                        <option value="MECH">Mechanical Engg (MECH)</option>
+                        <option value="BME">Biomedical Engg (BME)</option>
+                        <option value="Staff/Admin">Staff / Administration</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="regRole">Role *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                      <select id="regRole" class="pill-input" required>
+                        <option value="STUDENT">Student (Self-Claim)</option>
+                        <option value="STAFF">Campus Staff / Security</option>
+                        <option value="ADMIN">Campus Administrator</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="field-group">
+                    <label class="field-label" for="regEmail">College Email *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      <input type="email" id="regEmail" class="pill-input" placeholder="name@sece.ac.in" required>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="regPhone">Mobile Number</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                      </svg>
+                      <input type="tel" id="regPhone" class="pill-input" placeholder="+91 98765 43210">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="field-group">
+                    <label class="field-label" for="regPassword">Password *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <input type="password" id="regPassword" class="pill-input has-toggle" placeholder="Min 4 chars" minlength="4" required>
+                      <button type="button" class="pill-toggle-btn" onclick="togglePasswordVisibility('regPassword', this)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Show</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label class="field-label" for="regConfirmPassword">Confirm *</label>
+                    <div class="input-box">
+                      <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 2l-2 2m-2-2l2 2"></path>
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <input type="password" id="regConfirmPassword" class="pill-input has-toggle" placeholder="Re-enter" required>
+                      <button type="button" class="pill-toggle-btn" onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Show</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pledge-row">
+                  <input type="checkbox" id="pledgeCheck" required>
+                  <label for="pledgeCheck">
+                    I certify affiliation with <strong>Sri Eshwar College of Engineering</strong>.
+                  </label>
+                </div>
+
+                <button type="submit" id="regSubmitBtn" class="btn-action-cta">
+                  <span>Create SECE Account</span>
+                  <span>→</span>
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation Footer -->
+      <footer class="form-footer-nav">
+        <a href="index.html?guest=true" class="guest-link">
+          <span>Browse Directory as Guest</span>
+          <span>&rarr;</span>
         </a>
+        <span style="font-size: 0.74rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-weight: 600;">SECE Security Grid v2.4</span>
+      </footer>
+
+    </section>
+
+    <!-- RIGHT COLUMN: PURE-CODE HEURISTIC NEURAL COMMAND SUITE (FULL-HEIGHT LIGHT THEME) -->
+    <aside class="showcase-telemetry-col">
+      
+      <!-- Vector Circuit Mesh SVG (Pure Code) -->
+      <svg class="vector-circuit-bg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="circuitGradLight" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0284c7" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#00529b" stop-opacity="0.08"/>
+          </linearGradient>
+        </defs>
+        <path d="M40,50 L120,50 L180,110 L280,110 L340,170 L460,170" stroke="url(#circuitGradLight)" stroke-width="1.8" fill="none"/>
+        <path d="M30,220 L100,220 L160,280 L220,280 L280,340 L450,340" stroke="url(#circuitGradLight)" stroke-width="1.8" fill="none"/>
+        <path d="M80,480 L180,480 L240,420 L360,420 L420,360 L480,360" stroke="url(#circuitGradLight)" stroke-width="1.8" fill="none"/>
+        <!-- Circuit node dots -->
+        <circle cx="120" cy="50" r="3.5" fill="#0284c7"/>
+        <circle cx="280" cy="110" r="3.5" fill="#0284c7"/>
+        <circle cx="340" cy="170" r="4.5" fill="#f59e0b"/>
+        <circle cx="160" cy="280" r="3.5" fill="#0284c7"/>
+        <circle cx="280" cy="340" r="4.5" fill="#10b981"/>
+        <circle cx="240" cy="420" r="3.5" fill="#0284c7"/>
+      </svg>
+
+      <!-- Live HUD Status Bar -->
+      <div class="hud-telemetry-header">
+        <div class="hud-live-tag">
+          <span class="live-status-dot"></span>
+          <span>Heuristic AI Engine</span>
+        </div>
+        <div class="hud-metrics-tag">1,280 NODES • 98.4% PRECISION</div>
       </div>
 
-      <!-- Alert Box -->
-      <div id="authAlert" class="auth-alert"></div>
-
-      <!-- Registration Form -->
-      <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label class="form-label" for="regName">Full Name *</label>
-            <div class="input-wrapper">
-              <span class="input-icon">👤</span>
-              <input type="text" id="regName" class="form-control" placeholder="e.g. Indiresh P L" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="regRoll">Roll / Reg Number</label>
-            <div class="input-wrapper">
-              <span class="input-icon">🪪</span>
-              <input type="text" id="regRoll" class="form-control" placeholder="e.g. 718121104052">
-            </div>
-          </div>
+      <!-- Floating Card 1: Live Heuristic Radar Lock with Float Animation -->
+      <div class="float-card-radar-lock">
+        <div class="radar-lock-header">
+          <span>📍 APJ Kalam Library (2F) • Casio FX-991EX</span>
+          <span class="live-status-dot"></span>
         </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label class="form-label" for="regDept">Department *</label>
-            <div class="input-wrapper">
-              <span class="input-icon">🏛️</span>
-              <select id="regDept" class="form-control" required>
-                <option value="CSE">Computer Science & Engg (CSE)</option>
-                <option value="AI & DS">Artificial Intelligence & Data Science (AI & DS)</option>
-                <option value="IT">Information Technology (IT)</option>
-                <option value="CCE">Computer & Communication Engg (CCE)</option>
-                <option value="ECE">Electronics & Communication (ECE)</option>
-                <option value="EEE">Electrical & Electronics (EEE)</option>
-                <option value="MECH">Mechanical Engineering (MECH)</option>
-                <option value="BME">Biomedical Engineering (BME)</option>
-                <option value="Staff/Admin">Administration / Security</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="regRole">Institutional Role *</label>
-            <div class="input-wrapper">
-              <span class="input-icon">🏷️</span>
-              <select id="regRole" class="form-control" required>
-                <option value="STUDENT">Student (Self-Claim & Report)</option>
-                <option value="STAFF">Campus Staff / Security Desk</option>
-                <option value="ADMIN">Campus Administrator</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label class="form-label" for="regEmail">
-              <span>College Email *</span>
-              <span style="font-size: 0.72rem; color: var(--secondary);">@sece.ac.in</span>
-            </label>
-            <div class="input-wrapper">
-              <span class="input-icon">✉️</span>
-              <input type="email" id="regEmail" class="form-control" placeholder="name@sece.ac.in" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="regPhone">Mobile Number</label>
-            <div class="input-wrapper">
-              <span class="input-icon">📱</span>
-              <input type="tel" id="regPhone" class="form-control" placeholder="+91 98765 43210">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label class="form-label" for="regPassword">
-              <span>Password *</span>
-              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('regPassword', this)">👁️ Show</button>
-            </label>
-            <div class="input-wrapper">
-              <span class="input-icon">🔒</span>
-              <input type="password" id="regPassword" class="form-control" placeholder="Minimum 4 characters" minlength="4" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="regConfirmPassword">Confirm Password *</label>
-            <div class="input-wrapper">
-              <span class="input-icon">🔑</span>
-              <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="pledge-row">
-          <input type="checkbox" id="pledgeCheck" required>
-          <label for="pledgeCheck">
-            I certify that I am affiliated with <strong>Sri Eshwar College of Engineering</strong>, and all lost and found reports submitted under this profile will be truthful and adhere to campus regulations.
-          </label>
-        </div>
-
-        <button type="submit" id="regSubmitBtn" class="btn-submit">
-          <span>Create SECE Institutional Account</span>
-          <span>→</span>
-        </button>
-      </form>
-
-      <!-- Footer Info -->
-      <div class="auth-footer">
-        Already have an institutional account? <a href="login.html">Sign In to SECE Portal &rarr;</a>
+        <div class="radar-lock-sub">09:30 AM — Heuristic Match 98.4% (Neural Lock Acquired)</div>
       </div>
-    </div>
-  </div>
+
+      <!-- Central Interactive Heuristic Neural Radar with Sonar Ripples -->
+      <div class="neural-radar-stage">
+        <div class="radar-concentric-wrap">
+          <!-- Animated Sonar Waves -->
+          <div class="sonar-ripple-wave wave-1"></div>
+          <div class="sonar-ripple-wave wave-2"></div>
+          <div class="sonar-ripple-wave wave-3"></div>
+
+          <div class="radar-crosshair-h"></div>
+          <div class="radar-crosshair-v"></div>
+          <div class="radar-rotating-beam"></div>
+          
+          <div class="radar-concentric-inner">
+            <!-- Center Seal (Exact Match to Official Sri Eshwar Crest Vector) -->
+            <div class="center-vector-seal-badge" title="Sri Eshwar College of Engineering Official Shield Emblem">
+              <svg class="center-seal-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Top Header Lines -->
+                <line x1="16" y1="20" x2="184" y2="20" stroke="#00529b" stroke-width="3"/>
+                <text x="100" y="34" fill="#00529b" font-family="'Space Grotesk', sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.5" text-anchor="middle">Leadership &amp; Excellence</text>
+                <line x1="16" y1="42" x2="184" y2="42" stroke="#00529b" stroke-width="3"/>
+                
+                <!-- Shield Outline -->
+                <path d="M20 50 H180 V135 C180 188 100 228 100 228 C100 228 20 188 20 135 Z" fill="#ffffff" stroke="#00529b" stroke-width="4"/>
+                
+                <!-- Left Side: White Background with Blue Emblems -->
+                <!-- Open Book -->
+                <path d="M38 72 C48 69 56 70 60 72 C64 70 72 69 82 72 V94 C72 91 64 92 60 94 C56 92 48 91 38 94 Z" fill="none" stroke="#00529b" stroke-width="2.5"/>
+                <line x1="60" y1="72" x2="60" y2="94" stroke="#00529b" stroke-width="2.5"/>
+                <line x1="20" y1="104" x2="100" y2="104" stroke="#00529b" stroke-width="3"/>
+                
+                <!-- 5-Point Star -->
+                <polygon points="60,114 64,124 75,124 66,131 69,142 60,135 51,142 54,131 45,124 56,124" fill="none" stroke="#00529b" stroke-width="2.5"/>
+                <line x1="20" y1="152" x2="100" y2="152" stroke="#00529b" stroke-width="3"/>
+                
+                <!-- Diagonal Columns -->
+                <path d="M32 164 L46 200 H55 L41 164 Z M52 164 L66 210 H75 L61 164 Z M72 164 L86 220 H95 L81 164 Z" fill="#00529b"/>
+                
+                <!-- Center Divider -->
+                <line x1="100" y1="50" x2="100" y2="228" stroke="#00529b" stroke-width="4"/>
+                
+                <!-- Right Side: Solid Blue -->
+                <path d="M100 50 H180 V135 C180 188 100 228 100 228 Z" fill="#00529b"/>
+                
+                <!-- Golden Torch Flame -->
+                <path d="M136 60 C150 74 158 92 136 112 C126 94 130 84 136 60 Z" fill="#fbbf24"/>
+                <path d="M146 70 C160 84 164 102 148 114 C138 102 142 92 146 70 Z" fill="#f59e0b"/>
+                <path d="M128 78 C132 88 136 102 128 112 C122 102 124 92 128 78 Z" fill="#fef08a"/>
+                
+                <!-- White Torch Stem -->
+                <path d="M124 116 H152 V122 H124 Z" fill="#ffffff"/>
+                <path d="M130 122 H146 L142 195 H134 Z" fill="#ffffff"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Radar Pings with Pulse Glow -->
+          <div class="radar-ping-blip blip-lib" title="APJ Kalam Library"></div>
+          <div class="radar-ping-blip blip-mech" title="Mech & Robotics Lab"></div>
+          <div class="radar-ping-blip blip-tech" title="Tech Tower CSE/IT"></div>
+        </div>
+      </div>
+
+      <!-- AI Real-time Heuristic Match Stream Card (with Live Equalizer Animation) -->
+      <div class="ai-match-stream-card">
+        <div class="ai-match-row-header">
+          <div class="ai-match-title">
+            <!-- Animated Equalizer Bars -->
+            <div class="ai-freq-bars">
+              <div class="ai-freq-bar fb-1"></div>
+              <div class="ai-freq-bar fb-2"></div>
+              <div class="ai-freq-bar fb-3"></div>
+              <div class="ai-freq-bar fb-4"></div>
+              <div class="ai-freq-bar fb-5"></div>
+            </div>
+            <span>Live Heuristic Match Stream</span>
+          </div>
+          <span class="ai-confidence-badge">98.4% MATCH</span>
+        </div>
+        <div class="ai-bar-track">
+          <div class="ai-bar-fill"></div>
+        </div>
+        <div class="ai-match-tags">
+          <span class="ai-chip-tag">#CasioFX991EX</span>
+          <span class="ai-chip-tag">#APJLibraryF2</span>
+          <span class="ai-chip-tag">#Desk44</span>
+          <span class="ai-chip-tag" style="color: #15803d; background: #f0fdf4; border-color: #bbf7d0;">✓ Ready for Handover</span>
+        </div>
+      </div>
+
+      <!-- Floating Card 2: 7-Day Recovery Bar Chart Timeline -->
+      <div class="float-card-telemetry-timeline">
+        <div class="telemetry-days-row">
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 14px;"></div>
+            <span class="t-lbl">Sun</span>
+            <span class="t-val">22</span>
+          </div>
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 22px;"></div>
+            <span class="t-lbl">Mon</span>
+            <span class="t-val">23</span>
+          </div>
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 28px;"></div>
+            <span class="t-lbl">Tue</span>
+            <span class="t-val">24</span>
+          </div>
+          <div class="telemetry-day-col active-day">
+            <div class="telemetry-mini-bar" style="height: 38px;"></div>
+            <span class="t-lbl">Wed</span>
+            <span class="t-val">25</span>
+          </div>
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 24px;"></div>
+            <span class="t-lbl">Thu</span>
+            <span class="t-val">26</span>
+          </div>
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 32px;"></div>
+            <span class="t-lbl">Fri</span>
+            <span class="t-val">27</span>
+          </div>
+          <div class="telemetry-day-col">
+            <div class="telemetry-mini-bar" style="height: 16px;"></div>
+            <span class="t-lbl">Sat</span>
+            <span class="t-val">28</span>
+          </div>
+        </div>
+        <div class="telemetry-strip-bar">
+          <span>⚡ 14 Verified Recoveries This Week</span>
+          <div class="acrylic-stripes"></div>
+        </div>
+      </div>
+
+      <!-- Floating Card 3: Cryptographic Claim Handover Card -->
+      <div class="float-card-claim-log">
+        <div class="claim-log-text">
+          <h4>
+            <span>Daily Campus Claims</span>
+            <span style="font-size: 0.72rem; color: #15803d; font-weight: 700;">● Verified</span>
+          </h4>
+          <p>Indiresh (CSE) verified HP Laptop claim</p>
+        </div>
+        <div class="avatar-vector-stack">
+          <div class="avatar-vector-circle">IP</div>
+          <div class="avatar-vector-circle">SE</div>
+          <div class="avatar-vector-circle">+3</div>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
 
   <script>
-    // Particle Canvas Animation
-    const canvas = document.getElementById('bg-canvas');
+    // Audio Chime Engine (Tactile UI Audio Feedback)
+    const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
+    function playChime(freq, type = 'sine', duration = 0.08) {
+      if (!audioCtx) return;
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    // Interactive Constellation Particle Canvas (Pure Code)
+    const canvas = document.getElementById('mesh-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    let mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
 
     function initCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const count = Math.floor((canvas.width * canvas.height) / 18000);
+      const count = Math.floor((canvas.width * canvas.height) / 20000);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          radius: Math.random() * 1.5 + 0.8,
-          color: Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.4)' : 'rgba(6, 182, 212, 0.4)'
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 2 + 1,
+          color: Math.random() > 0.4 ? 'rgba(0, 82, 155, 0.25)' : 'rgba(2, 132, 199, 0.25)'
         });
       }
     }
 
     function animateCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connection lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 82, 155, ${0.12 * (1 - dist / 110)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw and move particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
+
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        // Mouse gentle repel
+        if (mouse.x && mouse.y) {
+          const mdx = p.x - mouse.x;
+          const mdy = p.y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < 80) {
+            p.x += (mdx / mdist) * 1.2;
+            p.y += (mdy / mdist) * 1.2;
+          }
+        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 90) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.12 * (1 - dist / 90)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
       }
       requestAnimationFrame(animateCanvas);
     }
@@ -628,35 +1690,110 @@
     initCanvas();
     animateCanvas();
 
-    // Theme Switcher
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('campusfind_theme', next);
-    }
-    const savedTheme = localStorage.getItem('campusfind_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Liquid Tab Switching Transition (Initialized to Register)
+    let currentTab = 'register';
 
-    function togglePasswordVisibility(id, btn) {
-      const input = document.getElementById(id);
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.innerText = '🙈 Hide';
+    function switchToTab(tab) {
+      if (tab === currentTab) return;
+      currentTab = tab;
+      playChime(tab === 'login' ? 520 : 640);
+
+      const bar = document.getElementById('switcherBar');
+      const track = document.getElementById('sliderTrack');
+      const btnLogin = document.getElementById('tabBtnLogin');
+      const btnRegister = document.getElementById('tabBtnRegister');
+      const chamberLogin = document.getElementById('chamberLogin');
+      const chamberRegister = document.getElementById('chamberRegister');
+
+      if (tab === 'login') {
+        bar.classList.remove('is-register');
+        track.classList.remove('show-register');
+        btnLogin.classList.add('active');
+        btnRegister.classList.remove('active');
+        chamberLogin.classList.add('active-chamber');
+        chamberRegister.classList.remove('active-chamber');
+        history.replaceState(null, '', 'login.html');
       } else {
-        input.type = 'password';
-        btn.innerText = '👁️ Show';
+        bar.classList.add('is-register');
+        track.classList.add('show-register');
+        btnRegister.classList.add('active');
+        btnLogin.classList.remove('active');
+        chamberRegister.classList.add('active-chamber');
+        chamberLogin.classList.remove('active-chamber');
+        history.replaceState(null, '', 'register.html');
       }
     }
 
-    function showAlert(msg, type = 'error') {
-      const alert = document.getElementById('authAlert');
-      alert.className = `auth-alert ${type === 'error' ? 'auth-alert-error' : 'auth-alert-success'}`;
-      alert.innerHTML = `<span>${type === 'error' ? '⚠️' : '✅'}</span> <div>${escapeHtml(msg)}</div>`;
-      alert.style.display = 'flex';
+    // Toggle Password Visibility
+    function togglePasswordVisibility(inputId, btn) {
+      playChime(480);
+      const input = document.getElementById(inputId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg><span>Hide</span>`;
+      } else {
+        input.type = 'password';
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span>Show</span>`;
+      }
     }
 
+    function showAlert(msg, type = 'error', formType = 'login') {
+      const alert = document.getElementById(formType === 'login' ? 'loginAlert' : 'registerAlert');
+      alert.className = `auth-alert-pill ${type === 'error' ? 'auth-alert-error' : 'auth-alert-success'}`;
+      alert.innerHTML = `<span>${type === 'error' ? '⚠️' : '✅'}</span> <div>${escapeHtml(msg)}</div>`;
+      alert.style.display = 'flex';
+      playChime(type === 'error' ? 220 : 880, type === 'error' ? 'sawtooth' : 'sine');
+    }
+
+    function autofillLogin(email, pass) {
+      playChime(640);
+      switchToTab('login');
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPassword').value = pass;
+    }
+
+    // Login Form Submit
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const submitBtn = document.getElementById('loginSubmitBtn');
+
+      let email = emailInput;
+      if (!email.includes('@')) {
+        email = email + '@sece.ac.in';
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Verifying credentials...</span>';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          showAlert(data.message || 'Invalid institutional credentials.', 'error', 'login');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>Sign In to SECE Portal</span> <span>→</span>';
+        } else {
+          showAlert(`Welcome, ${data.name}! Redirecting to SECE Dashboard...`, 'success', 'login');
+          localStorage.setItem('campusfind_auth_user', JSON.stringify(data));
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 600);
+        }
+      } catch (err) {
+        showAlert('Network communication error with SECE server.', 'error', 'login');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Sign In to SECE Portal</span> <span>→</span>';
+      }
+    }
+
+    // Register Form Submit
     async function handleRegisterSubmit(e) {
       e.preventDefault();
       const rawName = document.getElementById('regName').value.trim();
@@ -670,11 +1807,10 @@
       const submitBtn = document.getElementById('regSubmitBtn');
 
       if (password !== confirmPassword) {
-        showAlert('Passwords do not match. Please verify both password entries.', 'error');
+        showAlert('Passwords do not match. Please enter identical passwords.', 'error', 'register');
         return;
       }
 
-      // Format name to include student roll number and department badge for institutional display
       let displayName = rawName;
       if (roll && dept) {
         displayName = `${rawName} (${roll} - ${dept})`;
@@ -683,7 +1819,7 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Creating institutional account...</span>';
+      submitBtn.innerHTML = '<span>Creating institutional profile...</span>';
 
       try {
         const res = await fetch('/api/auth/register', {
@@ -697,24 +1833,23 @@
             phoneNumber: phone || null
           })
         });
-
         const data = await res.json();
 
         if (!res.ok) {
-          showAlert(data.message || 'Registration failed. A user with this email may already exist.', 'error');
+          showAlert(data.message || 'Registration failed. A user with this email may already exist.', 'error', 'register');
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '<span>Create SECE Institutional Account</span> <span>→</span>';
+          submitBtn.innerHTML = '<span>Create SECE Account</span> <span>→</span>';
         } else {
-          showAlert(`Account successfully created for ${data.name}! Redirecting to SECE Dashboard...`, 'success');
+          showAlert(`Account created for ${data.name}! Loading SECE Dashboard...`, 'success', 'register');
           localStorage.setItem('campusfind_auth_user', JSON.stringify(data));
           setTimeout(() => {
             window.location.href = 'index.html';
-          }, 800);
+          }, 650);
         }
       } catch (err) {
-        showAlert('Network or server error during registration. Ensure Spring Boot is running.', 'error');
+        showAlert('Network communication error during registration.', 'error', 'register');
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Create SECE Institutional Account</span> <span>→</span>';
+        submitBtn.innerHTML = '<span>Create SECE Account</span> <span>→</span>';
       }
     }
 
