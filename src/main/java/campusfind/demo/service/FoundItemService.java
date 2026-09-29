@@ -101,10 +101,9 @@ public class FoundItemService {
                 .orElseThrow(() -> new ResourceNotFoundException("User performing action not found with id: " + currentUserId));
 
         // Business Rule 1: Authorization Check
-        // Only ADMIN or the reporting STAFF member can change status. Students cannot!
-        boolean isAdmin = currentUser.getRole() == Role.ADMIN;
-        boolean isReportingStaff = currentUser.getRole() == Role.STAFF && foundItem.getFinder().getId().equals(currentUser.getId());
-        if (!isAdmin && !isReportingStaff) {
+        // Only ADMIN or campus STAFF members can change status. Students cannot!
+        boolean isStaffOrAdmin = currentUser.getRole() == Role.ADMIN || currentUser.getRole() == Role.STAFF;
+        if (!isStaffOrAdmin) {
             throw new UnauthorizedException("Forbidden: Only an admin or the reporting staff member can change this found item's status.");
         }
 

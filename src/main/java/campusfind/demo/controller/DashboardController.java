@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/admin")
 @CrossOrigin(origins = "*")
 public class DashboardController {
 
@@ -21,12 +20,12 @@ public class DashboardController {
         this.dataInitializer = dataInitializer;
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping({"/api/admin/dashboard", "/api/dashboard/stats"})
     public ResponseEntity<DashboardStats> getDashboardStats() {
         return ResponseEntity.ok(dashboardService.getDashboardStats());
     }
 
-    @PostMapping("/reset-demo-data")
+    @PostMapping({"/api/admin/reset-demo-data", "/api/auth/reset-demo"})
     public ResponseEntity<Map<String, String>> resetDemoData() {
         dataInitializer.resetDemoData();
         return ResponseEntity.ok(Map.of(

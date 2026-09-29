@@ -134,10 +134,11 @@
       border-radius: 0;
       box-shadow: none;
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      padding: 1.75rem 3.5rem;
+      grid-template-columns: 460px 1fr;
+      padding: 1.5rem 3.5rem;
       gap: 3.5rem;
       align-items: center;
+      justify-content: center;
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -146,32 +147,27 @@
     .auth-engine-col {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: calc(100vh - 3.5rem);
+      justify-content: center;
+      width: 100%;
+      max-width: 460px;
+      height: 100%;
       max-height: 100%;
-      padding: 0.5rem 1rem 0.5rem 0;
-      overflow-y: auto;
+      padding: 0;
+      overflow: hidden;
       box-sizing: border-box;
-    }
-    .auth-engine-col::-webkit-scrollbar {
-      width: 5px;
-    }
-    .auth-engine-col::-webkit-scrollbar-thumb {
-      background: rgba(0, 82, 155, 0.15);
-      border-radius: 10px;
     }
 
     /* Institutional Header Badge (100% Pure Vector SVG matching official crest) */
     .sece-luxury-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
       text-decoration: none;
       background: #ffffff;
       border: 1px solid rgba(203, 213, 225, 0.8);
       border-radius: var(--radius-pill);
-      padding: 6px 16px 6px 8px;
-      margin-bottom: 1.25rem;
+      padding: 4px 14px 4px 8px;
+      margin-bottom: 0.75rem;
       width: fit-content;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
       transition: all 0.25s ease;
@@ -183,8 +179,8 @@
       box-shadow: 0 8px 20px rgba(0, 82, 155, 0.12);
     }
     .badge-vector-seal {
-      width: 36px;
-      height: 42px;
+      width: 30px;
+      height: 36px;
       filter: drop-shadow(0 2px 4px rgba(0, 82, 155, 0.2));
     }
     .badge-text-group {
@@ -192,13 +188,13 @@
       flex-direction: column;
     }
     .badge-inst-title {
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 800;
       color: var(--sece-blue);
       letter-spacing: -0.01em;
     }
     .badge-inst-sub {
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -225,10 +221,10 @@
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
       border-radius: var(--radius-pill);
-      padding: 4px;
+      padding: 3px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      margin-bottom: 1.35rem;
+      margin-bottom: 0.75rem;
     }
     .switcher-pill-glider {
       position: absolute;
@@ -251,16 +247,16 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 700;
       font-family: inherit;
-      padding: 9px 16px;
+      padding: 7px 12px;
       border-radius: var(--radius-pill);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: color 0.3s ease;
     }
     .switcher-tab-btn.active {
@@ -276,10 +272,12 @@
     .slider-viewport {
       overflow: hidden;
       width: 100%;
+      transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .slider-track {
       display: flex;
       width: 200%;
+      align-items: flex-start;
       transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .slider-track.show-register {
@@ -300,11 +298,11 @@
 
     /* Headings */
     .stage-title {
-      font-size: 2.15rem;
+      font-size: 1.65rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.2rem;
       color: var(--text-main);
     }
     .stage-title .gradient-accent {
@@ -314,26 +312,26 @@
       -webkit-text-fill-color: transparent;
     }
     .stage-sub {
-      font-size: 0.86rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 1.3rem;
-      line-height: 1.45;
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
     }
 
     /* Form Fields */
     .field-group {
-      margin-bottom: 0.95rem;
+      margin-bottom: 0.6rem;
     }
     .field-label {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.76rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #334155;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.3rem;
     }
     .input-box {
       position: relative;
@@ -342,21 +340,21 @@
     }
     .input-icon-svg {
       position: absolute;
-      left: 18px;
-      width: 18px;
-      height: 18px;
+      left: 14px;
+      width: 16px;
+      height: 16px;
       color: #94a3b8;
       pointer-events: none;
       transition: color 0.25s ease, transform 0.25s ease;
     }
     .pill-input {
       width: 100%;
-      height: 48px;
+      height: 40px;
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: var(--radius-pill);
-      padding: 0 20px 0 48px;
-      font-size: 0.9rem;
+      padding: 0 16px 0 40px;
+      font-size: 0.84rem;
       font-family: inherit;
       color: #0f172a;
       outline: none;
@@ -370,8 +368,13 @@
     }
     .pill-input:focus + .input-icon-svg,
     .input-box:focus-within .input-icon-svg {
-      color: var(--sece-blue);
-      transform: scale(1.1);
+      position: absolute;
+      left: 14px;
+      width: 16px;
+      height: 16px;
+      color: #94a3b8;
+      pointer-events: none;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
     .pill-input::placeholder {
       color: #94a3b8;
@@ -380,24 +383,24 @@
 
     /* Password Toggle Button */
     .pill-input.has-toggle {
-      padding-right: 90px !important;
+      padding-right: 76px !important;
     }
     .pill-toggle-btn {
       position: absolute;
-      right: 8px;
+      right: 6px;
       top: 50%;
       transform: translateY(-50%);
       background: #f1f5f9;
       border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
       color: #475569;
-      padding: 5px 12px;
-      font-size: 0.74rem;
+      padding: 3px 8px;
+      font-size: 0.68rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 3px;
       transition: all 0.2s ease;
     }
     .pill-toggle-btn:hover {
@@ -416,8 +419,8 @@
       -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 18px center;
-      background-size: 16px;
+      background-position: right 14px center;
+      background-size: 14px;
       cursor: pointer;
     }
 
@@ -425,29 +428,36 @@
     .form-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+    .form-grid-2 > * {
+      min-width: 0;
+    }
+    .form-grid-2 .field-group {
+      margin-bottom: 0;
     }
 
     /* Action CTA Button with Shimmer Animation */
     .btn-action-cta {
       width: 100%;
-      height: 50px;
+      height: 42px;
       border: none;
       border-radius: var(--radius-pill);
       background: linear-gradient(135deg, var(--sece-blue) 0%, var(--sece-cobalt) 60%, #0284c7 100%);
       color: #ffffff;
-      font-size: 0.96rem;
+      font-size: 0.9rem;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.65rem;
-      margin-top: 1.15rem;
+      gap: 0.55rem;
+      margin-top: 0.65rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 25px -4px rgba(0, 82, 155, 0.4);
+      box-shadow: 0 8px 20px -4px rgba(0, 82, 155, 0.35);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .btn-action-cta::before {
@@ -477,24 +487,24 @@
     .quick-profiles-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.65rem;
-      margin-top: 1.15rem;
-      padding-top: 1.15rem;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
       border-top: 1px solid #e2e8f0;
     }
     .quick-chip {
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
-      padding: 8px 10px;
-      font-size: 0.76rem;
+      padding: 6px 8px;
+      font-size: 0.72rem;
       font-weight: 700;
       color: #334155;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.35rem;
       font-family: inherit;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
       transition: all 0.2s ease;
@@ -515,15 +525,14 @@
     .inst-trust-strip {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      margin-top: 1.25rem;
-      padding: 9px 14px;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      padding: 7px 12px;
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
       border-radius: var(--radius-pill);
-      font-size: 0.74rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      color: #64748b;
     }
     .inst-trust-strip svg {
       width: 15px;
@@ -536,15 +545,15 @@
     .pledge-row {
       display: flex;
       align-items: flex-start;
-      gap: 0.65rem;
-      margin: 0.85rem 0;
-      padding: 10px 14px;
+      gap: 0.5rem;
+      margin: 0.45rem 0 0.6rem 0;
+      padding: 7px 12px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      font-size: 0.78rem;
+      border-radius: 12px;
+      font-size: 0.74rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.35;
     }
     .pledge-row input[type="checkbox"] {
       margin-top: 2px;
@@ -576,12 +585,13 @@
 
     /* Form Footer */
     .form-footer-nav {
-      margin-top: 1.25rem;
+      margin-top: 0.85rem;
+      padding-top: 0.65rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid #e2e8f0;
-      padding-top: 1rem;
+      width: 100%;
     }
     .guest-link {
       font-size: 0.84rem;
@@ -605,8 +615,8 @@
       position: relative;
       border-radius: var(--radius-panel);
       overflow: hidden;
-      height: calc(100vh - 3.5rem);
-      max-height: 100%;
+      height: 100%;
+      max-height: calc(100vh - 3rem);
       background: var(--showcase-bg);
       border: 1px solid var(--showcase-border);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 20px 45px rgba(37, 99, 235, 0.08);
@@ -1057,23 +1067,113 @@
         min-height: 100vh;
       }
       .master-slab {
-        height: auto;
-        min-height: 100vh;
-        grid-template-columns: 1fr;
-        padding: 1.5rem;
-        gap: 2rem;
-      }
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      background: var(--card-bg);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      padding: 1.5rem 3.5rem;
+      gap: 3.5rem;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
       .showcase-telemetry-col {
-        height: auto;
-        min-height: 520px;
-        order: -1;
-      }
+      position: relative;
+      border-radius: var(--radius-panel);
+      overflow: hidden;
+      height: 100%;
+      max-height: calc(100vh - 3rem);
+      background: var(--showcase-bg);
+      border: 1px solid var(--showcase-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 20px 45px rgba(37, 99, 235, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem 1.85rem;
+      box-sizing: border-box;
+    }
       .auth-engine-col {
-        height: auto;
-      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 460px;
+      height: 100%;
+      max-height: 100%;
+      padding: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
       .stage-title {
-        font-size: 1.75rem;
-      }
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+      color: var(--text-main);
+    }
+    }
+    @media (max-width: 600px) {
+      .master-slab {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      background: var(--card-bg);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      padding: 1.5rem 3.5rem;
+      gap: 3.5rem;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+      .auth-engine-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 460px;
+      height: 100%;
+      max-height: 100%;
+      padding: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+      .showcase-telemetry-col {
+      position: relative;
+      border-radius: var(--radius-panel);
+      overflow: hidden;
+      height: 100%;
+      max-height: calc(100vh - 3rem);
+      background: var(--showcase-bg);
+      border: 1px solid var(--showcase-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 20px 45px rgba(37, 99, 235, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem 1.85rem;
+      box-sizing: border-box;
+    }
     }
   </style>
 </head>
@@ -1162,7 +1262,7 @@
             <div class="slide-chamber" id="chamberLogin">
               
               <h1 class="stage-title">Welcome Back <span class="gradient-accent">to SECE</span></h1>
-              <p class="stage-sub">Autonomous Institution • Smart Campus Lost &amp; Found Grid</p>
+              <p class="stage-sub">Sri Eshwar College of Engineering • Official Lost &amp; Found Portal</p>
 
               <!-- Alert Banner -->
               <div id="loginAlert" class="auth-alert-pill"></div>
@@ -1228,7 +1328,7 @@
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   <path d="M9 12l2 2 4-4"/>
                 </svg>
-                <span>SECE Institutional Identity Grid • Role-Based Encrypted Access</span>
+                <span>Sri Eshwar College of Engineering • Campus Lost &amp; Found Portal</span>
               </div>
 
             </div>
@@ -1237,7 +1337,7 @@
             <div class="slide-chamber active-chamber" id="chamberRegister">
               
               <h1 class="stage-title">Create Account <span class="gradient-accent">SECE</span></h1>
-              <p class="stage-sub">Institutional Identity Registration • Automated AI Match Tracking</p>
+              <p class="stage-sub">Sri Eshwar College of Engineering • Register Institutional Profile</p>
 
               <!-- Alert Banner -->
               <div id="registerAlert" class="auth-alert-pill"></div>
@@ -1278,10 +1378,10 @@
                       </svg>
                       <select id="regDept" class="pill-input" required>
                         <option value="CSE">Computer Science (CSE)</option>
-                        <option value="AI & DS">Artificial Intelligence (AI &amp; DS)</option>
+                        <option value="AI &amp; DS">AI &amp; Data Science (AI &amp; DS)</option>
                         <option value="IT">Information Tech (IT)</option>
                         <option value="CCE">Computer &amp; Comm (CCE)</option>
-                        <option value="ECE">Electronics (ECE)</option>
+                        <option value="ECE">Electronics &amp; Comm (ECE)</option>
                         <option value="EEE">Electrical &amp; Electronics (EEE)</option>
                         <option value="MECH">Mechanical Engg (MECH)</option>
                         <option value="BME">Biomedical Engg (BME)</option>
@@ -1390,7 +1490,7 @@
           <span>Browse Directory as Guest</span>
           <span>&rarr;</span>
         </a>
-        <span style="font-size: 0.74rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-weight: 600;">SECE Security Grid v2.4</span>
+        <span style="font-size: 0.74rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-weight: 600;">Sri Eshwar College of Engineering</span>
       </footer>
 
     </section>
@@ -1422,18 +1522,21 @@
       <div class="hud-telemetry-header">
         <div class="hud-live-tag">
           <span class="live-status-dot"></span>
-          <span>Heuristic AI Engine</span>
+          <span>Campus Recovery Network</span>
         </div>
-        <div class="hud-metrics-tag">1,280 NODES • 98.4% PRECISION</div>
+        <div class="hud-metrics-tag">SECE CAMPUS COIMBATORE • LIVE UPDATES</div>
       </div>
 
-      <!-- Floating Card 1: Live Heuristic Radar Lock with Float Animation -->
+      <!-- Floating Card 1: Live Campus Update with Float Animation -->
       <div class="float-card-radar-lock">
         <div class="radar-lock-header">
-          <span>📍 APJ Kalam Library (2F) • Casio FX-991EX</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg style="width: 14px; height: 14px; color: #b45309;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Central Library (2F) • Casio Scientific Calculator
+          </span>
           <span class="live-status-dot"></span>
         </div>
-        <div class="radar-lock-sub">09:30 AM — Heuristic Match 98.4% (Neural Lock Acquired)</div>
+        <div class="radar-lock-sub">Found Today at 09:30 AM • Matched with Lost Report</div>
       </div>
 
       <!-- Central Interactive Heuristic Neural Radar with Sonar Ripples -->
@@ -1510,9 +1613,9 @@
               <div class="ai-freq-bar fb-4"></div>
               <div class="ai-freq-bar fb-5"></div>
             </div>
-            <span>Live Heuristic Match Stream</span>
+            <span>Recent Item Matches</span>
           </div>
-          <span class="ai-confidence-badge">98.4% MATCH</span>
+          <span class="ai-confidence-badge">98% MATCH</span>
         </div>
         <div class="ai-bar-track">
           <div class="ai-bar-fill"></div>
@@ -1565,7 +1668,10 @@
           </div>
         </div>
         <div class="telemetry-strip-bar">
-          <span>⚡ 14 Verified Recoveries This Week</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg style="width: 14px; height: 14px; color: var(--sece-blue);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+            14 Verified Recoveries This Week
+          </span>
           <div class="acrylic-stripes"></div>
         </div>
       </div>
@@ -1694,6 +1800,7 @@
     let currentTab = 'register';
 
     function switchToTab(tab) {
+      setTimeout(updateViewportHeight, 20);
       if (tab === currentTab) return;
       currentTab = tab;
       playChime(tab === 'login' ? 520 : 640);
@@ -1738,9 +1845,13 @@
     }
 
     function showAlert(msg, type = 'error', formType = 'login') {
+      setTimeout(updateViewportHeight, 10);
       const alert = document.getElementById(formType === 'login' ? 'loginAlert' : 'registerAlert');
       alert.className = `auth-alert-pill ${type === 'error' ? 'auth-alert-error' : 'auth-alert-success'}`;
-      alert.innerHTML = `<span>${type === 'error' ? '⚠️' : '✅'}</span> <div>${escapeHtml(msg)}</div>`;
+      const iconSvg = type === 'error'
+        ? `<svg style="width:16px;height:16px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`
+        : `<svg style="width:16px;height:16px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      alert.innerHTML = `${iconSvg} <div>${escapeHtml(msg)}</div>`;
       alert.style.display = 'flex';
       playChime(type === 'error' ? 220 : 880, type === 'error' ? 'sawtooth' : 'sine');
     }
@@ -1857,6 +1968,19 @@
       if (!s) return '';
       return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
+  
+    function updateViewportHeight() {
+      const activeChamber = document.querySelector('.slide-chamber.active-chamber');
+      const viewport = document.querySelector('.slider-viewport');
+      if (activeChamber && viewport) {
+        viewport.style.height = activeChamber.scrollHeight + 'px';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', updateViewportHeight);
+    window.addEventListener('load', () => setTimeout(updateViewportHeight, 50));
+    window.addEventListener('resize', updateViewportHeight);
+    
   </script>
 </body>
 </html>

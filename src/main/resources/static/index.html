@@ -1,85 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SECE CampusFind — Sri Eshwar College of Engineering Lost & Found</title>
-  <meta name="description" content="SECE CampusFind — Institutional Lost & Found Tracking Portal for Sri Eshwar College of Engineering (SECE), Coimbatore.">
+  <title>SECE CampusFind — Sri Eshwar College of Engineering Lost &amp; Found</title>
+  <meta name="description" content="Official Lost &amp; Found Tracking Portal for Sri Eshwar College of Engineering (SECE), Coimbatore. Autonomous Institution.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
-       DESIGN SYSTEM & CSS VARIABLES
+       DESIGN SYSTEM: PURE LIGHT THEME LUXURY CAMPUS PORTAL (ZERO IMAGES)
        ========================================================================== */
     :root {
-      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-display: 'Space Grotesk', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      /* Brand */
+      --sece-blue: #00529b;
+      --sece-blue-dark: #003875;
+      --sece-blue-light: #e0f2fe;
+      --sece-cobalt: #6d28d9;
+      --sece-violet: #7c3aed;
+      --sece-purple-light: #ede9fe;
+      --sece-cyan: #0284c7;
+      --sece-gold: #b45309;
+      --sece-emerald: #15803d;
+      --sece-rose: #b91c1c;
 
-      --bg-base: #06080f;
-      --bg-surface: rgba(15, 20, 35, 0.72);
-      --bg-card: rgba(20, 27, 46, 0.65);
-      --bg-card-hover: rgba(28, 38, 64, 0.85);
-      --bg-glass: rgba(255, 255, 255, 0.035);
-      
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(99, 102, 241, 0.45);
-      --border-emerald: rgba(16, 185, 129, 0.45);
-      --border-amber: rgba(245, 158, 11, 0.45);
+      /* Backgrounds — original lavender gradient environment */
+      --bg-base: #f3f0ff;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.95);
 
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --border-subtle: #e2e8f0;
+      --border-focus: #7c3aed;
+      --border-card: #e2e8f0;
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
       --text-dim: #64748b;
-
-      --primary: #6366f1;
-      --primary-light: #818cf8;
-      --primary-glow: rgba(99, 102, 241, 0.35);
-      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-      --accent-cyan: #06b6d4;
-      --accent-cyan-glow: rgba(6, 182, 212, 0.35);
-      --accent-emerald: #10b981;
-      --accent-emerald-glow: rgba(16, 185, 129, 0.35);
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      --accent-violet: #a855f7;
+      --text-light: #94a3b8;
 
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
-      --radius-xl: 28px;
+      --radius-xl: 26px;
       --radius-pill: 9999px;
 
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --shadow-glow: 0 0 35px rgba(99, 102, 241, 0.3);
-      
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 6px 20px -2px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 16px 36px -4px rgba(15, 23, 42, 0.08);
+      --shadow-glow: 0 0 24px rgba(124, 58, 237, 0.14);
+
       --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    [data-theme="light"] {
-      --bg-base: #f8fafc;
-      --bg-surface: rgba(255, 255, 255, 0.88);
-      --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-hover: #ffffff;
-      --bg-glass: rgba(0, 0, 0, 0.02);
-
-      --border-subtle: rgba(0, 0, 0, 0.09);
-      --border-glow: rgba(99, 102, 241, 0.5);
-
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --text-dim: #94a3b8;
-
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --shadow-glow: 0 8px 30px rgba(99, 102, 241, 0.2);
-    }
-
-    /* ==========================================================================
-       RESET & BASE ELEMENTS
-       ========================================================================== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -87,18 +61,18 @@
     }
 
     body {
-      font-family: var(--font-body);
-      background-color: var(--bg-base);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f3f0ff 0%, #ede9fe 25%, #e0f2fe 60%, #f0f9ff 100%);
+      background-attachment: fixed;
       color: var(--text-main);
       line-height: 1.55;
       overflow-x: hidden;
       min-height: 100vh;
       position: relative;
-      transition: background-color 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
     }
 
-    /* Ambient Background Canvas & Floating Orbs */
-    #bg-canvas {
+    /* Ambient Atmosphere (Pure Code Canvas & Gradients) */
+    #bg-canvas, #confetti-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -106,753 +80,374 @@
       height: 100vh;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.65;
     }
 
-    .ambient-mesh {
+    .ambient-aurora {
       position: fixed;
-      inset: 0;
+      border-radius: 50%;
+      filter: blur(140px);
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
+      opacity: 0.5;
+      animation: floatAurora 16s ease-in-out infinite alternate;
     }
-
-    .ambient-mesh::before, .ambient-mesh::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.28;
-      animation: floatAura 20s infinite alternate ease-in-out;
+    .aurora-1 {
+      top: -120px;
+      left: 5%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, transparent 70%);
     }
-
-    .ambient-mesh::before {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #6366f1 0%, #ec4899 70%, transparent 100%);
-      top: -150px;
-      left: -100px;
+    .aurora-2 {
+      bottom: -120px;
+      right: 8%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+      animation-delay: -8s;
     }
-
-    .ambient-mesh::after {
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, #06b6d4 0%, #3b82f6 70%, transparent 100%);
-      bottom: -100px;
-      right: -100px;
-      animation-duration: 25s;
+    .aurora-3 {
+      top: 30%;
+      right: 35%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.14) 0%, transparent 70%);
+      animation-delay: -4s;
     }
-
-    @keyframes floatAura {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(80px, 60px) scale(1.12); }
-      100% { transform: translate(-60px, 90px) scale(0.92); }
-    }
-
-    /* Grid overlay pattern */
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
-      pointer-events: none;
-      z-index: 1;
+    @keyframes floatAurora {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(30px) scale(1.06); }
     }
 
     /* ==========================================================================
-       TOP NAVIGATION BAR
+       HEADER & NAVIGATION BAR
        ========================================================================== */
     header {
       position: sticky;
       top: 0;
-      z-index: 120;
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: all 0.3s var(--ease-spring);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+      box-shadow: 0 4px 24px rgba(109, 40, 217, 0.06);
     }
 
     .header-inner {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 0.85rem 1.5rem;
+      padding: 0.75rem 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
 
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 0.95rem;
       cursor: pointer;
-      user-select: none;
       text-decoration: none;
     }
 
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-md);
-      background: var(--primary-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      color: #fff;
-      box-shadow: 0 0 25px rgba(99, 102, 241, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-      position: relative;
-      transition: transform 0.3s var(--ease-bounce);
+    .brand-vector-seal {
+      width: 40px;
+      height: 48px;
+      filter: drop-shadow(0 2px 5px rgba(0, 82, 155, 0.18));
+      transition: transform 0.25s ease;
     }
-
-    .brand-wrap:hover .brand-icon {
-      transform: scale(1.08) rotate(5deg);
+    .brand-wrap:hover .brand-vector-seal {
+      transform: scale(1.06);
     }
 
     .brand-text h1 {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.28rem;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+      color: var(--sece-blue);
       line-height: 1.1;
-    }
-
-    [data-theme="light"] .brand-text h1 {
-      background: linear-gradient(135deg, #0f172a 30%, #6366f1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
 
     .brand-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-size: 0.68rem;
       font-weight: 700;
-      color: var(--accent-emerald);
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.04em;
+      color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .live-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent-emerald);
-      box-shadow: 0 0 8px var(--accent-emerald);
-      animation: pulseLive 1.8s infinite;
+      background: var(--sece-emerald);
+      box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.6);
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.6); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 7px rgba(21, 128, 61, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(21, 128, 61, 0); }
     }
 
-    @keyframes pulseLive {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(0.7); opacity: 0.4; }
-    }
-
-    .header-center-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    /* Spotlight Search Trigger */
+    /* Quick Search Bar */
     .cmd-search-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 7px 16px 7px 14px;
       display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
-      background: var(--bg-glass);
-      border: 1px solid var(--border-subtle);
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
+      gap: 0.55rem;
       color: var(--text-muted);
-      font-size: 0.84rem;
-      cursor: pointer;
-      transition: all 0.2s var(--ease-spring);
-      backdrop-filter: blur(10px);
-    }
-
-    .cmd-search-btn:hover {
-      border-color: var(--border-glow);
-      color: var(--text-main);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-1px);
-    }
-
-    .cmd-kbd {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 1px 6px;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
+      font-size: 0.85rem;
       font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .cmd-search-btn:hover {
+      background: #ffffff;
+      border-color: var(--sece-blue);
+      color: var(--sece-blue);
+      box-shadow: 0 4px 12px rgba(0, 82, 155, 0.08);
+    }
+    .cmd-search-btn svg {
+      width: 15px;
+      height: 15px;
+      color: #64748b;
+    }
+    .cmd-kbd {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 0.68rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #475569;
     }
 
+    /* Right Header Actions */
     .header-right {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-    }
-
-    /* ==========================================================================
-       AUTHENTICATED USER PROFILE & SIGNOUT
-       ========================================================================== */
-    .user-auth-cluster {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
+      gap: 0.85rem;
     }
 
     .user-profile-badge {
       display: flex;
       align-items: center;
       gap: 0.65rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 12px 4px 6px;
-      border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.25s var(--ease-spring);
-    }
-
-    [data-theme="light"] .user-profile-badge {
       background: #ffffff;
-      border-color: rgba(99, 102, 241, 0.18);
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 4px 14px 4px 6px;
+      box-shadow: var(--shadow-sm);
     }
 
     .user-avatar-badge {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: var(--primary-gradient);
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.76rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
-      flex-shrink: 0;
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     .user-meta-info {
       display: flex;
       flex-direction: column;
-      line-height: 1.15;
     }
-
     .user-display-name {
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: var(--text-main);
-      max-width: 140px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .user-role-pill {
-      font-size: 0.62rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 1px 6px;
-      border-radius: var(--radius-pill);
-      display: inline-block;
-      width: fit-content;
-      margin-top: 2px;
-    }
-
-    .role-ADMIN {
-      background: rgba(168, 85, 247, 0.18);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.4);
-    }
-    [data-theme="light"] .role-ADMIN {
-      background: rgba(124, 58, 237, 0.1);
-      color: #6d28d9;
-      border-color: rgba(124, 58, 237, 0.25);
-    }
-
-    .role-STAFF {
-      background: rgba(99, 102, 241, 0.18);
-      color: #818cf8;
-      border: 1px solid rgba(99, 102, 241, 0.4);
-    }
-    [data-theme="light"] .role-STAFF {
-      background: rgba(99, 102, 241, 0.1);
-      color: #4338ca;
-      border-color: rgba(99, 102, 241, 0.25);
-    }
-
-    .role-STUDENT {
-      background: rgba(16, 185, 129, 0.18);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-    }
-    [data-theme="light"] .role-STUDENT {
-      background: rgba(16, 185, 129, 0.1);
-      color: #047857;
-      border-color: rgba(16, 185, 129, 0.25);
-    }
-
-    .btn-signout {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(244, 63, 94, 0.1);
-      border: 1px solid rgba(244, 63, 94, 0.25);
-      color: var(--accent-rose);
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s var(--ease-spring);
-    }
-
-    .btn-signout:hover {
-      background: rgba(244, 63, 94, 0.2);
-      border-color: var(--accent-rose);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
-    }
-
-    /* ==========================================================================
-       AUTHENTICATION GATEWAY PORTAL
-       ========================================================================== */
-    .auth-window {
-      max-width: 480px;
-      padding: 2.25rem 2.25rem 1.75rem 2.25rem;
-    }
-
-    .auth-icon-circle {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--primary-gradient);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin: 0 auto;
-      box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
-    }
-
-    .auth-tabs {
-      display: flex;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-pill);
-      padding: 4px;
-      margin-bottom: 1.25rem;
-      gap: 4px;
-    }
-
-    [data-theme="light"] .auth-tabs {
-      background: #f1f5f9;
-      border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    .auth-tab-btn {
-      flex: 1;
-      padding: 8px 16px;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.85rem;
-      font-family: inherit;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all 0.2s var(--ease-spring);
-    }
-
-    .auth-tab-btn.active {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-    }
-
-    .auth-alert {
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
       font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 1.15rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .auth-alert-error {
-      background: rgba(244, 63, 94, 0.12);
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      color: var(--accent-rose);
-    }
-
-    .auth-alert-success {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: var(--accent-emerald);
-    }
-
-    .btn-toggle-pwd {
-      background: none;
-      border: none;
-      color: var(--primary-light);
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .demo-logins-box {
-      margin-top: 1.4rem;
-      padding-top: 1.15rem;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .demo-logins-title {
-      font-size: 0.72rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-dim);
-      margin-bottom: 0.65rem;
-    }
-
-    .demo-chips-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-    }
-
-    .demo-chip {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 7px 8px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s var(--ease-spring);
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    [data-theme="light"] .demo-chip {
-      background: #f8fafc;
-      border-color: rgba(99, 102, 241, 0.15);
-    }
-
-    .demo-chip:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-    }
-
-    .demo-chip strong {
-      font-size: 0.68rem;
       color: var(--text-main);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      line-height: 1.2;
     }
-
-    .demo-chip-role {
+    .user-role-pill {
       font-size: 0.65rem;
       font-weight: 800;
-    }
-
-    .demo-chip-pwd {
-      font-size: 0.62rem;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-
-    .btn-cancel-auth {
-      background: none;
-      border: none;
-      color: var(--text-dim);
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-
-    .btn-cancel-auth:hover {
-      color: var(--text-main);
-    }
-
-    /* ==========================================================================
-       DYNAMIC RBAC ROLE CLEARANCE BANNER
-       ========================================================================== */
-    .role-clearance-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 0.95rem 1.4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
-      flex-wrap: wrap;
-      transition: all 0.3s var(--ease-spring);
-    }
-
-    [data-theme="light"] .role-clearance-bar {
-      background: #ffffff;
-      border-color: rgba(99, 102, 241, 0.18);
-      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06);
-    }
-
-    .role-clearance-left {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      flex: 1;
-    }
-
-    .role-clearance-icon {
-      font-size: 1.5rem;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-md);
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px solid rgba(99, 102, 241, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .role-clearance-title {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .role-clearance-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 1px;
-    }
-
-    .role-clearance-badge {
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: var(--primary-light);
+      letter-spacing: 0.04em;
     }
+    .role-ADMIN { color: #6d28d9; }
+    .role-STAFF { color: var(--sece-blue); }
+    .role-STUDENT { color: #15803d; }
 
-    /* Student Found Notice Banner */
-    .student-found-notice {
-      display: none;
-      align-items: center;
-      gap: 0.65rem;
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px dashed rgba(99, 102, 241, 0.35);
+    .btn-signout {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
       padding: 6px 14px;
       font-size: 0.8rem;
+      font-weight: 700;
       color: var(--text-muted);
-    }
-
-    [data-theme="light"] .student-found-notice {
-      background: #f1f5f9;
-      color: #334155;
-    }
-
-    /* Icon Buttons */
-    .icon-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-md);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      transition: all 0.25s var(--ease-spring);
+      gap: 0.45rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .btn-signout:hover {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: var(--sece-rose);
+    }
+    .btn-signout svg {
+      width: 14px;
+      height: 14px;
     }
 
+    .btn-header-auth {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 7px 18px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+      transition: all 0.2s ease;
+    }
+    .btn-header-auth:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
     .icon-btn:hover {
-      transform: translateY(-2px);
-      border-color: var(--primary);
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      background: #f1f5f9;
+      color: var(--sece-blue);
+      border-color: var(--sece-blue);
+    }
+    .icon-btn svg {
+      width: 16px;
+      height: 16px;
     }
 
     /* Tabs Bar */
     .nav-tabs-container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
+      padding: 0 1.75rem;
     }
-
     .nav-tabs {
       display: flex;
-      gap: 0.35rem;
-      position: relative;
+      gap: 0.5rem;
+      border-top: 1px solid #f1f5f9;
+      overflow-x: auto;
     }
-
     .nav-tab-btn {
-      background: none;
+      background: transparent;
       border: none;
-      padding: 0.85rem 1.25rem;
-      font-family: inherit;
+      border-bottom: 2.5px solid transparent;
+      padding: 10px 16px;
       font-size: 0.88rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      position: relative;
-      transition: color 0.25s var(--ease-spring);
-      user-select: none;
+      gap: 0.55rem;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: all 0.2s ease;
     }
-
+    .nav-tab-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.2;
+    }
     .nav-tab-btn:hover {
-      color: var(--text-main);
+      color: var(--sece-violet);
     }
-
     .nav-tab-btn.active {
-      color: #fff;
+      color: var(--sece-violet);
+      border-bottom-color: var(--sece-violet);
     }
-
-    [data-theme="light"] .nav-tab-btn.active {
-      color: var(--primary);
-    }
-
-    .nav-tab-btn.active::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 12%;
-      width: 76%;
-      height: 3px;
-      background: var(--primary-gradient);
-      border-radius: var(--radius-pill);
-      box-shadow: 0 0 14px var(--primary);
-      animation: tabSlideIn 0.3s var(--ease-spring);
-    }
-
-    @keyframes tabSlideIn {
-      from { width: 0%; opacity: 0; }
-      to { width: 76%; opacity: 1; }
-    }
-
     .badge-count {
-      font-size: 0.68rem;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 0.7rem;
       font-weight: 800;
-      padding: 2px 7px;
+      padding: 1px 7px;
       border-radius: var(--radius-pill);
-      background: rgba(99, 102, 241, 0.18);
-      color: var(--primary-light);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      transition: all 0.2s;
+    }
+    .nav-tab-btn.active .badge-count {
+      background: var(--sece-purple-light);
+      color: var(--sece-violet);
+      border-color: #c4b5fd;
     }
 
     /* ==========================================================================
-       MAIN WORKSPACE LAYOUT
+       MAIN CONTAINER & LAYOUT
        ========================================================================== */
     main {
-      max-width: 1280px;
-      margin: 1.75rem auto 4rem auto;
-      padding: 0 1.5rem;
       position: relative;
       z-index: 10;
+      max-width: 1320px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 0 1.75rem;
     }
 
     .tab-panel {
       display: none;
+      animation: fadeIn 0.35s ease;
     }
-
     .tab-panel.active {
       display: block;
-      animation: tabFadeUp 0.35s var(--ease-spring);
     }
-
-    @keyframes tabFadeUp {
-      from { opacity: 0; transform: translateY(12px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* ==========================================================================
-       HERO BANNER & CAMPUS RADAR
+       HERO OVERVIEW & ROLE BAR
        ========================================================================== */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(30, 41, 69, 0.75) 0%, rgba(15, 23, 42, 0.88) 100%);
-      border: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 60%, #e0f2fe 100%);
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-xl);
-      padding: 2.25rem 2.5rem;
-      margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      backdrop-filter: blur(20px);
-      transition: background 0.4s var(--ease-spring), border-color 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
-    }
-
-    [data-theme="light"] .hero-banner {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 55%, #eef2ff 100%);
-      border: 1px solid rgba(99, 102, 241, 0.22);
-      box-shadow: 0 12px 32px rgba(99, 102, 241, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
-    }
-
-    .hero-banner::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    [data-theme="light"] .hero-banner::before {
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, rgba(236, 72, 153, 0.07) 50%, transparent 70%);
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
     }
 
     .hero-content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1.6fr 0.8fr;
       align-items: center;
       gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-title-area {
-      max-width: 650px;
     }
 
     .hero-pill-badge {
@@ -860,165 +455,109 @@
       align-items: center;
       gap: 6px;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #c084fc;
-      background: rgba(168, 85, 247, 0.12);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      padding: 4px 12px;
+      letter-spacing: 0.05em;
+      color: var(--sece-blue);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
+      padding: 4px 12px;
       margin-bottom: 0.85rem;
     }
 
-    [data-theme="light"] .hero-pill-badge {
-      color: #4f46e5;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.25);
-    }
-
     .hero-title-area h2 {
-      font-family: var(--font-display);
-      font-size: 2.15rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
       font-weight: 800;
+      color: var(--text-main);
       letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      margin-bottom: 0.65rem;
     }
-
-    [data-theme="light"] .hero-title-area h2 {
-      background: linear-gradient(135deg, #0f172a 20%, #312e81 60%, #4338ca 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .hero-title-area p {
       font-size: 0.95rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.5;
       margin-bottom: 1.25rem;
     }
 
-    [data-theme="light"] .hero-title-area p {
-      color: #475569;
-    }
-
-    [data-theme="light"] .hero-title-area p strong {
-      color: #1e1b4b;
-    }
-
-    /* Campus Location Quick Filter Heatmap */
+    /* Campus Location Quick Filters */
     .location-heatmap-bar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
       align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
-
     .location-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-dim);
+      font-size: 0.76rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: #64748b;
       margin-right: 0.25rem;
     }
-
-    [data-theme="light"] .location-label {
-      color: #64748b;
-    }
-
     .loc-tag {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 11px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #334155;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      transition: all 0.2s var(--ease-spring);
-      user-select: none;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
     }
-
+    .loc-tag svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sece-blue);
+    }
     .loc-tag:hover {
-      color: #fff;
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+      background: #f0f7ff;
+      border-color: var(--sece-blue);
+      color: var(--sece-blue);
+      transform: translateY(-1px);
     }
 
-    [data-theme="light"] .loc-tag {
-      background: #ffffff;
-      color: #334155;
-      border: 1px solid rgba(99, 102, 241, 0.16);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    [data-theme="light"] .loc-tag:hover {
-      background: #ffffff;
-      color: #4338ca;
-      border-color: #6366f1;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.18);
-    }
-
-    /* Circular SVG Gauge for Recovery Rate */
+    /* Circular SVG Gauge */
     .hero-radar-widget {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.75rem;
-      backdrop-filter: blur(12px);
-      transition: all 0.3s var(--ease-spring);
+      gap: 1.25rem;
+      box-shadow: 0 4px 18px rgba(0, 82, 155, 0.06);
     }
-
-    [data-theme="light"] .hero-radar-widget {
-      background: #ffffff;
-      border: 1px solid rgba(99, 102, 241, 0.22);
-      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
-    }
-
     .gauge-wrapper {
       position: relative;
-      width: 90px;
-      height: 90px;
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
     }
-
     .gauge-svg {
+      width: 84px;
+      height: 84px;
       transform: rotate(-90deg);
-      width: 100%;
-      height: 100%;
     }
-
     .gauge-bg {
       fill: none;
-      stroke: rgba(255, 255, 255, 0.08);
+      stroke: #e2e8f0;
       stroke-width: 8;
     }
-
-    [data-theme="light"] .gauge-bg {
-      stroke: rgba(0, 0, 0, 0.08);
-    }
-
     .gauge-bar {
       fill: none;
-      stroke: url(#gaugeGradient);
+      stroke: var(--sece-blue);
       stroke-width: 8;
       stroke-linecap: round;
       stroke-dasharray: 251.2;
-      stroke-dashoffset: 50.24; /* ~80% */
-      transition: stroke-dashoffset 1.5s var(--ease-spring);
+      stroke-dashoffset: 60;
+      transition: stroke-dashoffset 1s ease;
     }
-
     .gauge-value {
       position: absolute;
       inset: 0;
@@ -1026,1219 +565,972 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--text-main);
+      font-size: 1.05rem;
+      color: var(--sece-blue);
       line-height: 1;
     }
-
-    [data-theme="light"] .gauge-value {
-      color: #0f172a;
-    }
-
     .gauge-label {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      color: var(--accent-emerald);
+      color: var(--text-dim);
       text-transform: uppercase;
       margin-top: 2px;
     }
-
     .hero-stats-meta h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 2px;
     }
-
-    [data-theme="light"] .hero-stats-meta h4 {
-      color: #0f172a;
-    }
-
     .hero-stats-meta p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       margin-bottom: 0.75rem;
     }
 
-    [data-theme="light"] .hero-stats-meta p {
-      color: #64748b;
-    }
-
-    /* ==========================================================================
-       METRIC CARDS GRID (WITH SPOTLIGHT GLOW)
-       ========================================================================== */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .metric-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+    /* Dynamic Role Information Bar */
+    .role-clearance-bar {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      backdrop-filter: blur(16px);
-      transition: all 0.3s var(--ease-spring);
-    }
-
-    /* Interactive Spotlight effect using mouse coordinates */
-    .metric-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 70%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .metric-card:hover::after {
-      opacity: 1;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--border-glow);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-    }
-
-    .metric-top {
+      padding: 0.95rem 1.4rem;
+      margin-bottom: 1.5rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.85rem;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
     }
-
-    .metric-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--text-muted);
+    .role-clearance-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
     }
-
-    .metric-icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-md);
+    .role-clearance-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f0f7ff;
+      border: 1px solid #bfdbfe;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: var(--shadow-sm);
+      color: var(--sece-blue);
+      flex-shrink: 0;
     }
+    .role-clearance-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    .role-clearance-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .role-clearance-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+    .role-clearance-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      white-space: nowrap;
+    }
+    .role-clearance-badge.role-ADMIN { background: #faf5ff; border-color: #ddd6fe; color: #6d28d9; }
+    .role-clearance-badge.role-STAFF { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .role-clearance-badge.role-STUDENT { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+
+    /* Summary Metric Cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.4rem;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--sece-blue);
+    }
+    .metric-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .metric-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .metric-status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .indicator-available { background: var(--sece-emerald); box-shadow: 0 0 8px rgba(21, 128, 61, 0.4); }
+    .indicator-claimed { background: #d97706; box-shadow: 0 0 8px rgba(217, 119, 6, 0.4); }
+    .indicator-returned { background: var(--sece-blue); box-shadow: 0 0 8px rgba(0, 82, 155, 0.4); }
+    .indicator-lost { background: var(--sece-rose); box-shadow: 0 0 8px rgba(185, 28, 28, 0.4); }
 
     .metric-val {
-      font-family: var(--font-display);
-      font-size: 2.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      margin-bottom: 0.6rem;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
     }
-
     .metric-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.8rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
+      border-top: 1px solid #f1f5f9;
+      padding-top: 0.5rem;
     }
 
-    .metric-action-arrow {
-      color: var(--primary-light);
-      font-weight: 700;
-      transition: transform 0.2s var(--ease-spring);
-    }
-
-    .metric-card:hover .metric-action-arrow {
-      transform: translateX(4px);
-    }
-
-    /* Accent color variants */
-    .card-emerald .metric-icon-box { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
-    .card-amber .metric-icon-box { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
-    .card-indigo .metric-icon-box { background: rgba(99, 102, 241, 0.15); color: var(--primary); }
-    .card-rose .metric-icon-box { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
-
-    /* ==========================================================================
-       TOOLBAR & ADVANCED FILTER CLUSTER
-       ========================================================================== */
+    /* Actions Toolbar */
     .glass-toolbar {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-lg);
-      padding: 1rem 1.35rem;
-      margin-bottom: 1.25rem;
+      padding: 0.95rem 1.4rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
-      flex-wrap: wrap;
-      backdrop-filter: blur(16px);
+      margin-bottom: 1.5rem;
       box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
     }
-
     .filter-group {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      flex-wrap: wrap;
+      flex: 1;
+      max-width: 600px;
     }
-
     .search-input-wrapper {
       position: relative;
+      flex: 1;
       display: flex;
       align-items: center;
     }
-
-    .search-icon {
+    .search-input-wrapper svg {
       position: absolute;
       left: 14px;
-      font-size: 0.95rem;
-      color: var(--text-dim);
+      width: 16px;
+      height: 16px;
+      color: #94a3b8;
       pointer-events: none;
     }
-
     .search-field {
-      padding: 9px 38px 9px 40px;
+      width: 100%;
+      height: 42px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
       border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
-      color: var(--text-main);
+      padding: 0 36px 0 40px;
       font-size: 0.88rem;
       font-family: inherit;
-      width: 270px;
+      color: var(--text-main);
       outline: none;
-      transition: all 0.25s var(--ease-spring);
+      transition: all 0.2s ease;
     }
-
     .search-field:focus {
-      width: 320px;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px var(--primary-glow);
+      background: #ffffff;
+      border-color: var(--sece-blue);
+      box-shadow: 0 0 0 3px rgba(0, 82, 155, 0.12);
     }
-
     .clear-search-btn {
       position: absolute;
       right: 12px;
       background: none;
       border: none;
-      color: var(--text-dim);
-      font-size: 0.85rem;
+      color: #94a3b8;
       cursor: pointer;
       display: none;
-    }
-
-    .clear-search-btn:hover {
-      color: var(--text-main);
-    }
-
-    .dropdown-select {
-      font-family: inherit;
-      padding: 9px 16px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
-      color: var(--text-main);
       font-size: 0.85rem;
+    }
+    .dropdown-select {
+      height: 42px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 0 16px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      color: #334155;
+      font-weight: 600;
       outline: none;
       cursor: pointer;
-      transition: all 0.2s var(--ease-spring);
     }
-
     .dropdown-select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 15px var(--primary-glow);
+      border-color: var(--sece-blue);
+      background: #ffffff;
     }
 
-    /* Filter Chips Bar */
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn svg {
+      width: 15px;
+      height: 15px;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.28);
+    }
+    .btn-gradient:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.42);
+    }
+    .btn-glass {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #334155;
+    }
+    .btn-glass:hover {
+      background: #f8fafc;
+      border-color: var(--sece-blue);
+      color: var(--sece-blue);
+    }
+    .btn-danger-glass {
+      background: #ffffff;
+      border: 1.5px solid #fecaca;
+      color: var(--sece-rose);
+    }
+    .btn-danger-glass:hover {
+      background: #fef2f2;
+      border-color: var(--sece-rose);
+    }
+    .btn-sm {
+      padding: 6px 14px;
+      font-size: 0.78rem;
+    }
+
+    /* Filter Chips Row */
     .filter-chips-row {
       display: flex;
       gap: 0.5rem;
       margin-bottom: 1.25rem;
       flex-wrap: wrap;
     }
-
     .filter-chip {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 6px 16px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-pill);
-      font-size: 0.82rem;
-      font-weight: 600;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s var(--ease-spring);
-      user-select: none;
+      transition: all 0.2s ease;
     }
-
     .filter-chip:hover {
-      color: var(--text-main);
-      border-color: var(--border-glow);
-      transform: translateY(-1px);
+      background: #f8fafc;
+      border-color: var(--sece-blue);
+      color: var(--sece-blue);
     }
-
     .filter-chip.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px var(--primary-glow);
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      border-color: #7c3aed;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
     }
 
-    /* ==========================================================================
-       BUTTONS SYSTEM
-       ========================================================================== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 9px 20px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      font-family: inherit;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.25s var(--ease-spring);
-      user-select: none;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-gradient {
-      background: var(--primary-gradient);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-gradient:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
-    }
-
-    .btn-glass {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-    }
-
-    .btn-glass:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-glow);
-      transform: translateY(-2px);
-    }
-
-    .btn-danger-glass {
-      background: rgba(244, 63, 94, 0.12);
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      color: var(--accent-rose);
-    }
-
-    .btn-danger-glass:hover {
-      background: rgba(244, 63, 94, 0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
-    }
-
-    .btn-sm {
-      padding: 5px 13px;
-      font-size: 0.78rem;
-      border-radius: var(--radius-sm);
-    }
-
-    /* ==========================================================================
-       INTERACTIVE ITEM CARDS (WITH 3-STEP LIFECYCLE TRACKER)
-       ========================================================================== */
+    /* Cards Stack */
     .cards-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 1.15rem;
-    }
-
-    .interactive-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.45rem 1.65rem;
-      backdrop-filter: blur(16px);
-      transition: all 0.3s var(--ease-spring);
-      position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
-    .interactive-card:hover {
-      transform: translateY(-3px) scale(1.002);
-      border-color: var(--border-glow);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    .interactive-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
+    .interactive-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #c4b5fd;
+    }
     .card-main-row {
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
+      justify-content: space-between;
       gap: 1.5rem;
     }
-
     .card-left-cluster {
       display: flex;
+      align-items: flex-start;
       gap: 1.15rem;
       flex: 1;
     }
-
     .card-category-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: var(--radius-md);
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px solid rgba(99, 102, 241, 0.25);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      color: #7c3aed;
       flex-shrink: 0;
-      box-shadow: var(--shadow-sm);
     }
-
+    .card-category-avatar svg {
+      width: 22px;
+      height: 22px;
+    }
     .card-content-area h3 {
-      font-family: var(--font-display);
-      font-size: 1.18rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 0.65rem;
       flex-wrap: wrap;
+      margin-bottom: 0.35rem;
     }
-
     .card-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      line-height: 1.55;
-      margin-bottom: 0.85rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
     }
-
     .card-meta-tags {
       display: flex;
+      align-items: center;
+      gap: 0.85rem;
       flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: #64748b;
     }
-
     .meta-tag {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 0.3rem;
     }
-
-    .meta-tag strong {
-      color: var(--text-main);
+    .meta-tag svg {
+      width: 13px;
+      height: 13px;
+      color: var(--sece-blue);
     }
 
     /* Badges */
     .badge {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       padding: 3px 10px;
       border-radius: var(--radius-pill);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      border: 1px solid transparent;
     }
+    .badge-AVAILABLE { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+    .badge-CLAIMED { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+    .badge-RETURNED { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .badge-OPEN { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+    .badge-RESOLVED { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .badge-category { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
 
-    .badge-AVAILABLE, .badge-OPEN {
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--accent-emerald);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
-    }
-
-    .badge-CLAIMED {
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--accent-amber);
-      border: 1px solid rgba(245, 158, 11, 0.35);
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
-    }
-
-    .badge-RETURNED, .badge-RESOLVED {
-      background: rgba(99, 102, 241, 0.15);
-      color: var(--primary-light);
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
-    }
-
-    .badge-category {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
-    }
-
-    /* 3-Step Lifecycle Stepper Component */
+    /* 3-Step Lifecycle Visualizer */
     .lifecycle-stepper {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      background: var(--bg-glass);
-      border: 1px solid var(--border-subtle);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: var(--radius-pill);
-      padding: 6px 14px;
-      margin-top: 0.25rem;
-      width: fit-content;
+      padding: 4px 12px;
+      margin: 0.4rem 0 0.6rem 0;
     }
-
     .step-node {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
+      gap: 5px;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      color: #94a3b8;
     }
-
+    .step-node.done { color: var(--sece-emerald); }
+    .step-node.active-available { color: var(--sece-emerald); font-weight: 800; }
+    .step-node.active-claimed { color: var(--sece-gold); font-weight: 800; }
+    .step-node.active-returned { color: var(--sece-blue); font-weight: 800; }
     .step-circle {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      border: 2px solid var(--text-dim);
-      background: transparent;
+      background: #e2e8f0;
+      color: #64748b;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.55rem;
-      color: transparent;
-      transition: all 0.3s;
+      font-size: 0.62rem;
+      font-weight: 800;
     }
-
+    .step-node.done .step-circle { background: #dcfce7; color: #15803d; }
+    .step-node.active-available .step-circle { background: #dcfce7; color: #15803d; }
+    .step-node.active-claimed .step-circle { background: #fef3c7; color: #b45309; }
+    .step-node.active-returned .step-circle { background: #dbeafe; color: #1d4ed8; }
     .step-connector {
-      width: 24px;
+      width: 20px;
       height: 2px;
-      background: var(--border-subtle);
-      transition: background 0.3s;
+      background: #e2e8f0;
+      margin: 0 6px;
     }
+    .step-connector.done { background: #86efac; }
 
-    /* Active & Done States for Stepper */
-    .step-node.done .step-circle {
-      background: var(--accent-emerald);
-      border-color: var(--accent-emerald);
-      color: #fff;
+    /* Empty State */
+    .empty-card {
+      background: #ffffff;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
     }
-    .step-node.done { color: var(--text-muted); }
-    .step-connector.done { background: var(--accent-emerald); }
-
-    .step-node.active-available .step-circle {
-      border-color: var(--accent-emerald);
-      box-shadow: 0 0 10px var(--accent-emerald);
-      background: rgba(16, 185, 129, 0.25);
-    }
-    .step-node.active-available { color: var(--accent-emerald); }
-
-    .step-node.active-claimed .step-circle {
-      border-color: var(--accent-amber);
-      box-shadow: 0 0 10px var(--accent-amber);
-      background: rgba(245, 158, 11, 0.25);
-    }
-    .step-node.active-claimed { color: var(--accent-amber); }
-
-    .step-node.active-returned .step-circle {
-      border-color: var(--primary);
-      box-shadow: 0 0 12px var(--primary);
-      background: var(--primary);
-      color: #fff;
-    }
-    .step-node.active-returned { color: var(--primary-light); }
-
-    /* Action Buttons in Card */
-    .card-actions-cluster {
+    .empty-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #f0f7ff;
+      border: 1px solid #bfdbfe;
+      margin: 0 auto 1rem auto;
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: flex-end;
-      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      color: var(--sece-blue);
+    }
+    .empty-card-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+    .empty-card h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+    .empty-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
     }
 
-    /* ==========================================================================
-       AI SMART MATCH RADAR CARDS
-       ========================================================================== */
+    /* Matched Items Cards */
     .match-hero-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 1.75rem;
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.35s var(--ease-spring);
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
     }
-
-    .match-hero-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--primary-gradient);
-    }
-
-    .match-hero-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-glow);
-      box-shadow: 0 20px 45px rgba(99, 102, 241, 0.2);
-    }
-
     .match-header-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.25rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border-subtle);
-      flex-wrap: wrap;
-      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.75rem;
     }
-
     .match-score-badge {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 0.85rem;
     }
-
     .score-pill {
-      font-family: var(--font-display);
+      font-size: 0.82rem;
       font-weight: 800;
-      font-size: 1.15rem;
-      padding: 4px 14px;
+      color: #15803d;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 3px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid var(--primary);
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
     }
-
-    [data-theme="light"] .score-pill {
-      background: rgba(99, 102, 241, 0.12);
-      color: #4338ca;
-      border-color: #6366f1;
-    }
-
     .score-meter-track {
-      width: 150px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-pill);
+      width: 120px;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
       overflow: hidden;
-      position: relative;
     }
-
-    [data-theme="light"] .score-meter-track {
-      background: rgba(0, 0, 0, 0.08);
-    }
-
     .score-meter-fill {
       height: 100%;
-      background: var(--primary-gradient);
-      border-radius: var(--radius-pill);
-      box-shadow: 0 0 12px var(--primary);
-      transition: width 1.2s var(--ease-spring);
+      background: linear-gradient(90deg, var(--sece-blue), #10b981);
+      border-radius: 3px;
     }
 
     .match-comparative-grid {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
+      gap: 1.25rem;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
-
-    @media (max-width: 860px) {
-      .match-comparative-grid {
-        grid-template-columns: 1fr;
-      }
-      .match-link-pulse {
-        transform: rotate(90deg);
-        margin: 0.5rem auto;
-      }
-    }
-
     .match-item-panel {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      padding: 1rem 1.2rem;
     }
-
     .match-panel-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
       display: flex;
       justify-content: space-between;
-    }
-
-    .match-item-panel strong {
-      font-size: 1.05rem;
-      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
       margin-bottom: 0.4rem;
+      text-transform: uppercase;
     }
-
+    .match-item-panel strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
     .match-item-panel p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-      margin-bottom: 0.6rem;
-      line-height: 1.45;
+      margin-bottom: 0.5rem;
     }
-
     .match-link-pulse {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.4);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: var(--sece-blue);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      color: var(--primary-light);
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
-      animation: pulseMatch 2s infinite;
     }
-
-    @keyframes pulseMatch {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
-      50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(99, 102, 241, 0.6); }
+    .match-link-pulse svg {
+      width: 18px;
+      height: 18px;
     }
-
     .match-reason-bar {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 9px 14px;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      flex: 1;
+      font-size: 0.8rem;
+      color: #475569;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
     }
 
-    /* ==========================================================================
-       RULE ENFORCEMENT & ARCHITECTURE LAB
-       ========================================================================== */
+    /* Campus Rules Lab */
     .rule-lab-container {
-      background: linear-gradient(135deg, rgba(20, 27, 46, 0.7) 0%, rgba(12, 16, 28, 0.9) 100%);
-      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-xl);
-      padding: 1.85rem;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(16px);
+      padding: 2rem 2.25rem;
       box-shadow: var(--shadow-sm);
     }
-
-    [data-theme="light"] .rule-lab-container {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #eef2ff 100%);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.06);
-    }
-
     .rule-lab-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.25rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
-    .rule-lab-header h3 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
     .rule-workflow-diagram {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 1rem;
-      margin: 1.5rem 0;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
-
     .flow-state-box {
       padding: 10px 18px;
-      border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      border: 1px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .state-avail { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: var(--accent-emerald); }
-    .state-claim { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: var(--accent-amber); }
-    .state-ret { background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.4); color: var(--primary-light); }
-
-    .flow-arrow-valid {
-      color: var(--accent-emerald);
-      font-size: 1.3rem;
-      font-weight: 800;
-    }
-
-    .flow-arrow-forbidden {
-      color: var(--accent-rose);
-      font-size: 1.1rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 14px;
-      background: rgba(244, 63, 94, 0.1);
-      border: 1px dashed rgba(244, 63, 94, 0.4);
       border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+    .state-avail { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+    .state-claim { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+    .state-ret { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+    .flow-arrow-valid { font-weight: 800; color: #94a3b8; font-size: 1.2rem; }
+    .flow-arrow-forbidden {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--sece-rose);
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--radius-pill);
+      padding: 5px 12px;
+      margin-left: auto;
     }
 
-    /* Live RFC 7807 Terminal Inspector */
     .rfc-inspector {
-      background: #090c14;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #0f172a;
+      color: #e2e8f0;
       border-radius: var(--radius-md);
       padding: 1rem 1.25rem;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
-      color: #a5b4fc;
-      max-height: 180px;
-      overflow-y: auto;
+      line-height: 1.5;
       display: none;
-      animation: inspectorDrop 0.3s var(--ease-spring);
-    }
-
-    [data-theme="light"] .rfc-inspector {
-      background: #f8fafc;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      color: #312e81;
-    }
-
-    @keyframes inspectorDrop {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ==========================================================================
-       MODAL DIALOGS
+       MODALS & DIALOGS
        ========================================================================== */
     .modal-overlay {
-      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(12px);
-      z-index: 250;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
       align-items: center;
       justify-content: center;
-      animation: overlayFade 0.25s ease;
+      padding: 1.5rem;
     }
-
     .modal-overlay.active {
       display: flex;
     }
-
-    @keyframes overlayFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     .modal-window {
-      background: #0d121f;
-      border: 1px solid var(--border-glow);
-      border-radius: var(--radius-xl);
-      width: 92%;
-      max-width: 540px;
-      padding: 2rem;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.25);
-      animation: modalSpring 0.35s var(--ease-bounce);
-      position: relative;
-    }
-
-    [data-theme="light"] .modal-window {
       background: #ffffff;
-      border-color: var(--border-subtle);
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 540px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    @keyframes modalSpring {
-      from { transform: scale(0.92) translateY(20px); opacity: 0; }
-      to { transform: scale(1) translateY(0); opacity: 1; }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(14px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
-
     .modal-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.85rem;
     }
-
     .modal-header h2 {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
       font-weight: 800;
+      color: var(--text-main);
     }
-
     .modal-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
       width: 32px;
       height: 32px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-
     .modal-close-btn:hover {
-      color: #fff;
-      border-color: var(--primary);
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: var(--sece-rose);
+    }
+    .modal-close-btn svg {
+      width: 14px;
+      height: 14px;
     }
 
     .form-group {
-      margin-bottom: 1.15rem;
+      margin-bottom: 1rem;
     }
-
     .form-group label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      color: #334155;
+      margin-bottom: 0.4rem;
     }
-
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
       padding: 10px 14px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
-      color: var(--text-main);
+      font-size: 0.9rem;
       font-family: inherit;
-      font-size: 0.88rem;
+      color: var(--text-main);
       outline: none;
-      transition: all 0.2s var(--ease-spring);
+      transition: all 0.2s ease;
     }
-
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 15px var(--primary-glow);
+      background: #ffffff;
+      border-color: var(--sece-blue);
+      box-shadow: 0 0 0 3px rgba(0, 82, 155, 0.12);
     }
 
-    /* Command Palette Search Overlay */
+    /* Command Palette Overlay */
     .cmd-overlay {
-      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(14px);
-      z-index: 300;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(6px);
+      z-index: 1050;
+      display: none;
       align-items: flex-start;
       justify-content: center;
-      padding-top: 15vh;
+      padding-top: 12vh;
     }
-
     .cmd-overlay.active {
       display: flex;
     }
-
     .cmd-palette {
-      background: #0f1523;
-      border: 1px solid var(--border-glow);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-lg);
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
       overflow: hidden;
     }
-
-    [data-theme="light"] .cmd-palette {
-      background: #ffffff;
-      border: 1px solid rgba(99, 102, 241, 0.28);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.16);
-    }
-
     .cmd-palette-input {
       width: 100%;
-      padding: 1.1rem 1.4rem;
+      padding: 1rem 1.25rem;
       border: none;
-      border-bottom: 1px solid var(--border-subtle);
-      background: transparent;
-      color: #fff;
-      font-size: 1.1rem;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 1rem;
       font-family: inherit;
       outline: none;
+      color: var(--text-main);
     }
-
-    [data-theme="light"] .cmd-palette-input {
-      color: #0f172a;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
     .cmd-results-list {
-      max-height: 340px;
+      max-height: 320px;
       overflow-y: auto;
       padding: 0.5rem;
     }
-
     .cmd-result-item {
       padding: 10px 14px;
-      border-radius: var(--radius-md);
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: var(--text-muted);
-      transition: all 0.15s;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .cmd-result-item:hover {
+      background: #f0f7ff;
+      color: var(--sece-blue);
     }
 
-    .cmd-result-item:hover, .cmd-result-item.selected {
-      background: rgba(99, 102, 241, 0.2);
-      color: #fff;
-    }
-
-    [data-theme="light"] .cmd-result-item {
-      color: #475569;
-    }
-
-    [data-theme="light"] .cmd-result-item:hover, [data-theme="light"] .cmd-result-item.selected {
-      background: rgba(99, 102, 241, 0.12);
-      color: #4338ca;
-    }
-
-    /* ==========================================================================
-       CONFETTI CANVAS & TOAST NOTIFICATION
-       ========================================================================== */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 500;
-    }
-
+    /* Toast Notification System */
     .toast-system {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      z-index: 400;
+      z-index: 2000;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.65rem;
       pointer-events: none;
     }
-
     .toast-pill {
-      background: rgba(15, 20, 35, 0.95);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 0.95rem 1.4rem;
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 500;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(16px);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 0.85rem;
-      max-width: 440px;
+      gap: 0.65rem;
       pointer-events: auto;
-      animation: toastPop 0.3s var(--ease-bounce);
-      position: relative;
-      overflow: hidden;
+      animation: toastIn 0.3s ease;
     }
-
-    [data-theme="light"] .toast-pill {
-      background: rgba(255, 255, 255, 0.98);
-      color: #0f172a;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-      border-color: rgba(0, 0, 0, 0.1);
+    @keyframes toastIn {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
+    .toast-success { border-color: #86efac; color: #15803d; }
+    .toast-error { border-color: #fca5a5; color: #b91c1c; }
+    .toast-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    .toast-pill.toast-success {
-      border-color: rgba(16, 185, 129, 0.5);
-      background: rgba(10, 30, 22, 0.95);
-      color: #a7f3d0;
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    [data-theme="light"] .toast-pill.toast-success {
-      background: #f0fdf4;
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #065f46;
-    }
-
-    .toast-pill.toast-error {
-      border-color: rgba(244, 63, 94, 0.5);
-      background: rgba(35, 12, 18, 0.95);
-      color: #fecdd3;
-    }
-
-    [data-theme="light"] .toast-pill.toast-error {
-      background: #fef2f2;
-      border-color: rgba(244, 63, 94, 0.4);
-      color: #9f1239;
-    }
-
-    @keyframes toastPop {
-      from { transform: translateY(20px) scale(0.9); opacity: 0; }
-      to { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    /* Empty State Container */
-    .empty-card {
-      text-align: center;
-      padding: 3.5rem 1.5rem;
-      background: var(--bg-card);
-      border: 1px dashed var(--border-subtle);
-      border-radius: var(--radius-xl);
-      color: var(--text-muted);
-    }
-
-    .empty-card-icon {
-      font-size: 2.75rem;
-      margin-bottom: 0.85rem;
-      opacity: 0.6;
-    }
-
-    .empty-card h4 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      color: var(--text-main);
-      margin-bottom: 0.35rem;
+    @media (max-width: 640px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .header-center-actions { display: none; }
+      .hero-title-area h2 { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Particle Constellation & Ambient Mesh -->
+  <!-- Ambient Particle Canvas & Soft Lighting -->
   <canvas id="bg-canvas"></canvas>
-  <div class="ambient-mesh"></div>
-  <div class="bg-grid"></div>
+  <div class="ambient-aurora aurora-1"></div>
+  <div class="ambient-aurora aurora-2"></div>
+  <div class="ambient-aurora aurora-3"></div>
   <canvas id="confetti-canvas"></canvas>
 
-  <!-- Global SVG Filters & Gradients -->
-  <svg width="0" height="0" style="position: absolute;">
-    <defs>
-      <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#10b981" />
-        <stop offset="50%" stop-color="#06b6d4" />
-        <stop offset="100%" stop-color="#6366f1" />
-      </linearGradient>
-    </defs>
-  </svg>
-
   <!-- ========================================================================
-       TOP EXECUTIVE NAVIGATION
+       TOP INSTITUTIONAL NAVIGATION
        ======================================================================== -->
   <header>
     <div class="header-inner">
-      <div class="brand-wrap" onclick="switchTab('dashboard')">
-        <div class="brand-icon">🛡️</div>
+      
+      <!-- Brand & Official SECE Emblem -->
+      <a href="index.html" class="brand-wrap">
+        <svg class="brand-vector-seal" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="16" y1="20" x2="184" y2="20" stroke="#00529b" stroke-width="3"/>
+          <text x="100" y="34" fill="#00529b" font-family="'Space Grotesk', sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.5" text-anchor="middle">Leadership &amp; Excellence</text>
+          <line x1="16" y1="42" x2="184" y2="42" stroke="#00529b" stroke-width="3"/>
+          <path d="M20 50 H180 V135 C180 188 100 228 100 228 C100 228 20 188 20 135 Z" fill="#ffffff" stroke="#00529b" stroke-width="4"/>
+          <path d="M38 72 C48 69 56 70 60 72 C64 70 72 69 82 72 V94 C72 91 64 92 60 94 C56 92 48 91 38 94 Z" fill="none" stroke="#00529b" stroke-width="2.5"/>
+          <line x1="60" y1="72" x2="60" y2="94" stroke="#00529b" stroke-width="2.5"/>
+          <line x1="20" y1="104" x2="100" y2="104" stroke="#00529b" stroke-width="3"/>
+          <polygon points="60,114 64,124 75,124 66,131 69,142 60,135 51,142 54,131 45,124 56,124" fill="none" stroke="#00529b" stroke-width="2.5"/>
+          <line x1="20" y1="152" x2="100" y2="152" stroke="#00529b" stroke-width="3"/>
+          <path d="M32 164 L46 200 H55 L41 164 Z M52 164 L66 210 H75 L61 164 Z M72 164 L86 220 H95 L81 164 Z" fill="#00529b"/>
+          <line x1="100" y1="50" x2="100" y2="228" stroke="#00529b" stroke-width="4"/>
+          <path d="M100 50 H180 V135 C180 188 100 228 100 228 Z" fill="#00529b"/>
+          <path d="M136 60 C150 74 158 92 136 112 C126 94 130 84 136 60 Z" fill="#fbbf24"/>
+          <path d="M146 70 C160 84 164 102 148 114 C138 102 142 92 146 70 Z" fill="#f59e0b"/>
+          <path d="M128 78 C132 88 136 102 128 112 C122 102 124 92 128 78 Z" fill="#fef08a"/>
+          <path d="M124 116 H152 V122 H124 Z" fill="#ffffff"/>
+          <path d="M130 122 H146 L142 195 H134 Z" fill="#ffffff"/>
+        </svg>
         <div class="brand-text">
           <h1>SECE CampusFind</h1>
           <div class="brand-badge">
-            <span class="live-dot"></span> Sri Eshwar College of Engg
+            <span class="live-dot"></span> Sri Eshwar College of Engineering
           </div>
         </div>
-      </div>
+      </a>
 
+      <!-- Quick Search Bar -->
       <div class="header-center-actions">
         <button class="cmd-search-btn" onclick="openCmdPalette()" title="Press Ctrl + K to search anything">
-          <span>🔍</span> Quick Search <span class="cmd-kbd">Ctrl K</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Quick Search <span class="cmd-kbd">Ctrl K</span>
         </button>
       </div>
 
+      <!-- Right Actions: User Profile & Controls -->
       <div class="header-right">
-        <!-- Authenticated User Profile Pill & Sign Out -->
-        <div class="user-auth-cluster" id="headerAuthCluster">
-          <div class="user-profile-badge" id="headerUserProfile">
-            <div class="user-avatar-badge" id="userAvatar">👑</div>
-            <div class="user-meta-info">
-              <div class="user-display-name" id="userDisplayName">Campus Admin</div>
-              <div class="user-role-pill role-ADMIN" id="userRoleBadge">ADMIN</div>
-            </div>
+        
+        <!-- Authenticated Profile -->
+        <div class="user-profile-badge" id="headerUserProfile">
+          <div class="user-avatar-badge" id="userAvatar">SE</div>
+          <div class="user-meta-info">
+            <div class="user-display-name" id="userDisplayName">Student User</div>
+            <div class="user-role-pill role-STUDENT" id="userRoleBadge">STUDENT</div>
           </div>
-          <button class="btn-signout" id="signOutBtn" onclick="logoutUser()" title="Sign out of SECE CampusFind">
-            <span>🚪</span> Sign Out
-          </button>
-          <div id="guestAuthCluster" style="display: none; align-items: center; gap: 0.5rem;">
-            <a href="login.html" class="btn btn-gradient btn-sm" style="text-decoration: none; padding: 6px 14px;">🔑 Sign In</a>
-            <a href="register.html" class="btn btn-glass btn-sm" style="text-decoration: none; padding: 6px 14px;">📝 Register</a>
-          </div>
+        </div>
+
+        <button class="btn-signout" id="signOutBtn" onclick="logoutUser()" title="Sign Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+
+        <!-- Guest Actions -->
+        <div id="guestAuthCluster" style="display: none; align-items: center; gap: 0.6rem;">
+          <a href="login.html" class="btn-header-auth">
+            <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Sign In
+          </a>
         </div>
 
         <!-- Audio FX Toggle -->
-        <button class="icon-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Sound Effects (Web Audio API)">
-          🔊
+        <button class="icon-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Sound Effects">
+          <svg id="audioIconSvg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
         </button>
 
-        <!-- Dark/Light Mode Switcher -->
-        <button class="icon-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
-          ☀️
-        </button>
       </div>
     </div>
 
-    <!-- Tab Bar -->
+    <!-- Navigation Tabs -->
     <div class="nav-tabs-container">
       <div class="nav-tabs">
         <button class="nav-tab-btn active" id="tabbtn-dashboard" onclick="switchTab('dashboard')">
-          📊 Campus HUD
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Overview
         </button>
         <button class="nav-tab-btn" id="tabbtn-lost" onclick="switchTab('lost')">
-          🔍 Lost Reports <span class="badge-count" id="badge-lost-count">0</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Lost Reports <span class="badge-count" id="badge-lost-count">0</span>
         </button>
         <button class="nav-tab-btn" id="tabbtn-found" onclick="switchTab('found')">
-          📦 Found Inventory <span class="badge-count" id="badge-found-count">0</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          Found Items <span class="badge-count" id="badge-found-count">0</span>
         </button>
         <button class="nav-tab-btn" id="tabbtn-matches" onclick="switchTab('matches')">
-          ✨ AI Smart Matches <span class="badge-count" id="badge-matches-count">0</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Matched Items <span class="badge-count" id="badge-matches-count">0</span>
         </button>
         <button class="nav-tab-btn" id="tabbtn-rules" onclick="switchTab('rules')">
-          🛡️ State Workflow Lab
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Campus Guidelines
         </button>
       </div>
     </div>
@@ -2248,30 +1540,54 @@
        MAIN APPLICATION WORKSPACE
        ======================================================================== -->
   <main>
-    <!-- TAB 1: CAMPUS DASHBOARD HUD -->
+
+    <!-- TAB 1: OVERVIEW DASHBOARD -->
     <section id="tab-dashboard" class="tab-panel active">
-      <!-- High-Impact Hero Banner -->
+      
+      <!-- Institutional Hero Banner -->
       <div class="hero-banner">
         <div class="hero-content">
           <div class="hero-title-area">
             <div class="hero-pill-badge">
-              <span>●</span> Sri Eshwar College of Engineering • Campus Recovery Network
+              <span>●</span> Sri Eshwar College of Engineering
             </div>
-            <h2>SECE Autonomous Lost & Found Radar</h2>
+            <h2>Campus Lost &amp; Found Tracking Portal</h2>
             <p>
-              Smart semantic heuristic matching continuously pairs lost reports with found property across SECE campus blocks. 
-              Enforcing strict institutional state workflows: <strong>AVAILABLE &rarr; CLAIMED &rarr; RETURNED</strong>.
+              Official lost and found tracking service for students, faculty, and campus staff at Sri Eshwar College of Engineering. 
+              Items are logged securely and verified through the campus handover process: <strong>Available &rarr; Claimed &rarr; Returned</strong>.
             </p>
+
             <!-- Campus Location Quick Filters -->
             <div class="location-heatmap-bar">
-              <span class="location-label">SECE Campus Zones:</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Central Library')">📚 Central Library</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Tech Tower')">💻 Tech Tower (CSE/IT)</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Core Block')">⚡ Core Block (ECE/EEE)</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Mech')">⚙️ Mech & Robotics</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Sports')">🏸 Sports Complex</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Cafeteria')">🍽️ Student Cafeteria</span>
-              <span class="loc-tag" onclick="quickFilterLocation('Hostel')">🏢 Hostel Block</span>
+              <span class="location-label">Campus Zones:</span>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Central Library')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Central Library
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Tech Tower')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Tech Tower (CSE/IT)
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Core Block')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Core Block (ECE/EEE)
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Mech')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Mech &amp; Robotics
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Sports')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Sports Complex
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Cafeteria')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Cafeteria
+              </button>
+              <button type="button" class="loc-tag" onclick="quickFilterLocation('Hostel')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Hostel Blocks
+              </button>
             </div>
           </div>
 
@@ -2288,90 +1604,99 @@
               </div>
             </div>
             <div class="hero-stats-meta">
-              <h4>Recovery Health</h4>
-              <p>AI Matching confidence &gt; 90%</p>
-              <button class="btn btn-gradient btn-sm" onclick="switchTab('matches')">Explore Live Pairs ↗</button>
+              <h4>Recovery Progress</h4>
+              <p>Items matched and safely returned to owners.</p>
+              <button class="btn btn-gradient btn-sm" onclick="switchTab('matches')">View Matched Items &rarr;</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Dynamic RBAC Role Clearance Banner -->
+      <!-- Dynamic Role Information Bar -->
       <div class="role-clearance-bar" id="roleClearanceBar">
         <div class="role-clearance-left">
-          <span class="role-clearance-icon" id="clearanceIcon">👑</span>
+          <div class="role-clearance-icon" id="clearanceIcon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
           <div>
-            <div class="role-clearance-title" id="clearanceTitle">Administrator Console Active</div>
-            <div class="role-clearance-desc" id="clearanceDesc">Full system authority: inventory cataloging, return authorization, heuristic management, and audit state controls.</div>
+            <div class="role-clearance-title" id="clearanceTitle">Campus Portal Active</div>
+            <div class="role-clearance-desc" id="clearanceDesc">Manage your lost and found inquiries with institutional verification.</div>
           </div>
         </div>
-        <div class="role-clearance-badge role-ADMIN" id="clearanceBadge">SECURITY CLEARANCE: LEVEL 3 (ADMIN)</div>
+        <div class="role-clearance-badge role-STUDENT" id="clearanceBadge">Role: Student</div>
       </div>
 
-      <!-- Live Metric Cards Grid with Spotlight Physics -->
+      <!-- Summary Metric Cards -->
       <div class="metrics-grid">
-        <div class="metric-card card-emerald" onclick="filterByStat('AVAILABLE')">
+        <div class="metric-card" onclick="filterByStat('AVAILABLE')">
           <div class="metric-top">
             <span class="metric-title">Available for Claim</span>
-            <div class="metric-icon-box">🟢</div>
+            <div class="metric-status-indicator indicator-available"></div>
           </div>
           <div class="metric-val" id="stat-pending">0</div>
           <div class="metric-footer">
-            <span>Found items awaiting verification</span>
-            <span class="metric-action-arrow">&rarr;</span>
+            <span>Found items awaiting claim</span>
+            <span>&rarr;</span>
           </div>
         </div>
 
-        <div class="metric-card card-amber" onclick="filterByStat('CLAIMED')">
+        <div class="metric-card" onclick="filterByStat('CLAIMED')">
           <div class="metric-top">
-            <span class="metric-title">Claimed (Awaiting Pickup)</span>
-            <div class="metric-icon-box">🟡</div>
+            <span class="metric-title">Claimed (In Process)</span>
+            <div class="metric-status-indicator indicator-claimed"></div>
           </div>
           <div class="metric-val" id="stat-claimed">0</div>
           <div class="metric-footer">
-            <span>Student claimant verified</span>
-            <span class="metric-action-arrow">&rarr;</span>
+            <span>Awaiting owner verification</span>
+            <span>&rarr;</span>
           </div>
         </div>
 
-        <div class="metric-card card-indigo" onclick="filterByStat('RETURNED')">
+        <div class="metric-card" onclick="filterByStat('RETURNED')">
           <div class="metric-top">
             <span class="metric-title">Returned to Owner</span>
-            <div class="metric-icon-box">🔵</div>
+            <div class="metric-status-indicator indicator-returned"></div>
           </div>
           <div class="metric-val" id="stat-returned">0</div>
           <div class="metric-footer">
-            <span>Successfully resolved handovers</span>
-            <span class="metric-action-arrow">&rarr;</span>
+            <span>Successfully completed handovers</span>
+            <span>&rarr;</span>
           </div>
         </div>
 
-        <div class="metric-card card-rose" onclick="filterByStat('OPEN_LOST')">
+        <div class="metric-card" onclick="filterByStat('OPEN_LOST')">
           <div class="metric-top">
             <span class="metric-title">Active Lost Reports</span>
-            <div class="metric-icon-box">🔴</div>
+            <div class="metric-status-indicator indicator-lost"></div>
           </div>
           <div class="metric-val" id="stat-open-lost">0</div>
           <div class="metric-footer">
-            <span>Under AI scanner watch</span>
-            <span class="metric-action-arrow">&rarr;</span>
+            <span>Open lost items being tracked</span>
+            <span>&rarr;</span>
           </div>
         </div>
       </div>
 
-      <!-- Quick Actions Toolbar -->
+      <!-- Actions Toolbar -->
       <div class="glass-toolbar">
-        <div style="font-size: 0.9rem; color: var(--text-muted);">
-          👥 <strong><span id="stat-users">0</span> Campus Accounts:</strong> 
-          <span id="stat-students">0</span> Students, <span id="stat-staff">0</span> Security/Staff Officers.
+        <div style="font-size: 0.88rem; color: var(--text-muted); font-weight: 600;">
+          <span id="stat-users">0</span> Registered Campus Members &bull; 
+          <span id="stat-students">0</span> Students &bull; 
+          <span id="stat-staff">0</span> Staff &amp; Security Personnel
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
-          <button class="btn btn-glass btn-sm btn-admin-only" id="btnResetDemoHud" onclick="resetDemoData()">🔄 Reset Demo State</button>
-          <button class="btn btn-glass btn-sm" onclick="loadDashboard()">↻ Refresh HUD</button>
+          <button class="btn btn-glass btn-sm btn-admin-only" id="btnResetDemoHud" onclick="resetDemoData()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            Reset Demo Data
+          </button>
+          <button class="btn btn-glass btn-sm" onclick="loadDashboard()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            Refresh
+          </button>
           <button class="btn btn-gradient btn-sm" onclick="openReportLostModal()">+ Report Lost Item</button>
           <button class="btn btn-glass btn-sm btn-log-found" id="btnLogFoundHud" onclick="openLogFoundModal()">+ Log Found Item</button>
-          <div class="student-found-notice" id="studentFoundNotice">
-            <span>🛡️</span> Found an item? Please hand it in to Campus Security at Central Hall.
+          <div class="student-found-notice" id="studentFoundNotice" style="display: none; font-size: 0.78rem; color: #64748b; font-weight: 600;">
+            Found an item? Please hand it in to Campus Security at Central Reception.
           </div>
         </div>
       </div>
@@ -2382,9 +1707,9 @@
       <div class="glass-toolbar">
         <div class="filter-group">
           <div class="search-input-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="lost-search-kw" class="search-field" placeholder="Search title, location, keywords..." oninput="handleSearch('lost')">
-            <button class="clear-search-btn" id="lost-search-clear" onclick="clearSearch('lost')">✕</button>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="lost-search-kw" class="search-field" placeholder="Search lost reports by title, location, keywords..." oninput="handleSearch('lost')">
+            <button class="clear-search-btn" id="lost-search-clear" onclick="clearSearch('lost')">&times;</button>
           </div>
           <select id="lost-search-cat" class="dropdown-select" onchange="loadLostReports()">
             <option value="">All Categories</option>
@@ -2395,9 +1720,9 @@
 
       <!-- Status Chips -->
       <div class="filter-chips-row">
-        <span class="filter-chip active" id="chip-lost-ALL" onclick="setLostChip('ALL')">All Reports</span>
-        <span class="filter-chip" id="chip-lost-OPEN" onclick="setLostChip('OPEN')">🔴 Open Only</span>
-        <span class="filter-chip" id="chip-lost-RESOLVED" onclick="setLostChip('RESOLVED')">🔵 Resolved</span>
+        <button type="button" class="filter-chip active" id="chip-lost-ALL" onclick="setLostChip('ALL')">All Reports</button>
+        <button type="button" class="filter-chip" id="chip-lost-OPEN" onclick="setLostChip('OPEN')">Open Reports</button>
+        <button type="button" class="filter-chip" id="chip-lost-RESOLVED" onclick="setLostChip('RESOLVED')">Resolved</button>
       </div>
 
       <div id="lost-list" class="cards-stack"></div>
@@ -2408,70 +1733,73 @@
       <div class="glass-toolbar">
         <div class="filter-group">
           <div class="search-input-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="found-search-kw" class="search-field" placeholder="Search item, keywords, location..." oninput="handleSearch('found')">
-            <button class="clear-search-btn" id="found-search-clear" onclick="clearSearch('found')">✕</button>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="found-search-kw" class="search-field" placeholder="Search found items by title, location, keywords..." oninput="handleSearch('found')">
+            <button class="clear-search-btn" id="found-search-clear" onclick="clearSearch('found')">&times;</button>
           </div>
           <select id="found-search-cat" class="dropdown-select" onchange="loadFoundItems()">
             <option value="">All Categories</option>
           </select>
         </div>
-        <button class="btn btn-gradient btn-log-found" id="btnLogFoundTab" onclick="openLogFoundModal()">+ Log Found Item (Staff)</button>
+        <button class="btn btn-gradient btn-log-found" id="btnLogFoundTab" onclick="openLogFoundModal()">+ Log Found Item</button>
       </div>
 
       <!-- Status Chips -->
       <div class="filter-chips-row">
-        <span class="filter-chip active" id="chip-found-ALL" onclick="setFoundChip('ALL')">All Inventory</span>
-        <span class="filter-chip" id="chip-found-AVAILABLE" onclick="setFoundChip('AVAILABLE')">🟢 Available</span>
-        <span class="filter-chip" id="chip-found-CLAIMED" onclick="setFoundChip('CLAIMED')">🟡 Claimed</span>
-        <span class="filter-chip" id="chip-found-RETURNED" onclick="setFoundChip('RETURNED')">🔵 Returned</span>
+        <button type="button" class="filter-chip active" id="chip-found-ALL" onclick="setFoundChip('ALL')">All Items</button>
+        <button type="button" class="filter-chip" id="chip-found-AVAILABLE" onclick="setFoundChip('AVAILABLE')">Available for Claim</button>
+        <button type="button" class="filter-chip" id="chip-found-CLAIMED" onclick="setFoundChip('CLAIMED')">Claimed</button>
+        <button type="button" class="filter-chip" id="chip-found-RETURNED" onclick="setFoundChip('RETURNED')">Returned to Owner</button>
       </div>
 
       <div id="found-list" class="cards-stack"></div>
     </section>
 
-    <!-- TAB 4: SMART MATCHES RADAR -->
+    <!-- TAB 4: MATCHED ITEMS -->
     <section id="tab-matches" class="tab-panel">
       <div class="glass-toolbar">
-        <div style="font-size: 0.9rem; color: var(--text-muted);">
-          🤖 <strong>Cross-Correlation Heuristic Engine:</strong> Evaluates Category ID, TF-IDF extracted keyword tokens, and spatial campus proximity.
+        <div style="font-size: 0.88rem; color: var(--text-muted); font-weight: 600;">
+          Automatic Matching: Identifies potential matches between open lost reports and found items based on category, descriptions, and campus locations.
         </div>
-        <button class="btn btn-glass btn-sm" onclick="loadMatches()">↻ Re-Scan Live Pairs</button>
+        <button class="btn btn-glass btn-sm" onclick="loadMatches()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Re-Check Matches
+        </button>
       </div>
       <div id="matches-list"></div>
     </section>
 
-    <!-- TAB 5: RULE WORKFLOW & ARCHITECTURE LAB -->
+    <!-- TAB 5: CAMPUS GUIDELINES & RULES -->
     <section id="tab-rules" class="tab-panel">
       <div class="rule-lab-container">
         <div class="rule-lab-header">
           <div>
-            <h3>🛡️ Business Rule & Security Sandbox</h3>
+            <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">Campus Property Workflow &amp; Rules</h3>
             <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">
-              Live architectural inspection of RFC 7807 problem details and state transition enforcement.
+              Sri Eshwar College of Engineering policies ensure all found property is cataloged and verified through official channels before handover.
             </p>
           </div>
           <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-            <button class="btn btn-glass btn-sm" onclick="resetDemoData()">
-              🔄 Reset Demo State
+            <button class="btn btn-glass btn-sm btn-admin-only" id="btnResetDemoRules" onclick="resetDemoData()">
+              Reset Demo Data
             </button>
             <button class="btn btn-danger-glass btn-sm" onclick="triggerRule1ViolationTest()">
-              ⚡ Simulate Rule 1 Rejection
+              Test Transition Rule
             </button>
             <button class="btn btn-glass btn-sm" onclick="triggerRule2SecurityTest()">
-              🔒 Simulate Rule 2 (Student 403 Rejection)
+              Test Access Restriction Rule
             </button>
           </div>
         </div>
 
         <!-- Workflow Visualizer Diagram -->
         <div class="rule-workflow-diagram">
-          <div class="flow-state-box state-avail">🟢 AVAILABLE</div>
+          <div class="flow-state-box state-avail">1. AVAILABLE</div>
           <div class="flow-arrow-valid">&rarr;</div>
-          <div class="flow-state-box state-claim">🟡 CLAIMED</div>
+          <div class="flow-state-box state-claim">2. CLAIMED</div>
           <div class="flow-arrow-valid">&rarr;</div>
-          <div class="flow-state-box state-ret">🔵 RETURNED</div>
-          <div class="flow-arrow-forbidden">❌ FORBIDDEN DIRECT JUMP (AVAILABLE &rarr; RETURNED)</div>
+          <div class="flow-state-box state-ret">3. RETURNED</div>
+          <div class="flow-arrow-forbidden">Direct Jump from Available to Returned is Blocked</div>
         </div>
 
         <!-- Terminal Error Inspector -->
@@ -2483,17 +1811,20 @@
   <!-- ========================================================================
        MODALS & DIALOGS
        ======================================================================== -->
+  
   <!-- MODAL: REPORT LOST ITEM -->
   <div id="modal-lost" class="modal-overlay" onclick="onBackdropClick(event, 'modal-lost')">
     <div class="modal-window">
       <div class="modal-header">
         <h2>Report Lost Item</h2>
-        <button class="modal-close-btn" onclick="closeModal('modal-lost')">✕</button>
+        <button class="modal-close-btn" onclick="closeModal('modal-lost')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
       <form id="form-lost" onsubmit="submitLostReport(event)">
         <div class="form-group">
-          <label>Item Title *</label>
-          <input type="text" id="lost-title" required placeholder="e.g. Casio fx-991EX Calculator">
+          <label>Item Name *</label>
+          <input type="text" id="lost-title" required placeholder="e.g. Casio fx-991EX Scientific Calculator">
         </div>
         <div class="form-group">
           <label>Category *</label>
@@ -2501,15 +1832,15 @@
         </div>
         <div class="form-group">
           <label>Where Was It Lost? *</label>
-          <input type="text" id="lost-location" required placeholder="e.g. Math Lecture Hall B Row 4">
+          <input type="text" id="lost-location" required placeholder="e.g. Tech Tower 2nd Floor, Lab 4">
         </div>
         <div class="form-group">
           <label>Date Lost *</label>
           <input type="date" id="lost-date" required>
         </div>
         <div class="form-group">
-          <label>Description & Unique Identifiers *</label>
-          <textarea id="lost-desc" rows="3" required placeholder="Color, scratches, stickers, initials..."></textarea>
+          <label>Description &amp; Identifying Details *</label>
+          <textarea id="lost-desc" rows="3" required placeholder="Color, brand, serial number, distinctive scratches, stickers, or markings..."></textarea>
         </div>
         <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
           <button type="button" class="btn btn-glass" onclick="closeModal('modal-lost')">Cancel</button>
@@ -2519,25 +1850,27 @@
     </div>
   </div>
 
-  <!-- MODAL: LOG FOUND ITEM -->
+  <!-- MODAL: LOG FOUND ITEM (STAFF / SECURITY) -->
   <div id="modal-found" class="modal-overlay" onclick="onBackdropClick(event, 'modal-found')">
     <div class="modal-window">
       <div class="modal-header">
-        <h2>Log Found Item (Security / Staff)</h2>
-        <button class="modal-close-btn" onclick="closeModal('modal-found')">✕</button>
+        <h2>Log Found Item (Security Desk)</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-found')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
       <form id="form-found" onsubmit="submitFoundItem(event)">
         <div class="form-group">
           <label>Item Name *</label>
-          <input type="text" id="found-title" required placeholder="e.g. Apple AirPods Pro 2 in MagSafe Case">
+          <input type="text" id="found-title" required placeholder="e.g. Apple AirPods Pro in White Case">
         </div>
         <div class="form-group">
           <label>Category *</label>
           <select id="found-category" required></select>
         </div>
         <div class="form-group">
-          <label>Where Was It Discovered? *</label>
-          <input type="text" id="found-location" required placeholder="e.g. Campus Gym Locker Room">
+          <label>Where Was It Found? *</label>
+          <input type="text" id="found-location" required placeholder="e.g. Central Library 2nd Floor Reading Room">
         </div>
         <div class="form-group">
           <label>Date Found *</label>
@@ -2545,11 +1878,11 @@
         </div>
         <div class="form-group">
           <label>Detailed Description *</label>
-          <textarea id="found-desc" rows="3" required placeholder="Condition, serial number, distinctive stickers..."></textarea>
+          <textarea id="found-desc" rows="3" required placeholder="Physical condition, casing, serial number, or identifiable marks..."></textarea>
         </div>
         <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
           <button type="button" class="btn btn-glass" onclick="closeModal('modal-found')">Cancel</button>
-          <button type="submit" class="btn btn-gradient">Store & Log Found Item</button>
+          <button type="submit" class="btn btn-gradient">Store &amp; Log Item</button>
         </div>
       </form>
     </div>
@@ -2560,15 +1893,17 @@
     <div class="modal-window">
       <div class="modal-header">
         <h2>Submit Property Claim</h2>
-        <button class="modal-close-btn" onclick="closeModal('modal-claim')">✕</button>
+        <button class="modal-close-btn" onclick="closeModal('modal-claim')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
       <p id="claim-item-title" style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;"></p>
       
       <!-- Student self-claiming identity box -->
-      <div id="claimStudentSelfInfo" style="display: none; background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 1.15rem;">
-        <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 800; color: var(--primary-light);">Verified Student Claimant</div>
+      <div id="claimStudentSelfInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 1.15rem;">
+        <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 800; color: #15803d;">Verified Student Claimant</div>
         <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="claimStudentSelfName">Alice Smith</div>
-        <div style="font-size: 0.8rem; color: var(--text-muted);" id="claimStudentSelfEmail">student@campus.edu</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);" id="claimStudentSelfEmail">student@sece.ac.in</div>
       </div>
 
       <!-- Staff/Admin view: select student from list -->
@@ -2578,13 +1913,13 @@
       </div>
 
       <div class="form-group">
-        <label>Proof of Ownership / Distinctive Marks *</label>
-        <textarea id="claim-proof" rows="3" required placeholder="Describe unique identifying marks (e.g., serial number, screen wallpaper, scratches, stickers, contents) to verify ownership..."></textarea>
+        <label>Proof of Ownership / Distinctive Details *</label>
+        <textarea id="claim-proof" rows="3" required placeholder="Describe specific markings, scratches, wallpaper, serial number, or contents to prove ownership..."></textarea>
       </div>
 
       <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
         <button type="button" class="btn btn-glass" onclick="closeModal('modal-claim')">Cancel</button>
-        <button type="button" class="btn btn-gradient" onclick="confirmClaimAction()">Submit & Register Claim 🤝</button>
+        <button type="button" class="btn btn-gradient" onclick="confirmClaimAction()">Register Claim</button>
       </div>
     </div>
   </div>
@@ -2592,7 +1927,7 @@
   <!-- COMMAND PALETTE SPOTLIGHT SEARCH OVERLAY -->
   <div id="cmd-overlay" class="cmd-overlay" onclick="onBackdropClick(event, 'cmd-overlay')">
     <div class="cmd-palette">
-      <input type="text" id="cmdInput" class="cmd-palette-input" placeholder="Type a keyword, category, or action..." oninput="onCmdSearch()">
+      <input type="text" id="cmdInput" class="cmd-palette-input" placeholder="Type a search keyword, category, or quick jump..." oninput="onCmdSearch()">
       <div id="cmdResults" class="cmd-results-list"></div>
     </div>
   </div>
@@ -2601,10 +1936,10 @@
   <div id="toastSystem" class="toast-system"></div>
 
   <!-- ========================================================================
-       APPLICATION LOGIC & ANIMATIONS JAVASCRIPT
+       APPLICATION LOGIC & BEHAVIORS JAVASCRIPT
        ======================================================================== -->
   <script>
-    // State variables
+    // Global Application State
     let users = [];
     let categories = [];
     let currentUser = null;
@@ -2616,20 +1951,34 @@
     let debounceTimer = null;
     let audioEnabled = true;
 
-    // Category icon dictionary
-    const categoryIcons = {
-      "ID Cards & Badges": "🪪",
-      "Electronics & Chargers": "🔌",
-      "Calculators": "🔢",
-      "Water Bottles & Flasks": "🍶",
-      "Books & Notebooks": "📚",
-      "Keys & Wallets": "🔑",
-      "Sports Equipment": "⚽"
-    };
+    // Clean Inline Vector SVGs for Categories
+    function getCategorySvg(name) {
+      if (!name) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`;
+      const n = name.toLowerCase();
+      if (n.includes('id card') || n.includes('badge')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><line x1="15" y1="8" x2="17" y2="8"/><line x1="15" y1="12" x2="17" y2="12"/><path d="M5 18c0-2 2-3 4-3s4 1 4 3"/></svg>`;
+      }
+      if (n.includes('electronic') || n.includes('charger')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
+      }
+      if (n.includes('calc')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>`;
+      }
+      if (n.includes('bottle') || n.includes('flask')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2h4v4h-4z"/><path d="M7 8h10l-1 12H8L7 8z"/></svg>`;
+      }
+      if (n.includes('book') || n.includes('note')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`;
+      }
+      if (n.includes('key') || n.includes('wallet')) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-2-2l2 2"/><circle cx="7" cy="17" r="5"/><polyline points="12 12 17 7 14 4 19 2 22 5 20 7 17 7"/></svg>`;
+      }
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`;
+    }
 
-    // Synthesized Web Audio Sound Engine
+    // Audio Engine (Web Audio API)
     const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
-    function playTone(freq, type = 'sine', duration = 0.1, delay = 0) {
+    function playTone(freq, type = 'sine', duration = 0.08, delay = 0) {
       if (!audioEnabled || !audioCtx) return;
       try {
         if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -2637,7 +1986,7 @@
         const gain = audioCtx.createGain();
         osc.type = type;
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime + delay);
+        gain.gain.setValueAtTime(0.035, audioCtx.currentTime + delay);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + delay + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -2648,40 +1997,45 @@
 
     function soundClick() { playTone(540, 'triangle', 0.05); }
     function soundSuccess() {
-      playTone(440, 'sine', 0.12, 0);
-      playTone(660, 'sine', 0.15, 0.08);
-      playTone(880, 'sine', 0.2, 0.16);
+      playTone(440, 'sine', 0.1, 0);
+      playTone(660, 'sine', 0.12, 0.07);
+      playTone(880, 'sine', 0.16, 0.14);
     }
     function soundError() {
-      playTone(280, 'sawtooth', 0.18, 0);
-      playTone(210, 'sawtooth', 0.22, 0.1);
+      playTone(280, 'sawtooth', 0.16, 0);
+      playTone(210, 'sawtooth', 0.2, 0.08);
     }
 
     function toggleAudio() {
       audioEnabled = !audioEnabled;
-      document.getElementById('audioToggleBtn').innerText = audioEnabled ? '🔊' : '🔇';
-      showToast(audioEnabled ? 'Sound FX Enabled' : 'Sound FX Muted');
+      const icon = document.getElementById('audioToggleBtn');
+      if (audioEnabled) {
+        icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
+        showToast('Sound Effects Enabled');
+      } else {
+        icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+        showToast('Sound Effects Muted');
+      }
     }
 
-    // Interactive Particle Constellation Canvas
+    // Particle Background Canvas
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
-    let mouse = { x: -1000, y: -1000 };
 
     function initCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const count = Math.floor((canvas.width * canvas.height) / 16000);
+      const count = Math.floor((canvas.width * canvas.height) / 22000);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.45,
-          vy: (Math.random() - 0.5) * 0.45,
-          radius: Math.random() * 1.6 + 0.8,
-          color: Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.35)' : 'rgba(6, 182, 212, 0.35)'
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 1.5 + 0.8,
+          color: Math.random() > 0.4 ? 'rgba(0, 82, 155, 0.18)' : 'rgba(2, 132, 199, 0.18)'
         });
       }
     }
@@ -2704,9 +2058,9 @@
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 100) {
+          if (dist < 90) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 100)})`;
+            ctx.strokeStyle = `rgba(0, 82, 155, ${0.1 * (1 - dist / 90)})`;
             ctx.lineWidth = 0.6;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -2716,22 +2070,9 @@
       }
       requestAnimationFrame(animateCanvas);
     }
-
     window.addEventListener('resize', initCanvas);
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      // Update spotlight effect on metric cards
-      document.querySelectorAll('.metric-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    });
 
-    // Pure Canvas Confetti Explosion
+    // Confetti Engine
     const confettiCanvas = document.getElementById('confetti-canvas');
     const confettiCtx = confettiCanvas.getContext('2d');
     let confettiPieces = [];
@@ -2740,19 +2081,19 @@
       confettiCanvas.width = window.innerWidth;
       confettiCanvas.height = window.innerHeight;
       confettiPieces = [];
-      const colors = ['#6366f1', '#10b981', '#ec4899', '#f59e0b', '#06b6d4', '#8b5cf6'];
-      for (let i = 0; i < 90; i++) {
+      const colors = ['#00529b', '#1d4ed8', '#10b981', '#f59e0b', '#0284c7'];
+      for (let i = 0; i < 80; i++) {
         confettiPieces.push({
           x: window.innerWidth / 2,
-          y: window.innerHeight / 2 - 50,
-          w: Math.random() * 9 + 4,
-          h: Math.random() * 6 + 3,
-          vx: (Math.random() - 0.5) * 16,
-          vy: (Math.random() - 0.7) * 16,
-          gravity: 0.35,
+          y: window.innerHeight / 2 - 40,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 5 + 3,
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.7) * 14,
+          gravity: 0.32,
           color: colors[Math.floor(Math.random() * colors.length)],
           rotation: Math.random() * 360,
-          rotSpeed: (Math.random() - 0.5) * 10,
+          rotSpeed: (Math.random() - 0.5) * 8,
           opacity: 1
         });
       }
@@ -2767,7 +2108,7 @@
         p.y += p.vy;
         p.vy += p.gravity;
         p.rotation += p.rotSpeed;
-        p.opacity -= 0.012;
+        p.opacity -= 0.014;
 
         if (p.opacity > 0) {
           alive = true;
@@ -2784,7 +2125,7 @@
       else confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
     }
 
-    // DOM Ready initialization
+    // App Initialization
     window.addEventListener('DOMContentLoaded', async () => {
       initCanvas();
       animateCanvas();
@@ -2805,7 +2146,7 @@
         }
       });
 
-      // Session initialization
+      // Session Management
       const savedUser = localStorage.getItem('campusfind_auth_user');
       if (savedUser) {
         try {
@@ -2819,8 +2160,16 @@
       await loadUsers();
       await loadCategories();
 
-      // If no active session and not browsing as guest, redirect to dedicated login page
       const urlParams = new URLSearchParams(window.location.search);
+      const demoRole = urlParams.get('role');
+      if (demoRole) {
+        const found = users.find(u => u.role.toLowerCase() === demoRole.toLowerCase());
+        if (found) {
+          currentUser = found;
+          currentUserId = found.id;
+        }
+      }
+
       const isGuestMode = urlParams.get('guest') === 'true';
       if (!currentUser && !isGuestMode) {
         window.location.href = 'login.html';
@@ -2832,33 +2181,30 @@
       await loadLostReports();
       await loadFoundItems();
       await loadMatches();
+
+      const initialTab = urlParams.get('tab');
+      if (initialTab) {
+        switchTab(initialTab);
+      }
     });
 
-    // Theme Switcher
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      document.getElementById('themeToggleBtn').innerText = next === 'dark' ? '☀️' : '🌓';
-      soundClick();
-      showToast('Switched to ' + next + ' mode');
-    }
-
-    // Rich Toast System
+    // Toast Notification System
     function showToast(msg, isError = false) {
       if (isError) soundError(); else soundClick();
       const container = document.getElementById('toastSystem');
       const toast = document.createElement('div');
       toast.className = `toast-pill ${isError ? 'toast-error' : 'toast-success'}`;
-      toast.innerHTML = `<span>${isError ? '⚠️' : '✨'}</span> <div>${msg}</div>`;
+      const iconSvg = isError
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      toast.innerHTML = `${iconSvg} <div>${escapeHtml(msg)}</div>`;
       container.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateY(15px)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      }, 4000);
+        toast.style.transform = 'translateY(12px)';
+        toast.style.transition = 'all 0.25s ease';
+        setTimeout(() => toast.remove(), 250);
+      }, 3500);
     }
 
     // Tab Navigation
@@ -2894,21 +2240,15 @@
       handleSearch('found');
     }
 
-    /* ==========================================================================
-       AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC)
-       ========================================================================== */
-    function openAuthModal(tab = 'login') {
-      window.location.href = tab === 'register' ? 'register.html' : 'login.html';
-    }
-
+    // Role-Based Access Control (RBAC)
     function logoutUser() {
       soundClick();
       currentUser = null;
       localStorage.removeItem('campusfind_auth_user');
-      showToast('You have signed out of SECE CampusFind. Redirecting to Login...');
+      showToast('Signed out of SECE CampusFind. Redirecting to Login...');
       setTimeout(() => {
         window.location.href = 'login.html';
-      }, 400);
+      }, 350);
     }
 
     function applyRoleRestrictions() {
@@ -2917,6 +2257,7 @@
       const guestCluster = document.getElementById('guestAuthCluster');
       const rulesTabBtn = document.getElementById('tabbtn-rules');
       const hudResetBtn = document.getElementById('btnResetDemoHud');
+      const rulesResetBtn = document.getElementById('btnResetDemoRules');
       const hudLogFoundBtn = document.getElementById('btnLogFoundHud');
       const tabLogFoundBtn = document.getElementById('btnLogFoundTab');
       const studentNotice = document.getElementById('studentFoundNotice');
@@ -2925,7 +2266,6 @@
       const nameEl = document.getElementById('userDisplayName');
       const roleBadge = document.getElementById('userRoleBadge');
 
-      const clearanceIcon = document.getElementById('clearanceIcon');
       const clearanceTitle = document.getElementById('clearanceTitle');
       const clearanceDesc = document.getElementById('clearanceDesc');
       const clearanceBadge = document.getElementById('clearanceBadge');
@@ -2938,16 +2278,16 @@
 
         if (rulesTabBtn) rulesTabBtn.style.display = 'none';
         if (hudResetBtn) hudResetBtn.style.display = 'none';
+        if (rulesResetBtn) rulesResetBtn.style.display = 'none';
         if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'none';
         if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'none';
         if (studentNotice) studentNotice.style.display = 'inline-flex';
 
-        if (clearanceIcon) clearanceIcon.innerText = '🌐';
-        if (clearanceTitle) clearanceTitle.innerText = 'Guest Visitor Mode — Sri Eshwar College of Engineering';
-        if (clearanceDesc) clearanceDesc.innerText = 'Viewing public lost & found directory. Sign in or register your SECE account to submit reports or property claims.';
+        if (clearanceTitle) clearanceTitle.innerText = 'Guest Mode — Sri Eshwar College of Engineering';
+        if (clearanceDesc) clearanceDesc.innerText = 'Viewing public lost & found directory. Sign in to submit reports or property claims.';
         if (clearanceBadge) {
           clearanceBadge.className = 'role-clearance-badge';
-          clearanceBadge.innerText = 'GUEST ACCESS (READ ONLY)';
+          clearanceBadge.innerText = 'Guest (Browse Only)';
         }
         return;
       }
@@ -2960,64 +2300,59 @@
       if (nameEl) nameEl.innerText = currentUser.name;
       if (roleBadge) roleBadge.innerText = currentUser.role;
 
-      if (currentUser.role === 'ADMIN') {
-        if (avatar) { avatar.innerText = '👑'; avatar.style.background = 'var(--accent-violet)'; }
-        if (roleBadge) roleBadge.className = 'user-role-pill role-ADMIN';
+      // Extract Initials for User Avatar
+      const initials = (currentUser.name || 'SE').split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+      if (avatar) avatar.innerText = initials;
 
+      if (currentUser.role === 'ADMIN') {
+        if (roleBadge) roleBadge.className = 'user-role-pill role-ADMIN';
         if (rulesTabBtn) rulesTabBtn.style.display = 'inline-flex';
         if (hudResetBtn) hudResetBtn.style.display = 'inline-flex';
+        if (rulesResetBtn) rulesResetBtn.style.display = 'inline-flex';
         if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'inline-flex';
         if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'inline-flex';
         if (studentNotice) studentNotice.style.display = 'none';
 
-        if (clearanceIcon) clearanceIcon.innerText = '👑';
-        if (clearanceTitle) clearanceTitle.innerText = `SECE Institutional Admin Console — ${currentUser.name}`;
-        if (clearanceDesc) clearanceDesc.innerText = 'Full institutional authority: inventory logging, return verification, heuristic engine management, and demo state governance.';
+        if (clearanceTitle) clearanceTitle.innerText = `Administrator Console — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Administrator authority: manage lost & found records, verify returns, view matching items, and reset demo data.';
         if (clearanceBadge) {
           clearanceBadge.className = 'role-clearance-badge role-ADMIN';
-          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 3 (ADMIN)';
+          clearanceBadge.innerText = 'Role: Administrator';
         }
       } else if (currentUser.role === 'STAFF') {
-        if (avatar) { avatar.innerText = '🛡️'; avatar.style.background = 'var(--primary)'; }
         if (roleBadge) roleBadge.className = 'user-role-pill role-STAFF';
-
         if (rulesTabBtn) rulesTabBtn.style.display = 'inline-flex';
-        if (hudResetBtn) hudResetBtn.style.display = 'none'; // Staff cannot reset database
+        if (hudResetBtn) hudResetBtn.style.display = 'none';
+        if (rulesResetBtn) rulesResetBtn.style.display = 'none';
         if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'inline-flex';
         if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'inline-flex';
         if (studentNotice) studentNotice.style.display = 'none';
 
-        if (clearanceIcon) clearanceIcon.innerText = '🛡️';
-        if (clearanceTitle) clearanceTitle.innerText = `SECE Campus Security Desk — ${currentUser.name}`;
-        if (clearanceDesc) clearanceDesc.innerText = 'Authorized capabilities: Catalog found property (Rule 2), verify claimant student identity, and authorize official handovers (CLAIMED → RETURNED).';
+        if (clearanceTitle) clearanceTitle.innerText = `Campus Security Desk — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Staff authority: log found items, verify student identity, and hand over claimed items to their rightful owners.';
         if (clearanceBadge) {
           clearanceBadge.className = 'role-clearance-badge role-STAFF';
-          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 2 (STAFF)';
+          clearanceBadge.innerText = 'Role: Staff & Security';
         }
       } else {
         // STUDENT
-        if (avatar) { avatar.innerText = '🎓'; avatar.style.background = 'var(--accent-emerald)'; }
         if (roleBadge) roleBadge.className = 'user-role-pill role-STUDENT';
-
-        // Restrictions for students:
         if (rulesTabBtn) {
           rulesTabBtn.style.display = 'none';
           const activeTab = document.querySelector('.tab-panel.active');
-          if (activeTab && activeTab.id === 'tab-rules') {
-            switchTab('dashboard');
-          }
+          if (activeTab && activeTab.id === 'tab-rules') switchTab('dashboard');
         }
         if (hudResetBtn) hudResetBtn.style.display = 'none';
+        if (rulesResetBtn) rulesResetBtn.style.display = 'none';
         if (hudLogFoundBtn) hudLogFoundBtn.style.display = 'none';
         if (tabLogFoundBtn) tabLogFoundBtn.style.display = 'none';
         if (studentNotice) studentNotice.style.display = 'inline-flex';
 
-        if (clearanceIcon) clearanceIcon.innerText = '🎓';
-        if (clearanceTitle) clearanceTitle.innerText = `SECE Student Portal — ${currentUser.name}`;
-        if (clearanceDesc) clearanceDesc.innerText = 'Authorized capabilities: Publish lost property reports, track recovery radar, and submit verified claims for matching items.';
+        if (clearanceTitle) clearanceTitle.innerText = `Student Portal — ${currentUser.name}`;
+        if (clearanceDesc) clearanceDesc.innerText = 'Student privileges: report lost items, browse found items, and claim matching property.';
         if (clearanceBadge) {
           clearanceBadge.className = 'role-clearance-badge role-STUDENT';
-          clearanceBadge.innerText = 'SECURITY CLEARANCE: LEVEL 1 (STUDENT)';
+          clearanceBadge.innerText = 'Role: Student';
         }
       }
     }
@@ -3025,7 +2360,7 @@
     function openReportLostModal() {
       if (!currentUser) {
         showToast('Please sign in to file a lost item report', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       openModal('modal-lost');
@@ -3034,17 +2369,18 @@
     function openLogFoundModal() {
       if (!currentUser) {
         showToast('Please sign in to log found property', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       if (currentUser.role === 'STUDENT') {
         soundError();
-        showToast('Access Restricted (Rule 2): Found items can only be logged by Campus Staff or Security. Please hand items in at Security Desk.', true);
+        showToast('Only Campus Staff or Security can log found items. Please hand items in at Security Desk.', true);
         return;
       }
       openModal('modal-found');
     }
 
+    // Data Loaders
     async function loadUsers() {
       try {
         const res = await fetch('/api/auth/users');
@@ -3053,7 +2389,7 @@
         const claimSelect = document.getElementById('claim-student-select');
         if (claimSelect) {
           claimSelect.innerHTML = (students.length > 0 ? students : users).map(s =>
-            `<option value="${s.id}">${s.name} (${s.email})</option>`
+            `<option value="${s.id}">${escapeHtml(s.name)} (${escapeHtml(s.email)})</option>`
           ).join('');
         }
       } catch (err) {
@@ -3061,7 +2397,6 @@
       }
     }
 
-    // Categories
     async function loadCategories() {
       try {
         const res = await fetch('/api/categories');
@@ -3078,7 +2413,6 @@
       }
     }
 
-    // Dashboard HUD
     async function loadDashboard() {
       try {
         const res = await fetch('/api/admin/dashboard');
@@ -3095,7 +2429,6 @@
         document.getElementById('badge-lost-count').innerText = d.openLostReports;
         document.getElementById('badge-found-count').innerText = d.pendingFoundItems;
 
-        // Animate circular SVG gauge
         const total = d.pendingFoundItems + d.claimedFoundItems + d.returnedFoundItems;
         const rate = total > 0 ? Math.round((d.returnedFoundItems / total) * 100) : 85;
         document.getElementById('recoveryRateNum').innerText = rate + '%';
@@ -3175,26 +2508,28 @@
         if (data.length === 0) {
           container.innerHTML = `
             <div class="empty-card">
-              <div class="empty-card-icon">🔍</div>
-              <h4>No matching lost reports</h4>
-              <p>Try adjusting your search criteria or publish a new report.</p>
+              <div class="empty-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <h4>No matching lost reports found</h4>
+              <p>Try adjusting your search criteria or submit a new report.</p>
               <button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openReportLostModal()">+ Report Lost Item</button>
             </div>`;
           return;
         }
 
-        container.innerHTML = data.map((item, idx) => {
-          const icon = categoryIcons[item.category?.name] || "📦";
+        container.innerHTML = data.map((item) => {
+          const catSvg = getCategorySvg(item.category?.name);
           const canResolve = currentUser && (
             currentUser.role === 'ADMIN' ||
             currentUser.role === 'STAFF' ||
             (item.user && item.user.id === currentUser.id)
           );
           return `
-            <div class="interactive-card" style="animation-delay: ${idx * 0.05}s;">
+            <div class="interactive-card">
               <div class="card-main-row">
                 <div class="card-left-cluster">
-                  <div class="card-category-avatar">${icon}</div>
+                  <div class="card-category-avatar">${catSvg}</div>
                   <div class="card-content-area">
                     <h3>
                       ${escapeHtml(item.title)}
@@ -3203,14 +2538,23 @@
                     </h3>
                     <p class="card-desc">${escapeHtml(item.description)}</p>
                     <div class="card-meta-tags">
-                      <span class="meta-tag">📍 <strong>${escapeHtml(item.location)}</strong></span>
-                      <span class="meta-tag">📅 Lost: <strong>${item.lostDate}</strong></span>
-                      <span class="meta-tag">👤 Student: <strong>${escapeHtml(item.user?.name || '')}</strong></span>
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <strong>${escapeHtml(item.location)}</strong>
+                      </span>
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Date: <strong>${item.lostDate}</strong>
+                      </span>
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Reported by: <strong>${escapeHtml(item.user?.name || '')}</strong>
+                      </span>
                     </div>
                   </div>
                 </div>
                 ${item.status === 'OPEN' && canResolve ? `
-                  <button class="btn btn-glass btn-sm" onclick="resolveLostReport(${item.id})">Mark Resolved ✓</button>
+                  <button class="btn btn-glass btn-sm" onclick="resolveLostReport(${item.id})">Mark Resolved</button>
                 ` : ''}
               </div>
             </div>
@@ -3224,7 +2568,7 @@
     async function resolveLostReport(id) {
       if (!currentUser) {
         showToast('Please sign in to resolve reports', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       try {
@@ -3243,7 +2587,7 @@
       }
     }
 
-    // Render Found Inventory with 3-Step Lifecycle Stepper
+    // Render Found Inventory
     async function loadFoundItems() {
       const isStudent = currentUser && currentUser.role === 'STUDENT';
       const isStaffOrAdmin = currentUser && (currentUser.role === 'STAFF' || currentUser.role === 'ADMIN');
@@ -3266,7 +2610,9 @@
         if (allFoundItems.length === 0) {
           container.innerHTML = `
             <div class="empty-card">
-              <div class="empty-card-icon">📦</div>
+              <div class="empty-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
               <h4>No found items match criteria</h4>
               <p>Campus security or staff can log newly recovered items.</p>
               ${isStaffOrAdmin ? `<button class="btn btn-gradient btn-sm" style="margin-top: 1rem;" onclick="openLogFoundModal()">+ Log Found Item</button>` : ''}
@@ -3274,17 +2620,17 @@
           return;
         }
 
-        container.innerHTML = allFoundItems.map((item, idx) => {
-          const icon = categoryIcons[item.category?.name] || "📦";
+        container.innerHTML = allFoundItems.map((item) => {
+          const catSvg = getCategorySvg(item.category?.name);
           const isAvail = item.status === 'AVAILABLE';
           const isClaim = item.status === 'CLAIMED';
           const isRet = item.status === 'RETURNED';
 
           return `
-            <div class="interactive-card" style="animation-delay: ${idx * 0.05}s;">
+            <div class="interactive-card">
               <div class="card-main-row">
                 <div class="card-left-cluster">
-                  <div class="card-category-avatar">${icon}</div>
+                  <div class="card-category-avatar">${catSvg}</div>
                   <div class="card-content-area">
                     <h3>
                       ${escapeHtml(item.title)}
@@ -3311,11 +2657,20 @@
                       </div>
                     </div>
 
-                    <div class="card-meta-tags" style="margin-top: 0.85rem;">
-                      <span class="meta-tag">📍 <strong>${escapeHtml(item.location)}</strong></span>
-                      <span class="meta-tag">📅 Discovered: <strong>${item.foundDate}</strong></span>
-                      <span class="meta-tag">🛡️ Logged by: <strong>${escapeHtml(item.finder?.name || '')}</strong></span>
-                      ${item.claimedBy ? `<span class="meta-tag">🤝 Claimed: <strong>${escapeHtml(item.claimedBy.name)}</strong></span>` : ''}
+                    <div class="card-meta-tags" style="margin-top: 0.65rem;">
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <strong>${escapeHtml(item.location)}</strong>
+                      </span>
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Found: <strong>${item.foundDate}</strong>
+                      </span>
+                      <span class="meta-tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Logged by: <strong>${escapeHtml(item.finder?.name || '')}</strong>
+                      </span>
+                      ${item.claimedBy ? `<span class="meta-tag">Claimed by: <strong>${escapeHtml(item.claimedBy.name)}</strong></span>` : ''}
                     </div>
                   </div>
                 </div>
@@ -3324,32 +2679,32 @@
                   ${isAvail ? `
                     ${isStudent ? `
                       <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
-                        Claim This Item 🤝
+                        Submit Claim
                       </button>
                     ` : (isStaffOrAdmin ? `
                       <button class="btn btn-gradient btn-sm" onclick="openClaimDialog(${item.id})">
-                        Process Claim 🤝
+                        Process Claim
                       </button>
-                      <button class="btn btn-danger-glass btn-sm" onclick="simulateRule1OnItem(${item.id})" title="Deliberately attempt invalid direct jump to RETURNED">
-                        ⚡ Violate Rule 1
+                      <button class="btn btn-danger-glass btn-sm" onclick="simulateRule1OnItem(${item.id})" title="Test invalid transition direct to RETURNED">
+                        Test Rule
                       </button>
                     ` : `
-                      <button class="btn btn-glass btn-sm" onclick="openAuthModal('login')">
+                      <button class="btn btn-glass btn-sm" onclick="window.location.href='login.html'">
                         Sign In to Claim
                       </button>
                     `)}
                   ` : ''}
                   ${isClaim ? `
                     ${isStaffOrAdmin ? `
-                      <button class="btn btn-gradient btn-sm" style="background: var(--primary);" onclick="markItemReturned(${item.id})">
-                        Confirm Return to Owner ✓
+                      <button class="btn btn-gradient btn-sm" style="background: var(--sece-blue);" onclick="markItemReturned(${item.id})">
+                        Confirm Handover &amp; Return
                       </button>
                     ` : `
-                      <span class="badge badge-CLAIMED" style="padding: 6px 12px;">⏳ Awaiting Security Handover</span>
+                      <span class="badge badge-CLAIMED" style="padding: 6px 12px;">Awaiting Handover Verification</span>
                     `}
                   ` : ''}
                   ${isRet ? `
-                    <span class="badge badge-RETURNED">Handover Completed ✓</span>
+                    <span class="badge badge-RETURNED">Handover Completed</span>
                   ` : ''}
                 </div>
               </div>
@@ -3364,7 +2719,7 @@
     function openClaimDialog(id) {
       if (!currentUser) {
         showToast('Please sign in to claim this item', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       soundClick();
@@ -3424,7 +2779,7 @@
         } else {
           soundSuccess();
           triggerConfetti();
-          showToast(`Item successfully marked as CLAIMED by ${currentUser.role === 'STUDENT' ? currentUser.name : 'student'}!`);
+          showToast(`Item successfully marked as CLAIMED!`);
           loadFoundItems();
           loadDashboard();
           loadMatches();
@@ -3437,11 +2792,11 @@
     async function markItemReturned(id) {
       if (!currentUser) {
         showToast('Please sign in first', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       if (currentUser.role === 'STUDENT') {
-        showToast('Unauthorized: Only authorized Staff or Admin can confirm handover and return items.', true);
+        showToast('Only authorized Staff or Admin can confirm handover and return items.', true);
         return;
       }
       try {
@@ -3484,13 +2839,13 @@
         });
         const err = await res.json();
         logTerminalError(res.status, err);
-        showToast(`Rule 1 Verified (${res.status}): ${err.message}`, true);
+        showToast(`Rule Verified (${res.status}): ${err.message}`, true);
       } catch (e) {
         showToast('Request failed', true);
       }
     }
 
-    // AI Smart Match Radar
+    // Matched Items
     async function loadMatches() {
       try {
         const res = await fetch('/api/matches');
@@ -3501,18 +2856,20 @@
         if (matches.length === 0) {
           container.innerHTML = `
             <div class="empty-card">
-              <div class="empty-card-icon">✨</div>
-              <h4>No smart matches detected right now</h4>
+              <div class="empty-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <h4>No matching pairs detected right now</h4>
               <p>When open lost reports and found items share category, keywords, or location, they will automatically pair here.</p>
             </div>`;
           return;
         }
 
-        container.innerHTML = matches.map((m, idx) => `
-          <div class="match-hero-card" style="animation-delay: ${idx * 0.08}s;">
+        container.innerHTML = matches.map((m) => `
+          <div class="match-hero-card">
             <div class="match-header-row">
               <div class="match-score-badge">
-                <span class="score-pill">★ ${m.matchScore}% Match</span>
+                <span class="score-pill">${m.matchScore}% Match</span>
                 <div class="score-meter-track">
                   <div class="score-meter-fill" style="width: ${m.matchScore}%;"></div>
                 </div>
@@ -3524,37 +2881,39 @@
               <div class="match-item-panel">
                 <div class="match-panel-tag">
                   <span>Lost Report</span>
-                  <span>📅 ${m.lostReport.lostDate}</span>
+                  <span>Date: ${m.lostReport.lostDate}</span>
                 </div>
                 <strong>${escapeHtml(m.lostReport.title)}</strong>
                 <p>${escapeHtml(m.lostReport.description)}</p>
-                <div style="font-size: 0.8rem; color: var(--text-dim);">
-                  📍 ${escapeHtml(m.lostReport.location)} • 👤 ${escapeHtml(m.lostReport.user?.name || '')}
+                <div style="font-size: 0.78rem; color: var(--text-dim);">
+                  ${escapeHtml(m.lostReport.location)} &bull; Student: ${escapeHtml(m.lostReport.user?.name || '')}
                 </div>
               </div>
 
-              <div class="match-link-pulse">⇄</div>
+              <div class="match-link-pulse">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
 
               <div class="match-item-panel">
                 <div class="match-panel-tag">
                   <span>Found Item</span>
-                  <span>📅 ${m.foundItem.foundDate}</span>
+                  <span>Date: ${m.foundItem.foundDate}</span>
                 </div>
                 <strong>${escapeHtml(m.foundItem.title)}</strong>
                 <p>${escapeHtml(m.foundItem.description)}</p>
-                <div style="font-size: 0.8rem; color: var(--text-dim);">
-                  📍 ${escapeHtml(m.foundItem.location)} • 🛡️ ${escapeHtml(m.foundItem.finder?.name || '')}
+                <div style="font-size: 0.78rem; color: var(--text-dim);">
+                  ${escapeHtml(m.foundItem.location)} &bull; Logged by: ${escapeHtml(m.foundItem.finder?.name || '')}
                 </div>
               </div>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
               <div class="match-reason-bar">
-                <span>💡 Heuristic Rationale:</span> ${escapeHtml(m.matchReason)}
+                <strong>Match Details:</strong> ${escapeHtml(m.matchReason)}
               </div>
               ${m.foundItem.status === 'AVAILABLE' ? `
                 <button class="btn btn-gradient btn-sm" onclick="pairMatch(${m.foundItem.id}, ${m.lostReport.user?.id}, ${m.lostReport.id})">
-                  1-Click Pair & Claim 🤝
+                  Verify &amp; Pair Claim
                 </button>
               ` : ''}
             </div>
@@ -3568,11 +2927,11 @@
     async function pairMatch(foundItemId, studentId, lostReportId) {
       if (!currentUser) {
         showToast('Please sign in first', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       if (currentUser.role === 'STUDENT') {
-        showToast('Access Restricted: Only Campus Staff or Administrators can pair matches.', true);
+        showToast('Only Campus Staff or Administrators can pair matches.', true);
         return;
       }
       try {
@@ -3604,18 +2963,18 @@
       }
     }
 
-    // Rule Testing Sandbox
+    // Rules Testing Simulation
     async function triggerRule1ViolationTest() {
       if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
         soundError();
-        showToast('Access Restricted: Only Staff or Admin can access the State Workflow Lab.', true);
+        showToast('Only Staff or Admin can access testing actions.', true);
         return;
       }
       try {
         const res = await fetch('/api/found-items?status=AVAILABLE');
         const items = await res.json();
         if (!items || items.length === 0) {
-          showToast('No available found items to test. Click "Reset Demo State" first!', true);
+          showToast('No available found items to test. Click "Reset Demo Data" first!', true);
           return;
         }
 
@@ -3631,7 +2990,7 @@
         });
         const err = await updateRes.json();
         logTerminalError(updateRes.status, err);
-        showToast(`Rule 1 Verified (${updateRes.status}): ${err.message}`, true);
+        showToast(`Rule Verified (${updateRes.status}): ${err.message}`, true);
       } catch (e) {
         showToast('Error during test', true);
       }
@@ -3640,7 +2999,7 @@
     async function triggerRule2SecurityTest() {
       if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
         soundError();
-        showToast('Access Restricted: Only Staff or Admin can access the State Workflow Lab.', true);
+        showToast('Only Staff or Admin can access testing actions.', true);
         return;
       }
       try {
@@ -3652,7 +3011,6 @@
           return;
         }
 
-        // Find an item NOT logged by this student so Rule 2 authorization rejection occurs
         const target = items.find(i => !i.finder || i.finder.id !== student.id) || items[0];
         const body = { status: 'CLAIMED', currentUserId: student.id, claimedByUserId: student.id };
         const updateRes = await fetch(`/api/found-items/${target.id}/status`, {
@@ -3662,7 +3020,7 @@
         });
         const err = await updateRes.json();
         logTerminalError(updateRes.status, err);
-        showToast(`Rule 2 Verified (${updateRes.status}): ${err.message}`, true);
+        showToast(`Security Rule Verified (${updateRes.status}): ${err.message}`, true);
       } catch (e) {
         showToast('Security test error', true);
       }
@@ -3671,7 +3029,7 @@
     async function resetDemoData() {
       if (!currentUser || currentUser.role !== 'ADMIN') {
         soundError();
-        showToast('Access Denied: Only Campus Administrators can reset demo state.', true);
+        showToast('Only Campus Administrators can reset demo data.', true);
         return;
       }
       soundClick();
@@ -3681,7 +3039,7 @@
         if (res.ok) {
           soundSuccess();
           triggerConfetti();
-          showToast(data.message || 'Demo data successfully reset to clean state!');
+          showToast(data.message || 'Demo data successfully reset!');
           await loadUsers();
           await loadCategories();
           await loadDashboard();
@@ -3700,19 +3058,18 @@
       const term = document.getElementById('rfcTerminal');
       term.style.display = 'block';
       term.innerHTML = `
-        <span style="color: #f43f5e;">HTTP/1.1 ${status} RFC 7807 Response</span><br>
-        <span style="color: #94a3b8;">Timestamp:</span> ${err.timestamp || new Date().toISOString()}<br>
+        <span style="color: #f87171;">HTTP/1.1 ${status} Response</span><br>
         <span style="color: #94a3b8;">Path:</span> ${err.path || '/api/found-items'}<br>
-        <span style="color: #f59e0b;">Message:</span> ${escapeHtml(err.message)}<br>
+        <span style="color: #fbbf24;">Message:</span> ${escapeHtml(err.message)}<br>
       `;
     }
 
-    // Modal forms submission
+    // Modal Form Submissions
     async function submitLostReport(e) {
       e.preventDefault();
       if (!currentUser) {
         showToast('Please sign in to file a lost report', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       const payload = {
@@ -3732,7 +3089,7 @@
         if (res.ok) {
           soundSuccess();
           triggerConfetti();
-          showToast('Lost report filed successfully!');
+          showToast('Lost report published successfully!');
           closeModal('modal-lost');
           document.getElementById('form-lost').reset();
           document.getElementById('lost-date').valueAsDate = new Date();
@@ -3752,12 +3109,12 @@
       e.preventDefault();
       if (!currentUser) {
         showToast('Please sign in first', true);
-        openAuthModal('login');
+        setTimeout(() => { window.location.href = 'login.html'; }, 400);
         return;
       }
       if (currentUser.role === 'STUDENT') {
         soundError();
-        showToast('Security Rule 2: Only Staff or Admin can log found items. Please hand over the item to Campus Security.', true);
+        showToast('Only Staff or Admin can log found items. Please hand over the item to Campus Security.', true);
         return;
       }
       const payload = {
@@ -3807,22 +3164,24 @@
       const q = document.getElementById('cmdInput').value.toLowerCase();
       const results = document.getElementById('cmdResults');
       const commands = [
-        { label: "📊 Go to Campus HUD Overview", action: () => { switchTab('dashboard'); closeModal('cmd-overlay'); } },
-        { label: "🔍 Search Lost Reports", action: () => { switchTab('lost'); closeModal('cmd-overlay'); } },
-        { label: "📦 Browse Found Inventory", action: () => { switchTab('found'); closeModal('cmd-overlay'); } },
-        { label: "✨ View AI Smart Matches", action: () => { switchTab('matches'); closeModal('cmd-overlay'); } },
-        { label: "🛡️ Open State Workflow Lab", action: () => { switchTab('rules'); closeModal('cmd-overlay'); } },
-        { label: "➕ File a New Lost Report", action: () => { closeModal('cmd-overlay'); openModal('modal-lost'); } },
-        { label: "➕ Log Newly Found Item", action: () => { closeModal('cmd-overlay'); openModal('modal-found'); } },
-        { label: "🔄 Reset Demo Database State", action: () => { closeModal('cmd-overlay'); resetDemoData(); } },
-        { label: "☀️ Toggle Theme Mode", action: () => { toggleTheme(); closeModal('cmd-overlay'); } }
+        { label: "Overview Dashboard", action: () => { switchTab('dashboard'); closeModal('cmd-overlay'); } },
+        { label: "Search Lost Reports", action: () => { switchTab('lost'); closeModal('cmd-overlay'); } },
+        { label: "Browse Found Items", action: () => { switchTab('found'); closeModal('cmd-overlay'); } },
+        { label: "View Matched Items", action: () => { switchTab('matches'); closeModal('cmd-overlay'); } },
+        { label: "Campus Guidelines & Workflow", action: () => { switchTab('rules'); closeModal('cmd-overlay'); } },
+        { label: "Report a Lost Item", action: () => { closeModal('cmd-overlay'); openReportLostModal(); } },
+        { label: "Log a Found Item (Staff)", action: () => { closeModal('cmd-overlay'); openLogFoundModal(); } }
       ];
+
+      if (currentUser && currentUser.role === 'ADMIN') {
+        commands.push({ label: "Reset Demo Data", action: () => { closeModal('cmd-overlay'); resetDemoData(); } });
+      }
 
       const filtered = commands.filter(c => c.label.toLowerCase().includes(q));
       results.innerHTML = filtered.map((c, i) => `
         <div class="cmd-result-item" onclick="execCmd(${i})">
           <span>${c.label}</span>
-          <span style="font-size: 0.75rem; color: var(--text-dim);">Jump ↵</span>
+          <span style="font-size: 0.72rem; color: #94a3b8;">Jump &crarr;</span>
         </div>
       `).join('');
       window._cmdList = filtered;
